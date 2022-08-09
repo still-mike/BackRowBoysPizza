@@ -20,7 +20,7 @@ public class ProcessController {
         this.dao = processDao;
     }
 
-    @GetMapping("/pizzas")
+    @GetMapping("/pizzas/specialty")
     public List<Pizza> getSpecialtyPizzas() {
         return dao.getSpecialtyPizzas();
     }
