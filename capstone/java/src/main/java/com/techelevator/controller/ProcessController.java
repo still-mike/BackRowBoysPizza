@@ -2,10 +2,9 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ProcessDao;
 import com.techelevator.model.process.Pizza;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,11 @@ public class ProcessController {
     @GetMapping("/pizzas/specialty")
     public List<Pizza> getSpecialtyPizzas() {
         return dao.getSpecialtyPizzas();
+    }
+
+    @PostMapping("/pizzas/specialty")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pizza createSpecialtyPizza(@RequestBody Pizza newSpecialtyPizza) {
+        return dao.createSpecialtyPizza(newSpecialtyPizza);
     }
 }
