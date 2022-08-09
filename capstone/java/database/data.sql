@@ -42,4 +42,60 @@ VALUES ('small','classic','round','traditional red','THE NOWELL - parmigiano, ri
 INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,pizza_price)
 VALUES ('small','classic','round','traditional red','THE STILL - white pie, sriracha honey, cheese blend, brussels, bacon, , shaved red onion',14.99);
 
+--add standard toppings to the ingredient table
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Red onion','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Sweet peppers','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Spinach','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Broccoli','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Mushroom','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Ham','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Jalapeño','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Black olive','Standard',TRUE,.25);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Pepperoni','Standard',TRUE,.25);
+
+--add premium toppings to the ingredient table
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Grilled Chicken','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Spicy Meatball','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Broccoli Rabe','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Fennel sausage','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Marinated tofu','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Fried chickpeas','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Crispy Pancetta','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Sauteed spinach','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Grilled pineapple','Premium',TRUE,.50);
+
 COMMIT TRANSACTION;
