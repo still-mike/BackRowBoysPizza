@@ -37,6 +37,7 @@ CREATE TABLE pizzas(
     sauce_type varchar(50) NOT NULL,
     description varchar(500) NOT NULL,
     pizza_price decimal(13, 2) NOT NULL,
+    is_specialty boolean NOT NULL,
     order_id int,
     CONSTRAINT PK_pizzas PRIMARY KEY (id),
     CONSTRAINT fk_order
