@@ -15,6 +15,7 @@ CREATE TABLE ingredients(
     ingredient_name varchar(50) NOT NULL UNIQUE,
     tier varchar(50) NOT NULL,
     available boolean NOT NULL,
+    ingredient_price decimal(13, 2) NOT NULL,
     CONSTRAINT PK_ingredients PRIMARY KEY (id)
 );
 
@@ -34,6 +35,8 @@ CREATE TABLE pizzas(
     dough varchar(50) NOT NULL,
     shape varchar(50) NOT NULL,
     sauce_type varchar(50) NOT NULL,
+    description varchar(500) NOT NULL,
+    pizza_price decimal(13, 2) NOT NULL,
     order_id int,
     CONSTRAINT PK_pizzas PRIMARY KEY (id),
     CONSTRAINT fk_order
