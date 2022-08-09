@@ -3,7 +3,6 @@ package com.techelevator.controller;
 import com.techelevator.dao.ProcessDao;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,6 @@ import java.util.List;
 public class ProcessController {
 
     private ProcessDao dao;
-//   TODO Why do we need this JdbcTemplate in the controller?
-    private JdbcTemplate jdbcTemplate;
 
     public ProcessController(ProcessDao processDao) {
         this.dao = processDao;
@@ -27,8 +24,8 @@ public class ProcessController {
 
     @PostMapping("/pizzas/specialty")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pizza createSpecialtyPizza(@RequestBody Pizza newSpecialtyPizza) {
-        return dao.createSpecialtyPizza(newSpecialtyPizza);
+    public Pizza createPizza(@RequestBody Pizza pizza) {
+        return dao.createPizza(pizza);
     }
 
 

@@ -7,5 +7,5 @@ import java.util.List;
 public interface ProcessDao {
     List<Pizza> getSpecialtyPizzas();
 
-    Pizza createSpecialtyPizza(Pizza newSpecialtyPizza);
+    Pizza createPizza(Pizza pizza);
 }

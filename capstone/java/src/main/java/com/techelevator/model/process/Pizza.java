@@ -18,6 +18,8 @@ public class Pizza {
 
     private BigDecimal pizzaPrice;
 
+    private boolean isSpecialty;
+
     private int orderId;
 
 
@@ -75,6 +77,14 @@ public class Pizza {
 
     public void setPizzaPrice(BigDecimal pizzaPrice) {
         this.pizzaPrice = pizzaPrice;
+    }
+
+    public boolean getIsSpecialty() {
+        return isSpecialty;
+    }
+
+    public void setIsSpecialty(boolean specialty) {
+        isSpecialty = specialty;
     }
 
     public int getOrderId() {

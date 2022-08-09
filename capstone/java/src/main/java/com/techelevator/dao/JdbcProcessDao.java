@@ -32,13 +32,20 @@ public class JdbcProcessDao implements ProcessDao {
     }
 
     @Override
-    public Pizza createSpecialtyPizza(Pizza newSpecialtyPizza) {
-        String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, pizza_price) " +
-                "VALUES (?, ?, ?, ?, ?, ?) ";
-        int newId = jdbcTemplate.queryForObject(sql, int.class);
-        newSpecialtyPizza.setId(newId);
+    public Pizza createPizza(Pizza pizza) {
+        String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, pizza_price, is_specialty) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) ";
+        int newId = jdbcTemplate.queryForObject(sql, int.class,
+                pizza.getPizzaSize(),
+                pizza.getDough(),
+                pizza.getShape(),
+                pizza.getSauceType(),
+                pizza.getDescription(),
+                pizza.getPizzaPrice(),
+                pizza.getIsSpecialty());
+        pizza.setId(newId);
 
-        return newSpecialtyPizza;
+        return pizza;
     }
 
 
@@ -51,6 +58,7 @@ public class JdbcProcessDao implements ProcessDao {
         pizza.setSauceType(rowSet.getString("sauce_type"));
         pizza.setDescription(rowSet.getString("description"));
         pizza.setPizzaPrice(rowSet.getBigDecimal("pizza_price"));
+        pizza.setIsSpecialty(rowSet.getBoolean("is_specialty"));
         pizza.setOrderId(rowSet.getInt("order_id"));
         return pizza;
     }
