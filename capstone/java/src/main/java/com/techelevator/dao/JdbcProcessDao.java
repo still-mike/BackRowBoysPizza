@@ -20,7 +20,7 @@ public class JdbcProcessDao implements ProcessDao {
     @Override
     public List<Pizza> getSpecialtyPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id " +
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price " +
                         "FROM pizzas " +
                         "WHERE description IS NOT NULL;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
