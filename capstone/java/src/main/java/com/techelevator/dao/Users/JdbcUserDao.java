@@ -1,9 +1,10 @@
-package com.techelevator.dao;
+package com.techelevator.dao.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.dao.Users.UserDao;
 import com.techelevator.model.UserNotFoundException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

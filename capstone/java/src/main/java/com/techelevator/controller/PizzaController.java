@@ -1,6 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.ProcessDao;
+import com.techelevator.dao.PizzaDAO;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-public class ProcessController {
+public class PizzaController {
 
-    private ProcessDao dao;
+    private PizzaDAO dao;
 
-    public ProcessController(ProcessDao processDao) {
-        this.dao = processDao;
+    public PizzaController(PizzaDAO pizzaDAO) {
+        this.dao = pizzaDAO;
     }
 
     @GetMapping("/pizzas/specialty")

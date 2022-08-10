@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class JdbcProcessDao implements ProcessDao {
+public class JdbcPizzaDAO implements PizzaDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcProcessDao(JdbcTemplate jdbcTemplate) {
+    public JdbcPizzaDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
