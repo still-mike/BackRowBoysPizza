@@ -27,7 +27,7 @@ export default {
           selected: false
         },
         {
-          size: '20" Large (17.99)',
+          size: '20" Large ($17.99)',
           selected: false
         }
     
