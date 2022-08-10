@@ -21,14 +21,27 @@ public class JdbcPizzaDAO implements PizzaDAO {
     public List<Pizza> getSpecialtyPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
         String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price, is_specialty " +
-                        "FROM pizzas " +
-                        "WHERE is_specialty IS TRUE;";
+                "FROM pizzas " +
+                "WHERE is_specialty IS TRUE;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
             pizzas.add(pizza);
         }
         return pizzas;
+    }
+
+    @Override
+    public Pizza getPizza(long pizzaId) {
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price, is_specialty " +
+                "FROM pizzas WHERE id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, pizzaId);
+        if (rowSet.next()) {
+            Pizza pizza = mapRowToPizza(rowSet);
+            return pizza;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -46,6 +59,13 @@ public class JdbcPizzaDAO implements PizzaDAO {
         pizza.setId(newId);
 
         return pizza;
+    }
+
+    @Override
+    public boolean deletePizza(long pizzaId) {
+        String sql = "DELETE FROM pizzas WHERE id = ?;";
+        int count = jdbcTemplate.update(sql, pizzaId);
+        return count == 1;
     }
 
 
