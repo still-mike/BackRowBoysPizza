@@ -4,6 +4,7 @@ import com.techelevator.dao.Pizza.PizzaDAO;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,9 +29,25 @@ public class PizzaController {
         return dao.createPizza(pizza);
     }
 
-//  TODO getPizzaById
+    //  TODO getPizzaById
+    @GetMapping("/pizzas/{id}")
+    public Pizza getPizza(@PathVariable long id) throws InterruptedException {
+        Thread.sleep(1000); //Simulated loading time
+
+        Pizza result = dao.getPizza(id);
+        if (result == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! I got no pie with number.");
+        } else {
+            return result;
+        }
+    }
 
     @DeleteMapping("/pizzas/{id}")
-    @ResponseStatus(H)
-//  TODO deletePizza
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePizza(@PathVariable long id) {
+        if (!dao.deletePizza(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! That pie is already gone. I can't find it.");
+        }
+    }
+
 }

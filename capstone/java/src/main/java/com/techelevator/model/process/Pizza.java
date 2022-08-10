@@ -1,26 +1,21 @@
 package com.techelevator.model.process;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pizza {
 
     private Long id;
-
     private String pizzaSize;
-
     private String dough;
-
     private String shape;
-
     private String sauceType;
-
     private String description;
-
     private BigDecimal pizzaPrice;
-
     private boolean isSpecialty;
-
     private Long orderId;
+    private List<Ingredients> ingredients = new ArrayList<>();
 
 
     public Long getId() {
@@ -93,5 +88,13 @@ public class Pizza {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
+    }
+
+    public List<Ingredients> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredients> ingredients) {
+        this.ingredients = ingredients;
     }
 }
