@@ -1,6 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.PizzaDAO;
+import com.techelevator.dao.Pizza.PizzaDAO;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +29,8 @@ public class PizzaController {
     }
 
 //  TODO getPizzaById
+
+    @DeleteMapping("/pizzas/{id}")
+    @ResponseStatus(H)
 //  TODO deletePizza
 }

@@ -24,11 +24,11 @@ public class JdbcOrderDAO implements OrderDAO{
                 "FROM orders;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
-            Order order = mapRowToOrder(rowSet); //TODO went to create map, come back to here,
-
+            Order order = mapRowToOrder(rowSet);
             //TODO - determine if we need functionality like this: board.setCards(getCardsForBoardId(board.getId()));
+            orders.add(order);
         }
-        return null;
+        return orders;
     }
 
     @Override
@@ -54,8 +54,12 @@ public class JdbcOrderDAO implements OrderDAO{
     private Order mapRowToOrder(SqlRowSet rowset) {
         Order result = new Order();
         result.setId(rowset.getLong("id"));
-        //TODO - stopped here for lunch, looking at kanban as model.
-
+        result.setOrderStatus(rowset.getString("order_status"));
+        result.setDelivery(rowset.getBoolean("is_delivery"));
+        result.setEmployeeName(rowset.getString("employee_name"));
+        result.setOrderTime(rowset.getTimestamp("order_time").toLocalDateTime());
+        result.setCustAddress(rowset.getString("cust_address"));
+        result.setCustEmail(rowset.getString("cust_email"));
         return result;
     }
 

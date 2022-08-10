@@ -1,4 +1,4 @@
-package com.techelevator.dao;
+package com.techelevator.dao.Pizza;
 
 import com.techelevator.model.process.Pizza;
 import org.springframework.jdbc.core.JdbcTemplate;
