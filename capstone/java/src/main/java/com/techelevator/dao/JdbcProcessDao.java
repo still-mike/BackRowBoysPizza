@@ -20,9 +20,9 @@ public class JdbcProcessDao implements ProcessDao {
     @Override
     public List<Pizza> getSpecialtyPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price " +
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price, is_specialty " +
                         "FROM pizzas " +
-                        "WHERE description IS NOT NULL;";
+                        "WHERE is_specialty IS TRUE;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
@@ -34,8 +34,8 @@ public class JdbcProcessDao implements ProcessDao {
     @Override
     public Pizza createPizza(Pizza pizza) {
         String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, pizza_price, is_specialty) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?) ";
-        int newId = jdbcTemplate.queryForObject(sql, int.class,
+                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+        Long newId = jdbcTemplate.queryForObject(sql, Long.class,
                 pizza.getPizzaSize(),
                 pizza.getDough(),
                 pizza.getShape(),
@@ -51,7 +51,7 @@ public class JdbcProcessDao implements ProcessDao {
 
     private Pizza mapRowToPizza(SqlRowSet rowSet) {
         Pizza pizza = new Pizza();
-        pizza.setId(rowSet.getInt("id"));
+        pizza.setId(rowSet.getLong("id"));
         pizza.setPizzaSize(rowSet.getString("pizza_size"));
         pizza.setDough(rowSet.getString("dough"));
         pizza.setShape(rowSet.getString("shape"));
