@@ -20,7 +20,7 @@ public class Pizza {
 
     private boolean isSpecialty;
 
-    private int orderId;
+    private Long orderId;
 
 
     public Long getId() {
@@ -87,11 +87,11 @@ public class Pizza {
         isSpecialty = specialty;
     }
 
-    public int getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 }

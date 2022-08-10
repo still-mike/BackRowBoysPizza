@@ -79,7 +79,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         pizza.setDescription(rowSet.getString("description"));
         pizza.setPizzaPrice(rowSet.getBigDecimal("pizza_price"));
         pizza.setIsSpecialty(rowSet.getBoolean("is_specialty"));
-        pizza.setOrderId(rowSet.getInt("order_id"));
+        pizza.setOrderId(rowSet.getLong("order_id"));
         return pizza;
     }
 }
