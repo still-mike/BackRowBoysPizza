@@ -60,12 +60,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
         return pizza;
     }
-
-    @Override
-    public boolean updatePizza(Pizza pizza) {
-        return false;
-    }
-
+    
     @Override
     public boolean deletePizza(long pizzaId) {
         String sql = "DELETE FROM pizzas WHERE id = ?;";
