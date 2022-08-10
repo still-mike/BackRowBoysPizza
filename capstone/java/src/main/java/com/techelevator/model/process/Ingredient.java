@@ -2,7 +2,7 @@ package com.techelevator.model.process;
 
 import java.math.BigDecimal;
 
-public class Ingredients {
+public class Ingredient {
 
     private Long id;
     private String ingredientName;

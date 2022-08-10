@@ -15,7 +15,7 @@ public class Pizza {
     private BigDecimal pizzaPrice;
     private boolean isSpecialty;
     private Long orderId;
-    private List<Ingredients> ingredients = new ArrayList<>();
+    private List<Ingredient> ingredients = new ArrayList<>();
 
 
     public Long getId() {
@@ -90,11 +90,11 @@ public class Pizza {
         this.orderId = orderId;
     }
 
-    public List<Ingredients> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredients> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 }
