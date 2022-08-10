@@ -22,7 +22,7 @@ public class ProcessController {
         return dao.getSpecialtyPizzas();
     }
 
-    @PostMapping("/pizzas/specialty")
+    @PostMapping("/pizzas")
     @ResponseStatus(HttpStatus.CREATED)
     public Pizza createPizza(@RequestBody Pizza pizza) {
         return dao.createPizza(pizza);
