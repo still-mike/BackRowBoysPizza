@@ -48,16 +48,19 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     @Override
     public Pizza createPizza(Pizza pizza) {
-        String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, pizza_price, is_specialty) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, board_id ) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         Long newId = jdbcTemplate.queryForObject(sql, Long.class,
                 pizza.getPizzaSize(),
                 pizza.getDough(),
                 pizza.getShape(),
                 pizza.getSauceType(),
                 pizza.getDescription(),
+                pizza.isAvailable(),
+                pizza.getOrderId(),
                 pizza.getPizzaPrice(),
-                pizza.getIsSpecialty());
+                pizza.getIsSpecialty(),
+                pizza.getBoardId());
         pizza.setId(newId);
 
         return pizza;
@@ -186,13 +189,13 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     private List<Pizza> getPizzasForBoardId(long boardId) {
         List<Pizza> result = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price, is_specialty FROM pizzas WHERE board_id = ?;";
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, board_id FROM pizzas WHERE board_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, boardId);
         while (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
 /*            TODO - if we want ingredients nested -- we need to think it through.
                Kanban did not have a comment duplicated on multiple cards.
-                How do we duplicate an ingredients?
+                How do we duplicate an ingredient?
                 pizza.setIngredients(???)*/
 //            card.setComments(getCommentsForCardId(card.getId()));
             result.add(pizza);
