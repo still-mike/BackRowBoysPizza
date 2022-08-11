@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.Pizza.PizzaDAO;
+import com.techelevator.model.process.Board;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PizzaController {
 
         Pizza result = dao.getPizza(id);
         if (result == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! I got no pie with number.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! I got no pie with that number.");
         } else {
             return result;
         }
@@ -50,5 +51,28 @@ public class PizzaController {
     }
 
     //todo - add GET, UPDATE and ADD Ingredient endpoints
+
+    //todo order endpoints
+
+    //todo board endpoints
+
+    @GetMapping("/boards")
+    public List<Board> getBoards() throws InterruptedException {
+        Thread.sleep( 1000);
+        return dao.getAllBoards();
+    }
+
+    @GetMapping("/boards/{id}")
+    public Board getBoard(@PathVariable long id) throws InterruptedException {
+        Thread.sleep(1000); //Simulated loading time
+
+        Board result = dao.getBoard(id);
+        if (result == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No board with that id.");
+        } else {
+            return result;
+        }
+    }
+
 
 }

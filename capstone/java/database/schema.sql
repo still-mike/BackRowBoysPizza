@@ -1,7 +1,5 @@
 BEGIN TRANSACTION;
 
---TODO need to add available to pizzas table
-
 DROP TABLE IF EXISTS users, pizza_ingredients, pizzas, ingredients, orders;
 
 CREATE TABLE users (
@@ -44,6 +42,7 @@ CREATE TABLE pizzas(
     shape varchar(50) NOT NULL,
     sauce_type varchar(50) NOT NULL,
     description varchar(500) NOT NULL,
+    is_available boolean NOT NULL,
     pizza_price decimal(13, 2) NOT NULL,
     is_specialty boolean NOT NULL,
     order_id int,
