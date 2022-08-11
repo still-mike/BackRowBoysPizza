@@ -1,5 +1,4 @@
 --TODO need to add available to pizzas table
--- TODO add board data
 -- TODO add board_id to pizzas
 
 BEGIN TRANSACTION;
