@@ -90,8 +90,8 @@ export default {
           }
         });
     },
-    deleteBoard() {
-      if (confirm("Are you sure that you really want to delete this board?")) {
+    clearAllOrders() {
+      if (confirm("Do you seriously want to clear all order items?")) {
         pizzaService
           .deleteBoard(this.boardId)
           .then((response) => {

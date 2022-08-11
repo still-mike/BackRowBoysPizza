@@ -11,6 +11,7 @@ import ContactUs from '../views/ContactUs.vue'
 import OrderNow from '../views/OrderNow.vue'
 import Location from '../views/Location.vue'
 import Pizza from '../views/Pizza.vue'
+import Board from '../views/Board.vue'
 
 Vue.use(Router)
 
@@ -100,13 +101,21 @@ const router = new Router({
       }
     },
     {
+      path: '/board/:id',
+      name: 'Board',
+      component: Board,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/board/:boardID/pizza/:pizzaID',
       name: 'pizza',
       component: Pizza,
       meta: {
         requiresAuth: true
       }
-    }
+    },
   ]
 })
 
