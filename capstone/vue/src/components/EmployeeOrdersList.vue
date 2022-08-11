@@ -49,3 +49,97 @@
       </div>
   </div>
 </template>
+
+<script>
+import pizzaService from "../services/PizzaService";
+import BoardColumn from "@/components/BoardColumn";
+
+export default {
+  name: "employee-orders-list",
+  components: {
+    BoardColumn,
+  },
+  props: {
+    boardId: {
+      type: Number,
+      default: 0,
+    },
+  },
+  data() {
+    return {
+      title: "",
+      isLoading: true,
+      errorMsg: "",
+    };
+  },
+  methods: {
+    retrieveCards() {
+      pizzaService
+        .getCards(this.boardId)
+        .then((response) => {
+          this.title = response.data.title;
+          this.$store.commit("SET_BOARD_CARDS", response.data.cards);
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            alert(
+              "Board cards not available. This board may have been deleted or you have entered an invalid board ID."
+            );
+            this.$router.push({ name: "Home" });
+          }
+        });
+    },
+    deleteBoard() {
+      if (confirm("Are you sure that you really want to delete this board?")) {
+        pizzaService
+          .deleteBoard(this.boardId)
+          .then((response) => {
+            if (response.status === 200) {
+              alert("Board was successfully deleted");
+              this.$store.commit("DELETE_BOARD", this.boardId);
+              this.$router.push({ name: "Home" });
+            }
+          })
+          .catch((error) => {
+            if (error.response) {
+              this.errorMsg =
+                "Error deleting board. Response received was '" +
+                error.response.status +
+                "'.";
+            } else if (error.request) {
+              this.errorMsg =
+                "Error deleting board. Server could not be reached.";
+            } else {
+              this.errorMsg =
+                "Error deleting board. Request could not be created.";
+            }
+          });
+
+        //  console.log("!!! board id = " + this.$route.params.id)
+        //  console.log("!!! boardId = " + this.boardId)
+      }
+    },
+  },
+  created() {
+    this.retrieveCards();
+  },
+  computed: {
+    planned() {
+      return this.$store.state.boardCards.filter(
+        (card) => card.status === "Planned"
+      );
+    },
+    inProgress() {
+      return this.$store.state.boardCards.filter(
+        (card) => card.status === "In Progress"
+      );
+    },
+    completed() {
+      return this.$store.state.boardCards.filter(
+        (card) => card.status === "Completed"
+      );
+    },
+  },
+};
+</script>
