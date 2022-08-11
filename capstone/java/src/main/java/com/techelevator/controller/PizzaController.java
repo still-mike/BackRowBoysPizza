@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.Pizza.PizzaDAO;
+import com.techelevator.model.process.Board;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -50,5 +51,16 @@ public class PizzaController {
     }
 
     //todo - add GET, UPDATE and ADD Ingredient endpoints
+
+    //todo order endpoints
+
+    //todo board endpoints
+
+    @GetMapping("/boards")
+    public List<Board> getBoards() throws InterruptedException {
+        Thread.sleep( 1000);
+        return dao.getAllBoards();
+    }
+
 
 }

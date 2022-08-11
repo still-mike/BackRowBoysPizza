@@ -1,5 +1,7 @@
 package com.techelevator.dao.Pizza;
 
+import com.techelevator.model.process.Board;
+import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -82,4 +84,111 @@ public class JdbcPizzaDAO implements PizzaDAO {
         pizza.setOrderId(rowSet.getLong("order_id"));
         return pizza;
     }
+
+    //    order
+
+    @Override
+    public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT id, order_status, is_delivery, employee_name, order_time, cust_address, cust_email " +
+                "FROM orders;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            Order order = mapRowToOrder(rowSet);
+            //TODO - determine if we need functionality like this: board.setCards(getCardsForBoardId(board.getId()));
+            orders.add(order);
+        }
+        return orders;
+    }
+
+    @Override
+    public Order getOrder(long orderId) {
+        return null;
+    }
+
+    @Override
+    public Order createOrder(Order order) {
+        return null;
+    }
+
+    @Override
+    public boolean updateOrder(Order order) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteOrder(long orderId) {
+        return false;
+    }
+
+    private Order mapRowToOrder(SqlRowSet rowset) {
+        Order result = new Order();
+        result.setId(rowset.getLong("id"));
+        result.setOrderStatus(rowset.getString("order_status"));
+        result.setDelivery(rowset.getBoolean("is_delivery"));
+        result.setEmployeeName(rowset.getString("employee_name"));
+        result.setOrderTime(rowset.getTimestamp("order_time").toLocalDateTime());
+        result.setCustAddress(rowset.getString("cust_address"));
+        result.setCustEmail(rowset.getString("cust_email"));
+        return result;
+    }
+
+//    board
+
+    @Override
+    public List<Board> getAllBoards() {
+        List<Board> result = new ArrayList<>();
+        String sql = "SELECT id, title, background_color FROM boards;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            Board board = mapRowToBoard(rowSet);
+            board.setPizzas(getPizzasForBoardId(board.getId()));
+            result.add(board);
+        }
+        return result;
+    }
+
+    //todo
+    @Override
+    public Board getBoard(long boardId) {
+        return null;
+    }
+
+    //todo
+    @Override
+    public Board createBoard(Board board) {
+        return null;
+    }
+
+    //todo
+    @Override
+    public boolean deleteBoard(long boardId) {
+        return false;
+    }
+
+    private Board mapRowToBoard(SqlRowSet rowSet) {
+        Board result = new Board();
+        result.setId(rowSet.getLong("id"));
+        result.setTitle(rowSet.getString("title"));
+        result.setBackgroundColor(rowSet.getString("background_color"));
+        return result;
+    }
+
+    private List<Pizza> getPizzasForBoardId(long boardId) {
+        List<Pizza> result = new ArrayList<>();
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, order_id, pizza_price, is_specialty FROM pizzas WHERE board_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, boardId);
+        while (rowSet.next()) {
+            Pizza pizza = mapRowToPizza(rowSet);
+/*            TODO - if we want ingredients nested -- we need to think it through.
+               Kanban did not have a comment duplicated on multiple cards.
+                How do we duplicate an ingredients?
+                pizza.setIngredients(???)*/
+//            card.setComments(getCommentsForCardId(card.getId()));
+            result.add(pizza);
+        }
+        return result;
+    }
+
+
 }
