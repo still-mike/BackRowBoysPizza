@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import pizzaService from "../services/BoardService";
+import pizzaService from "../services/PizzaService";
 
 export default {
   data() {
