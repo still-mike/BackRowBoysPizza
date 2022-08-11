@@ -1,5 +1,7 @@
 <template>
+<div>
   <h1>order now</h1>
+  </div>
 </template>
 
 <script>

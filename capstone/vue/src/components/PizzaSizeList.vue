@@ -1,3 +1,4 @@
+<!--
 <template>
   <div class="pizza-size-list">
   <input type="text" v-model="filterText" />
@@ -44,6 +45,7 @@ export default {
 }
 </script>
 
+<!--
 <style>
 .todo-list {
     width:450px;
@@ -87,4 +89,4 @@ input[type=text] {
 
 }
 </style>
-  
+-->
