@@ -6,9 +6,9 @@
         </div>
         <div id = 'NavBar'>
             <nav>
-                <a href="/contactUs" class='NavLink'>contact</a>
-                <a href="/aboutUs" class='NavLink'>about us</a>
-                <a href="/orderNow" class='NavLink'>order now</a>
+                <a href="/contact-us" class='NavLink'>contact</a>
+                <a href="/about-us" class='NavLink'>about us</a>
+                <a href="/order-now" class='NavLink'>order now</a>
                 <a href="/" class='NavLink'>home</a>
             </nav>
         </div>
