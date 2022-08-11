@@ -6,6 +6,9 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import EmployeeHome from '../views/EmployeeHome.vue'
+import AboutUs from '../views/AboutUs.vue'
+import ContactUs from '../views/ContactUs.vue'
+import OrderNow from '../views/OrderNow.vue'
 
 Vue.use(Router)
 
@@ -27,7 +30,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth:  false //Should be true if we want to protect this route.
       }
     },
     {
@@ -61,6 +64,21 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/contactUs",
+      name: "contactUs",
+      component: ContactUs
+    },
+    {
+      path: "/aboutUs",
+      name: "aboutUs",
+      component: AboutUs
+    },
+    {
+      path: "/orderNow",
+      name: "orderNow",
+      component: OrderNow
     }
   ]
 })

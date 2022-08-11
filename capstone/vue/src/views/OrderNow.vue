@@ -1,4 +1,17 @@
 <template>
+  <h1>order now</h1>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
+<!--<template>
   <div id="pizza-size-app">
     <pizza-size-list></pizza-size-list>
   </div>
@@ -15,4 +28,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style></style> -->
