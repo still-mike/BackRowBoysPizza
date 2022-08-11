@@ -7,20 +7,26 @@ body {
 
 }
 #PromoBanner {
-    display: flex;
     justify-content: end;
-    text-align: center;
+    text-align: end;
     background-color: white;
     height: 100%;
 
 }
 .bannerExit {
-    position: absolute;
+    all: unset;
+    cursor: pointer;
 
 }
 .bannerText {
-    align-items: flex-end;
-    width: 100%;
+    text-align: center;
+    padding-bottom: .25rem;
+    display: flow-root;
+    font-size: 10px;
+}
+.bannerText h1 {
+    margin-top: 0;
+
 }
 
 #NavBar {

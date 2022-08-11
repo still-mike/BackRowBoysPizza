@@ -1,15 +1,15 @@
 <template>
     <div>
         <div id = 'PromoBanner' v-if="isBannerDisplayed ===true">
+            <div class = 'bannerExit'><button type ='button' class = 'bannerExit' v-on:click="changeBannerDisplay">x</button></div>
             <div class = "bannerText"><h1>use code 'brb15' for 15% off!</h1></div>
-            <div class = 'bannerExit'><button type ='button' class = 'bannerExit' v-on:click="changeBannerDisplay">X</button></div>
         </div>
         <div id = 'NavBar'>
             <nav>
-                <a href="/contact-us" class='NavLink'>contact</a>
-                <a href="/about-us" class='NavLink'>about us</a>
-                <a href="/order-now" class='NavLink'>order now</a>
-                <a href="/" class='NavLink'>home</a>
+                <router-link to="/contact-us" class='NavLink'>contact</router-link>
+                <router-link to="/about-us" class='NavLink'>about us</router-link>
+                <router-link to="/order-now" class='NavLink'>order now</router-link>
+                <router-link to="/" class='NavLink'>home</router-link>
             </nav>
         </div>
     </div>
