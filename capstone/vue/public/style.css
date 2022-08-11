@@ -32,6 +32,9 @@ body {
 #footer {
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     
 }
 
@@ -131,17 +134,7 @@ body {
     background: #B6D7BA;
     color: #F76C4B;
   }
-  .footer {
-      display: grid;
-      grid-template-areas: "main"
-      "Login";
-      grid-template-columns: 100%;
-      grid-template-rows: 80px 20px;
-      margin-left: auto;
-      position: absolute;
-      bottom: 0;
 
-  }
   #InstaLink {
       grid-area: "main";
       text-align: center;
