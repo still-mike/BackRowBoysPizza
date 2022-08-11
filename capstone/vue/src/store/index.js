@@ -20,9 +20,34 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    isBannerDisplayed: true
+    isBannerDisplayed: true,
+    boards: [],
+    activeBoardId: null,
+    boardPizzas: [],
+    pizza: {
+      size: '',
+      dough: '',
+      shape: '',
+      sauce: '',
+      description: '',
+      price: null,
+      isSpecialty: false,
+      comments: []
+    }
   },
   mutations: {
+    SET_BOARDS(state, data) {
+      state.boards = data;
+    },
+    SET_ACTIVE_BOARD(state, boardId) {
+      state.activeBoardId = boardId;
+    },
+    SET_BOARD_PIZZAS(state, data) {
+      state.boardPizzas = data;
+    },
+    SET_CURRENT_PIZZA(state, data) {
+      state.pizza = data;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
