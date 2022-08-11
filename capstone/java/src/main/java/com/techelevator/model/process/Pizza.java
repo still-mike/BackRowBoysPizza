@@ -16,7 +16,8 @@ public class Pizza {
     private boolean isSpecialty;
     private Long orderId;
     private List<Ingredient> ingredients = new ArrayList<>();
-
+    private boolean isAvailable;
+    private Long boardId;
 
     public Long getId() {
         return id;
@@ -96,5 +97,21 @@ public class Pizza {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
     }
 }

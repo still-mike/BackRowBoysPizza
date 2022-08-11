@@ -62,5 +62,17 @@ public class PizzaController {
         return dao.getAllBoards();
     }
 
+    @GetMapping("/boards/{id}")
+    public Board getBoard(@PathVariable long id) throws InterruptedException {
+        Thread.sleep(1000); //Simulated loading time
+
+        Board result = dao.getBoard(id);
+        if (result == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No board with that id.");
+        } else {
+            return result;
+        }
+    }
+
 
 }

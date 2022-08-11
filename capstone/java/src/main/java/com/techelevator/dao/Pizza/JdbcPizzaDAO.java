@@ -82,6 +82,8 @@ public class JdbcPizzaDAO implements PizzaDAO {
         pizza.setPizzaPrice(rowSet.getBigDecimal("pizza_price"));
         pizza.setIsSpecialty(rowSet.getBoolean("is_specialty"));
         pizza.setOrderId(rowSet.getLong("order_id"));
+        pizza.setBoardId(rowSet.getLong("board_id"));
+        pizza.setAvailable(rowSet.getBoolean("is_available"));
         return pizza;
     }
 
@@ -148,11 +150,19 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
-    //todo
     @Override
     public Board getBoard(long boardId) {
-        return null;
+        String sql = "SELECT id, title, background_color FROM boards WHERE id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, boardId);
+        if (rowSet.next()) {
+            Board board = mapRowToBoard(rowSet);
+            board.setPizzas(getPizzasForBoardId(board.getId()));
+            return board;
+        } else {
+            return null;
+        }
     }
+
 
     //todo
     @Override
