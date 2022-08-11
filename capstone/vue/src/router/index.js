@@ -10,6 +10,7 @@ import AboutUs from '../views/AboutUs.vue'
 import ContactUs from '../views/ContactUs.vue'
 import OrderNow from '../views/OrderNow.vue'
 import Location from '../views/Location.vue'
+import Pizza from '../views/Pizza.vue'
 
 Vue.use(Router)
 
@@ -96,6 +97,14 @@ const router = new Router({
       component: Location,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/board/:boardID/pizza/:pizzaID',
+      name: 'pizza',
+      component: Pizza,
+      meta: {
+        requiresAuth: true
       }
     }
   ]

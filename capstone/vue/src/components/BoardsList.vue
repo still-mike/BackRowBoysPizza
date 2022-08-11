@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import boardsService from "../services/BoardService";
+import pizzaService from "../services/PizzaService";
 
 export default {
   data() {
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     retrieveBoards() {
-      boardsService.getBoards().then((response) => {
+      pizzaService.getBoards().then((response) => {
         this.$store.commit("SET_BOARDS", response.data);
         this.isLoading = false;
 
@@ -96,7 +96,7 @@ export default {
     },
     saveNewBoard() {
       this.isLoading = true;
-      boardsService
+      pizzaService
         .addBoard(this.newBoard)
         .then((response) => {
           if (response.status === 201) {

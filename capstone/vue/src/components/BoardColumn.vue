@@ -1,16 +1,16 @@
 <template>
   <div class="board">
     <h2>{{ title }}</h2>
-    <div class="cards">
+    <div class="pizzas">
       <div
-        class="card"
-        v-for="card in cards"
-        v-bind:key="card.id"
-        v-on:click="viewCardDetails(card.id)"
+        class="pizza"
+        v-for="pizza in pizzas"
+        v-bind:key="pizza.id"
+        v-on:click="viewPizzaDetails(pizza.id)"
       >
         <div class="header">
-          <h3>{{ card.title }}</h3>
-          <img :src="card.avatar" class="avatar" />
+          <h3>{{ pizza.id }}</h3>
+          <!-- <img :src="card.avatar" class="avatar" /> -->
         </div>
         <div class="footer">
           <span class="date">{{ card.date }}</span>
@@ -26,10 +26,10 @@
 <script>
 export default {
   name: 'board-column',
-  props: ['title', 'cards', 'boardID'],
+  props: ['title', 'pizzas', 'boardID'],
   methods: {
-    viewCardDetails(cardID) {
-      this.$router.push(`/board/${this.boardID}/card/${cardID}`);
+    viewPizzaDetails(pizzaID) {
+      this.$router.push(`/board/${this.boardID}/pizza/${pizzaID}`);
     },
     getTagClass(tag) {
       let clazz = '';
@@ -56,7 +56,7 @@ export default {
   border-radius: 10px;
   padding: 0 20px 20px 20px;
 }
-.card {
+.pizza {
   background: #fff;
   border-radius: 0.25rem;
   padding: 10px;
@@ -65,23 +65,23 @@ export default {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.card:last-child {
+.pizza:last-child {
   margin-bottom: 0px;
 }
-.card h3 {
+.pizza h3 {
   margin-top: 0px;
   font-size: 0.875rem;
 }
-.card .header {
+.pizza .header {
   display: flex;
   justify-content: space-between;
 }
-.card .header img {
+.pizza .header img {
   border-radius: 9999px;
   width: 32px;
   align-self: flex-start;
 }
-.card .footer {
+.pizza .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
