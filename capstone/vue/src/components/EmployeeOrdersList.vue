@@ -73,12 +73,12 @@ export default {
     };
   },
   methods: {
-    retrieveCards() {
+    retrievePizzas() {
       pizzaService
-        .getCards(this.boardId)
+        .getPizzas(this.boardId)
         .then((response) => {
           this.title = response.data.title;
-          this.$store.commit("SET_BOARD_PIZZAS", response.data.cards);
+          this.$store.commit("SET_BOARD_PIZZAS", response.data.pizzas);
           this.isLoading = false;
         })
         .catch((error) => {
@@ -86,7 +86,7 @@ export default {
             alert(
               "Board pizzas not available. This board may have been deleted or you have entered an invalid board ID."
             );
-            this.$router.push({ name: "Home" });
+            this.$router.push({ name: "employee-home" });
           }
         });
     },
@@ -98,7 +98,7 @@ export default {
             if (response.status === 200) {
               alert("Board was successfully deleted");
               this.$store.commit("DELETE_BOARD", this.boardId);
-              this.$router.push({ name: "Home" });
+              this.$router.push({ name: "employee-home" });
             }
           })
           .catch((error) => {
@@ -122,7 +122,7 @@ export default {
     },
   },
   created() {
-    this.retrieveCards();
+    this.retrievePizzas();
   },
   computed: {
     planned() {

@@ -28,6 +28,11 @@ export default {
 
     deletePizza(pizzaID) {
         return http.delete(`/pizzas/${pizzaID}`); 
-    }
+    },
+
+    deleteBoard(boardID) {
+        const authStr = 'Bearer ' + localStorage.getItem('token'); 
+        return http.delete(`/boards/${boardID}`, { headers: { Authorization: authStr } })
+      }
 
 }

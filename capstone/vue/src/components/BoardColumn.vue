@@ -1,16 +1,16 @@
 <template>
   <div class="board">
     <h2>{{ title }}</h2>
-    <div class="cards">
+    <div class="pizzas">
       <div
-        class="card"
-        v-for="card in cards"
-        v-bind:key="card.id"
-        v-on:click="viewCardDetails(card.id)"
+        class="pizza"
+        v-for="pizza in pizzas"
+        v-bind:key="pizza.id"
+        v-on:click="viewPizzaDetails(card.id)"
       >
         <div class="header">
-          <h3>{{ card.title }}</h3>
-          <img :src="card.avatar" class="avatar" />
+          <h3>{{ pizza.id }}</h3>
+          <!-- <img :src="card.avatar" class="avatar" /> -->
         </div>
         <div class="footer">
           <span class="date">{{ card.date }}</span>
@@ -56,7 +56,7 @@ export default {
   border-radius: 10px;
   padding: 0 20px 20px 20px;
 }
-.card {
+.pizza {
   background: #fff;
   border-radius: 0.25rem;
   padding: 10px;
