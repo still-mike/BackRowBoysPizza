@@ -6,12 +6,28 @@ const http = axios.create({
 
 export default {
 
+    getBoards() {
+        return http.get('/boards');
+    },
+
+    getPizzas(boardID) {
+        return http.get(`/boards/${boardID}`);
+    },
+
+    getPizza(pizzaID) {
+        return http.get(`/pizzas/${pizzaID}`)
+      },
+    
     getSpecialtyPizza() {
         return http.get('/pizzas/specialty');
     },
 
     createPizza(pizza) {
         return http.post('/pizzas', pizza);
+    },
+
+    deletePizza(pizzaID) {
+        return http.delete(`/pizzas/${pizzaID}`); 
     }
 
 }

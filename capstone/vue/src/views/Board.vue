@@ -1,14 +1,14 @@
 <template>
-  <cards-list v-bind:boardId="this.boardId" />
+  <employee-orders-list v-bind:boardId="this.boardId" />
 </template>
 
 <script>
 // NEED TO EXPORT EmployeeOrdersList BEFORE IT CAN BE IMPORTED
-// import EmployeeOrdersList from '@/components/EmployeeOrdersList';
+import EmployeeOrdersList from "@/components/EmployeeOrdersList";
 
 export default {
   components: {
-    // EmployeeOrdersList
+    EmployeeOrdersList
   },
   data() {
     return {

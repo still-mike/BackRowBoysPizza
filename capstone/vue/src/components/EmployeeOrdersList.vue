@@ -78,13 +78,13 @@ export default {
         .getCards(this.boardId)
         .then((response) => {
           this.title = response.data.title;
-          this.$store.commit("SET_BOARD_CARDS", response.data.cards);
+          this.$store.commit("SET_BOARD_PIZZAS", response.data.cards);
           this.isLoading = false;
         })
         .catch((error) => {
           if (error.response && error.response.status === 404) {
             alert(
-              "Board cards not available. This board may have been deleted or you have entered an invalid board ID."
+              "Board pizzas not available. This board may have been deleted or you have entered an invalid board ID."
             );
             this.$router.push({ name: "Home" });
           }
@@ -126,18 +126,18 @@ export default {
   },
   computed: {
     planned() {
-      return this.$store.state.boardCards.filter(
-        (card) => card.status === "Planned"
+      return this.$store.state.boardPizzas.filter(
+        (pizza) => pizza.status === "Planned"
       );
     },
     inProgress() {
-      return this.$store.state.boardCards.filter(
-        (card) => card.status === "In Progress"
+      return this.$store.state.boardPizzas.filter(
+        (pizza) => pizza.status === "In Progress"
       );
     },
     completed() {
-      return this.$store.state.boardCards.filter(
-        (card) => card.status === "Completed"
+      return this.$store.state.boardPizzas.filter(
+        (pizza) => pizza.status === "Completed"
       );
     },
   },
