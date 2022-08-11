@@ -1,7 +1,16 @@
+--TODO need to add available to pizzas table
+-- TODO add board data
+-- TODO add board_id to pizzas
+
 BEGIN TRANSACTION;
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
+-- boards
+INSERT INTO boards (id, title, background_color) VALUES (1, 'Specialty Pizzas', '#1bb698');
+INSERT INTO boards (id, title, background_color) VALUES (2, 'All Pizzas', '#fb826f');
+INSERT INTO boards (id, title, background_color) VALUES (3, 'Orders', '#35284f');
 
 -- Insert large specialty pies
 INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,pizza_price,is_specialty)

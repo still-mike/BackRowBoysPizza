@@ -20,22 +20,23 @@ public class JdbcBoardDAO implements BoardDAO{
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Board board = mapRowToBoard(rowSet);
-//  TODO    board.setPizzas(getCardsForBoardId(board.getId()));
+//  TODO - getPizzasForBoardId   board.setPizzas(getCardsForBoardId(board.getId()));
             result.add(board);
         }
         return result;
     }
 
+    //todo
     @Override
     public Board getBoard(long boardId) {
         return null;
     }
-
+    //todo
     @Override
     public Board createBoard(Board board) {
         return null;
     }
-
+    //todo
     @Override
     public boolean deleteBoard(long boardId) {
         return false;

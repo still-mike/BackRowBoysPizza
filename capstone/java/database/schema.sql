@@ -1,5 +1,7 @@
 BEGIN TRANSACTION;
 
+--TODO need to add available to pizzas table
+
 DROP TABLE IF EXISTS users, pizza_ingredients, pizzas, ingredients, orders;
 
 CREATE TABLE users (
@@ -8,6 +10,12 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
+);
+
+CREATE TABLE boards (
+    id serial PRIMARY KEY,
+    title varchar NOT NULL,
+    background_color varchar(8) NOT NULL
 );
 
 CREATE TABLE ingredients(
@@ -39,10 +47,14 @@ CREATE TABLE pizzas(
     pizza_price decimal(13, 2) NOT NULL,
     is_specialty boolean NOT NULL,
     order_id int,
+    board_id int,
     CONSTRAINT PK_pizzas PRIMARY KEY (id),
     CONSTRAINT fk_order
         FOREIGN KEY (order_id)
-		REFERENCES orders(id)
+		REFERENCES orders(id),
+	CONSTRAINT fk_board
+        FOREIGN KEY (board_id)
+    	REFERENCES boards(id)
 );
 
 CREATE TABLE pizza_ingredients (
