@@ -29,7 +29,6 @@ public class PizzaController {
         return dao.createPizza(pizza);
     }
 
-    //  TODO getPizzaById
     @GetMapping("/pizzas/{id}")
     public Pizza getPizza(@PathVariable long id) throws InterruptedException {
         Thread.sleep(1000); //Simulated loading time
