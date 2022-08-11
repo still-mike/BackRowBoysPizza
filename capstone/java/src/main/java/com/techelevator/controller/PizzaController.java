@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 public class PizzaController {
 
     private PizzaDAO dao;
@@ -36,7 +36,7 @@ public class PizzaController {
 
         Pizza result = dao.getPizza(id);
         if (result == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! I got no pie with number.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! I got no pie with that number.");
         } else {
             return result;
         }
