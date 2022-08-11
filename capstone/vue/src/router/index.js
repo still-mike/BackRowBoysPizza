@@ -9,6 +9,7 @@ import EmployeeHome from '../views/EmployeeHome.vue'
 import AboutUs from '../views/AboutUs.vue'
 import ContactUs from '../views/ContactUs.vue'
 import OrderNow from '../views/OrderNow.vue'
+import Location from '../views/Location.vue'
 
 Vue.use(Router)
 
@@ -66,19 +67,36 @@ const router = new Router({
       }
     },
     {
-      path: "/contactUs",
+      path: "/contact-us",
       name: "contactUs",
-      component: ContactUs
+      component: ContactUs,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
-      path: "/aboutUs",
+      path: "/about-us",
       name: "aboutUs",
-      component: AboutUs
+      component: AboutUs,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
-      path: "/orderNow",
+      path: "/order-now",
       name: "orderNow",
-      component: OrderNow
+      component: OrderNow,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/location",
+      name: "location",
+      component: Location,
+      meta: {
+        requiresAuth: false
+      }
     }
   ]
 })
