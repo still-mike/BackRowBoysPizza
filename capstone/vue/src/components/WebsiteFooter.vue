@@ -21,9 +21,10 @@ export default {
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
+    height: 50px;
 }
 
-/* Style all font awesome icons */
 .fa {
     padding: 20px;
     font-size: 30px;
@@ -32,14 +33,10 @@ export default {
     text-decoration: none;
   }
   
-  /* Add a hover effect if you want */
   .fa:hover {
     opacity: 0.7;
   }
-  
-  /* Set a specific color for each brand */
-  
-  /* Instagram */
+
   .fa-instagram {
     background: #B6D7BA;
     color: #F76C4B;

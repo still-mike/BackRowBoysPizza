@@ -1,12 +1,14 @@
 <template>
   <div class="contact">
   <h1 class="contactHeader">contact us</h1>
+  <div class="content">
   <div class="firstRow">
   <contact-details class="contactInfo" :typeOfAddress="'phone'" :title="'call us'" :address="'(484)-803-8318'"/>
   <contact-details class="contactInfo" :typeOfAddress="'email'" :title="'email us'" :address="'backrowboyzpizza@gmail.com'"/>
   </div>
   <div class="secondRow">
   <contact-details :title="'leave us a review!'" :typeOfAddress="'review'"  :address="'yelp.com/backrowboyzpizza'"/>
+  </div>
   </div>
   </div>
 </template>
@@ -52,7 +54,6 @@ export default {
 }
 .contactHeader {
   text-align: center;
-  margin-top: 2em;
 }
 .contact a {
   text-decoration: none;
@@ -61,4 +62,9 @@ export default {
 .contact a:visited {
   color: #F76C4B;
 }
+.content {
+  background-image: URL("https://images.unsplash.com/photo-1624821588855-a3ffb0b050ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+  height: 700px; 
+}
+
 </style>

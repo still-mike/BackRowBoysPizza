@@ -25,6 +25,7 @@ export default {
 body {
     background-color: #B7D8BD;
     font-family:'Major Mono Display', monospace;
+    
 }
 .logoFont {
     font-family: 'Slackey',cursive;
@@ -32,5 +33,8 @@ body {
 }
 #app {
   font-family:'Major Mono Display', monospace;
+  display:flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 </style>
