@@ -12,7 +12,6 @@
 <script>
 import WebsiteHeader from "./components/WebsiteHeader.vue" 
 import WebsiteFooter from "./components/WebsiteFooter.vue"
-import "../public/style.css"
 export default {
   components: {
     WebsiteHeader,
@@ -21,3 +20,17 @@ export default {
   name: "app"
 }
 </script>
+
+<style>
+body {
+    background-color: #B7D8BD;
+    font-family:'Major Mono Display', monospace;
+}
+.logoFont {
+    font-family: 'Slackey',cursive;
+
+}
+#app {
+  font-family:'Major Mono Display', monospace;
+}
+</style>

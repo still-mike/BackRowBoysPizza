@@ -27,8 +27,6 @@ export default {
   display: flex;
   text-align: center;
   justify-content: center;
-
-  
 }
 .firstRow div {
   margin: 1em;
@@ -44,9 +42,7 @@ export default {
   display: flex;
   text-align: center;
   justify-content: center;
-  
 }
-
 .secondRow div {
   background-color: #FAF9F6;
   width: 69%;

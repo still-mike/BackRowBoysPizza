@@ -15,5 +15,57 @@ export default {
 </script>
 
 <style>
+#footer {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
 
+/* Style all font awesome icons */
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  /* Add a hover effect if you want */
+  .fa:hover {
+    opacity: 0.7;
+  }
+  
+  /* Set a specific color for each brand */
+  
+  /* Instagram */
+  .fa-instagram {
+    background: #B6D7BA;
+    color: #F76C4B;
+  }
+
+  #InstaLink {
+      grid-area: "main";
+      text-align: center;
+      padding: 10px;
+  }
+  #CopyRight {
+      grid-area: "main";
+         font-size: 12px;
+         width: 20%;
+  }
+  #EmployeeLogin {
+      grid-area: "Login";
+      width: 20%;
+      text-align: right; 
+  }
+  .LoginLink {
+      text-decoration: none;
+      color: black;
+  }
+  .LoginLink:hover {
+      opacity: 0.7;
+      color: #F76C4B;
+  }
 </style>
