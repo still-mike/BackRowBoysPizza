@@ -30,3 +30,49 @@ export default {
   name: "home"
 };
 </script>-->
+
+<style>
+#MainBody {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+#MainPizza {
+    object-fit: cover;
+    vertical-align: top;
+    overflow: hidden;
+    width: 100%;
+    height: 600px; 
+    
+}
+
+.BTN {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+    
+}
+.MidPageLinks {
+    font-size: 16px;
+    margin: 20px;
+    width: 120px;
+    height: 60px;
+    background-color: #F76C4B;
+    border-radius: 60px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    
+}
+.MidPageLinks:hover {
+    font-weight: bold;
+    width: 150px;
+}
+</style>

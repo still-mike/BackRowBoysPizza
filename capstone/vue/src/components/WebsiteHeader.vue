@@ -35,5 +35,48 @@ export default {
 </script>
 
 <style>
+#PromoBanner {
+    justify-content: end;
+    text-align: end;
+    background-color: white;
+    height: 100%;
+
+}
+.bannerExit {
+    all: unset;
+    cursor: pointer;
+
+}
+.bannerText {
+    text-align: center;
+    padding-bottom: .25rem;
+    display: flow-root;
+    font-size: 10px;
+}
+.bannerText h1 {
+    margin-top: 0;
+
+}
+#NavBar {
+    background-color: #B6D7BA;
+    overflow: hidden;
+    height: 50px;
+  
+}
+
+.NavLink {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 30px;
+    float: right;
+    margin-left: 20px;
+    margin-right: 10px;
+    
+}
+.NavLink:hover {
+    opacity: 0.7;
+    color: #F76C4B;
+}
 
 </style>
