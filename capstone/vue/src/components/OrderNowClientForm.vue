@@ -1,26 +1,5 @@
 <template>
 <div>
-    <div>
-      <button
-        class="btn Delivery"
-        v-if="!isLoading && !showAddDeliveryInfo"
-        v-on:click="showAddDeliveryInfo = !showAddDeliveryInfo"
-      >
-      Delivery
-      </button>
-    </div>
-    <div>
-      <button
-        class="btn Pickup"
-        v-if="!isLoading && !addToPickUp"
-        v-on:click="addToPickUp"
-        
-      >
-        Pickup
-      </button>
-    </div>
-
-
    <div>
   </div>
     <div class="pizza-size-list">
@@ -83,7 +62,9 @@
         </li>
       </ul>
     </div>
-
+  <div>
+    <button>Submit</button>
+  </div>
 </div>
 </template>
 
@@ -243,14 +224,7 @@ export default {
     }
   },
   methods: {
-    addDeliveryInfo() {
-      this.$store.commit('ADD_REVIEW', this.newReview)
-      this.resetForm();
-    },
-    resetForm() {
-      this.showForm = false;
-      this.newReview = {};
-    },
+   
   },
 
 
