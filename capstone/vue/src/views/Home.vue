@@ -52,7 +52,7 @@ export default {
 
 .BTN {
     position: absolute;
-    top: 50%;
+    top: 51%;
     left: 50%;
     font-size: 16px;
     padding: 12px 24px;
