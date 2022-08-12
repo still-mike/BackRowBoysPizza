@@ -1,5 +1,25 @@
 <template>
 <div>
+    <div>
+      <button
+        class="btn Delivery"
+        v-if="!isLoading && !showAddDeliveryInfo"
+        v-on:click="showAddDeliveryInfo = !showAddDeliveryInfo"
+      >
+      Delivery
+      </button>
+    </div>
+    <div>
+      <button
+        class="btn Pickup"
+        v-if="!isLoading && !addToPickUp"
+        v-on:click="addToPickUp"
+        
+      >
+        Pickup
+      </button>
+    </div>
+
 
    <div>
   </div>
@@ -222,6 +242,18 @@ export default {
       ]
     }
   },
+  methods: {
+    addDeliveryInfo() {
+      this.$store.commit('ADD_REVIEW', this.newReview)
+      this.resetForm();
+    },
+    resetForm() {
+      this.showForm = false;
+      this.newReview = {};
+    },
+  },
+
+
   computed: {
       filteredSizes() {
       return this.sizes.filter((size) => {
