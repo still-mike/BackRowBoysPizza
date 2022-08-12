@@ -1,8 +1,7 @@
 <template>
 <div>
 
-   <div id="pizza-size-app">
-    <!-- <pizza-size-list></pizza-size-list> -->
+   <div>
   </div>
     <div class="pizza-size-list">
       <h1>Choose a size</h1>
@@ -69,6 +68,8 @@
 </template>
 
 <script>
+// vanilla JS from Josh to select from an array
+// Array.from(document.querySelectorAll("input[type=checkbox][name=type]:checked"), e => e.value); 
 export default {
      data() {
     return {
