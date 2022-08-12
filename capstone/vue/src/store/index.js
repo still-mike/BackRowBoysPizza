@@ -25,14 +25,15 @@ export default new Vuex.Store({
     activeBoardId: null,
     boardPizzas: [],
     pizza: {
-      size: '',
+      pizzaSize: '',
       dough: '',
       shape: '',
-      sauce: '',
+      sauceType: '',
       description: '',
-      price: null,
+      isAvailable: true,
+      pizzaPrice: null,
       isSpecialty: false,
-      comments: []
+      status: ''
     }
   },
   mutations: {

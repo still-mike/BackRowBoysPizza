@@ -16,6 +16,7 @@
       >
         Clear All Orders
       </button>
+    </div>
         <!-- </div>
     <div class="loading" v-if="isLoading">
       <img src="../assets/ping_pong_loader.gif" />
@@ -41,12 +42,12 @@
           :boardID="this.boardId"
         />
         <board-column
-          title="Canceled"
-          :cards="canceled"
+          title="Cancelled"
+          :cards="cancelled"
           :boardID="this.boardId"
         />
       </div>
-      </div>
+      
   </div>
 </template>
 
@@ -70,6 +71,7 @@ export default {
       title: "",
       isLoading: true,
       errorMsg: "",
+      status: "",
     };
   },
   methods: {
@@ -125,14 +127,14 @@ export default {
     this.retrievePizzas();
   },
   computed: {
-    planned() {
+    pending() {
       return this.$store.state.boardPizzas.filter(
-        (pizza) => pizza.status === "Planned"
+        (pizza) => pizza.status === "Pending"
       );
     },
-    inProgress() {
+    ready() {
       return this.$store.state.boardPizzas.filter(
-        (pizza) => pizza.status === "In Progress"
+        (pizza) => pizza.status === "Ready"
       );
     },
     completed() {
@@ -140,6 +142,44 @@ export default {
         (pizza) => pizza.status === "Completed"
       );
     },
+    cancelled() {
+      return this.$store.state.boardPizzas.filter(
+        (pizza) => pizza.status === "Cancelled"
+      );
+    }
   },
 };
 </script>
+
+<style>
+.boards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.board-actions {
+  text-align: center;
+  padding: 20px 0;
+}
+.board-actions a:link,
+.board-actions a:visited {
+  color: blue;
+  text-decoration: none;
+}
+.board-actions a:hover {
+  text-decoration: underline;
+}
+.btn.addNewCard {
+  color: #fff;
+  background-color: #508ca8;
+  border-color: #508ca8;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.header h1 {
+  flex-grow: 1;
+}
+</style>
