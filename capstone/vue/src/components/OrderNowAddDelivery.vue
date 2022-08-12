@@ -11,15 +11,15 @@
     </div>
     <div>
       <button
+        
         class="btn Delivery"
-        v-if="!isLoading && !addToDelivery"
-        v-on:click="addToDelivery"
+        v-on:click.prevent=showForm
 
         >
       Delivery
     </button>
 
-    <form v-on:submit.prevent="addDeliveryInfo" v-if="showForm === true">
+    <form v-on:submit.prevent="addDeliveryInfo" v-if="showAddDeliveryInfo === true">
       <div class="form-element">
         <label for="name">Name:</label>
         <input id="name" type="text" v-model="newDeliveryInfo.name" />
@@ -50,13 +50,19 @@ export default {
   name: "add-delivery-info",
   data() {
     return {
-      showAddDeliveryInfo: false,
+      showAddDeliveryInfo: true,
       newDeliveryInfo: {
     
       },
     };
   },
   methods: {
+    showForm() {
+      alert(this.showAddDeliveryInfo)
+      this.showAddDeliveryInfo = true
+       alert(this.showAddDeliveryInfo)
+
+    },
     addDeliveryInfo() {
       this.$store.commit('ADD_DELIVERY_INFO', this.newDeliveryInfo)
       this.resetForm();
