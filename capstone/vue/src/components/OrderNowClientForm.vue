@@ -139,7 +139,7 @@ export default {
           done: false
         },
       ],
-
+      // Up to (4) selections. Need additional $0.25 upcharge for any more than (4).
       filterStandardToppings: '',
       standardToppings: [
         {
@@ -179,7 +179,7 @@ export default {
           done: false
         },
       ],
-
+      // Up to (2) selections. Need additional $0.50 upcharge for any more than (2).
       filterPremiumToppings: '',
       premiumToppings: [
         {
