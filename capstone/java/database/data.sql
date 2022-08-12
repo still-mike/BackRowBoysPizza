@@ -105,6 +105,50 @@ VALUES ('Sauteed spinach','Premium',TRUE,.50);
 INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
 VALUES ('Grilled pineapple','Premium',TRUE,.50);
 
+--these are to reconcile ingredients in DB with the first two specialty pizzas
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Balsamic drizzle','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Housemade mozzarella','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Sundried tomato','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Walnuts','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Basil','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Smoked bbq sauce','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Fontina','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Roasted chicken','Premium',TRUE,.50);
+
+INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
+VALUES ('Banana pepper','Premium',TRUE,.50);
+
+--test ingredient-pizza associations
+
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 19);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 20);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 21);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 22);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 23);
+
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 24);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 20);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 25);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 26);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 1);
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 27);
+
 --test order
 INSERT INTO orders (order_status, is_delivery, employee_name, cust_address, cust_email)
 VALUES ('test',FALSE,'test employee','123 Maple Street','test@gmail.com');
