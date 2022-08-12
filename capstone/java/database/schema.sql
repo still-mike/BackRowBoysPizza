@@ -45,7 +45,7 @@ CREATE TABLE pizzas(
     is_available boolean NOT NULL,
     pizza_price decimal(13, 2) NOT NULL,
     is_specialty boolean NOT NULL,
-    status varchar,
+    status varchar NOT NULL,
     order_id int,
     board_id int,
     CONSTRAINT PK_pizzas PRIMARY KEY (id),

@@ -18,6 +18,9 @@ public class Pizza {
     private List<Ingredient> ingredients = new ArrayList<>();
     private boolean isAvailable;
     private Long boardId;
+    private String status;
+
+
 
     public Long getId() {
         return id;
@@ -113,5 +116,13 @@ public class Pizza {
 
     public void setBoardId(Long boardId) {
         this.boardId = boardId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

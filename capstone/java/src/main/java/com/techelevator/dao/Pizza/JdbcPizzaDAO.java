@@ -22,7 +22,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     @Override
     public List<Pizza> getSpecialtyPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, board_id " +
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
                 "FROM pizzas " +
                 "WHERE is_specialty IS TRUE;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
@@ -33,9 +33,10 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return pizzas;
     }
 
+    //TODO STATUS
     @Override
     public Pizza getPizza(long pizzaId) {
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, board_id " +
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
                 "FROM pizzas WHERE id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, pizzaId);
         if (rowSet.next()) {
@@ -48,8 +49,8 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     @Override
     public Pizza createPizza(Pizza pizza) {
-        String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, board_id ) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id ) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         Long newId = jdbcTemplate.queryForObject(sql, Long.class,
                 pizza.getPizzaSize(),
                 pizza.getDough(),
@@ -60,6 +61,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 pizza.getOrderId(),
                 pizza.getPizzaPrice(),
                 pizza.getIsSpecialty(),
+                pizza.getStatus(),
                 pizza.getBoardId());
         pizza.setId(newId);
 
@@ -73,7 +75,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return count == 1;
     }
 
-
     private Pizza mapRowToPizza(SqlRowSet rowSet) {
         Pizza pizza = new Pizza();
         pizza.setId(rowSet.getLong("id"));
@@ -86,6 +87,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         pizza.setIsSpecialty(rowSet.getBoolean("is_specialty"));
         pizza.setOrderId(rowSet.getLong("order_id"));
         pizza.setBoardId(rowSet.getLong("board_id"));
+        pizza.setStatus(rowSet.getString("status"));
         pizza.setAvailable(rowSet.getBoolean("is_available"));
         return pizza;
     }
@@ -189,7 +191,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     private List<Pizza> getPizzasForBoardId(long boardId) {
         List<Pizza> result = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, board_id FROM pizzas WHERE board_id = ?;";
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id FROM pizzas WHERE board_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, boardId);
         while (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
