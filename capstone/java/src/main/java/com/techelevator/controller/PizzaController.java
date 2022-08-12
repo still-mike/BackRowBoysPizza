@@ -55,7 +55,6 @@ public class PizzaController {
 
     //order endpoints
     @GetMapping("/orders/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public Order getOrder(@PathVariable long id) throws InterruptedException {
         Thread.sleep(1000); //Simulated loading time
 

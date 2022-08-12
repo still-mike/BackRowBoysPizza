@@ -120,6 +120,17 @@ public class JdbcPizzaDAO implements PizzaDAO {
         }
     }
 
+        /** This works in pgadmin:
+         * INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email)
+         VALUES ('test7',FALSE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');
+         INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id)
+         VALUES ('large','classic','round','traditional red','Test 7 - THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina,
+         roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT MAX(id)FROM orders));
+
+         -- Use Tenmo @Transactional transfer as a model.
+         */
+
+
     @Override
     public Order createOrder(Order order) {
         String sql = "INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, " +
