@@ -5,11 +5,16 @@
             <div class = "bannerText"><h1>use code 'brb15' for 15% off!</h1></div>
         </div>
         <div id = 'NavBar'>
-            <nav>
+            <nav class="LittleLogo">
+                <div>
                 <router-link to="/contact-us" class='NavLink'>contact</router-link>
                 <router-link to="/about-us" class='NavLink'>about us</router-link>
                 <router-link to="/order-now" class='NavLink'>order now</router-link>
                 <router-link to="/" class='NavLink'>home</router-link>
+                </div>
+                <div>
+                <router-link to="/" class='NavLink'><img src="../assets/SmallLog.png" alt="Logo" class="LilLogo"></router-link>
+                </div>
             </nav>
         </div>
     </div>
@@ -35,6 +40,16 @@ export default {
 </script>
 
 <style>
+.LilLogo {
+    position: absolute;
+    width: 70px;
+    padding-left: 250px;
+}
+.LittleLogo {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
 #PromoBanner {
     justify-content: end;
     text-align: end;
