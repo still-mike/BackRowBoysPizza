@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.Pizza.PizzaDAO;
 import com.techelevator.model.process.Board;
+import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -52,10 +53,28 @@ public class PizzaController {
 
     //todo - add GET, UPDATE and ADD Ingredient endpoints
 
-    //todo order endpoints
+    //order endpoints
+    @GetMapping("/orders/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Order getOrder(@PathVariable long id) throws InterruptedException {
+        Thread.sleep(1000); //Simulated loading time
 
-    //todo board endpoints
+        Order result = dao.getOrder(id);
+        if (result == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Yo! That order doesn't exist.");
+        } else {
+            return result;
+        }
+    }
 
+    @PostMapping("/orders")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Order createOrder(@RequestBody Order order) {
+        return dao.createOrder(order);
+    }
+
+
+    //board endpoints
     @GetMapping("/boards")
     public List<Board> getBoards() throws InterruptedException {
         Thread.sleep( 1000);

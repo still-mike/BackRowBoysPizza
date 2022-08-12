@@ -33,7 +33,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return pizzas;
     }
 
-    //TODO STATUS
     @Override
     public Pizza getPizza(long pizzaId) {
         String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
@@ -110,11 +109,26 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     @Override
     public Order getOrder(long orderId) {
-        return null;
+        String sql = "SELECT id, order_status, is_delivery, employee_name, order_time, cust_address, cust_email " +
+                "FROM orders WHERE id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, orderId);
+        if (rowSet.next()) {
+            Order order = mapRowToOrder(rowSet);
+            return order;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public Order createOrder(Order order) {
+        String sql = "INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, " +
+                "cust_email) VALUES (?, ?, ?, ?, ?, ?) RETURNING id;";
+        Long newId = jdbcTemplate.queryForObject(sql, long.class, order.getOrderStatus(), order.isDelivery(),
+                order.getEmployeeName(), order.getOrderTime(), order.getCustAddress(), order.getCustEmail());
+        order.setId(newId);
+
+
         return null;
     }
 
@@ -169,13 +183,13 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
 
-    //todo
+    //todo - createBoard maybe not needed?
     @Override
     public Board createBoard(Board board) {
         return null;
     }
 
-    //todo
+    //todo - deleteBoard maybe not needed?
     @Override
     public boolean deleteBoard(long boardId) {
         return false;

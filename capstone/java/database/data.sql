@@ -105,4 +105,12 @@ VALUES ('Sauteed spinach','Premium',TRUE,.50);
 INSERT INTO ingredients (ingredient_name,tier,available,ingredient_price)
 VALUES ('Grilled pineapple','Premium',TRUE,.50);
 
+--test order
+INSERT INTO orders (order_status, is_delivery, employee_name, cust_address, cust_email)
+VALUES ('test',FALSE,'test employee','123 Maple Street','test@gmail.com')
+INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id)
+VALUES ('large','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina,
+roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT id FROM orders WHERE cust_email = "test@gmail.com"));
+
+
 COMMIT TRANSACTION;
