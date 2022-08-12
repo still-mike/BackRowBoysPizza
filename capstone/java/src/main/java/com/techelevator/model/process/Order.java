@@ -1,22 +1,20 @@
 package com.techelevator.model.process;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
 
     private Long id;
-
     private String orderStatus;
-
     private boolean isDelivery;
-
     private String employeeName;
-
     private LocalDateTime orderTime;
-
     private String custAddress;
-
     private String custEmail;
+    private List<Pizza> pizzas = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -72,5 +70,13 @@ public class Order {
 
     public void setCustEmail(String custEmail) {
         this.custEmail = custEmail;
+    }
+
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 }
