@@ -32,7 +32,7 @@ export default {
 }
 .firstRow div {
   margin: 1em;
-  background-color: #FAF9F6;
+  background-color: #F7F3E8;
   text-align: center;
 }
 
@@ -46,7 +46,7 @@ export default {
   justify-content: center;
 }
 .secondRow div {
-  background-color: #FAF9F6;
+  background-color: #F7F3E8;
   width: 69%;
   text-align: center;
   margin: auto;
@@ -64,7 +64,7 @@ export default {
 }
 .content {
   background-image: URL("https://images.unsplash.com/photo-1624821588855-a3ffb0b050ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
-  height: 520px;
+  height: 550px;
   padding: 100px;
 }
 
