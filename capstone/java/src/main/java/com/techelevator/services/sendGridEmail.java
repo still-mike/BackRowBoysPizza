@@ -1,17 +1,10 @@
 package com.techelevator.services;
-
 import com.sendgrid.*;
 import java.io.IOException;
 
-public class SenGridEmailService {
-}
 
+public class sendGridEmail implements email{
 
-// using SendGrid's Java Library
-// https://github.com/sendgrid/sendgrid-java
-
-
-public class Example {
     public static void main(String[] args) throws IOException {
         Email from = new Email("test@example.com");
         String subject = "Sending with SendGrid is Fun";
@@ -33,4 +26,6 @@ public class Example {
             throw ex;
         }
     }
+
+
 }
