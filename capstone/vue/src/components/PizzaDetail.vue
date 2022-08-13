@@ -6,11 +6,11 @@
     <div v-else>
       <h1>{{ pizza.id }}</h1>
       <p>{{ pizza.description }}</p>
-      <!-- <router-link
+      <router-link
         tag="button"
-        :to="{ name: 'EditCard', params: {cardID: $route.params.cardID} }"
-        class="btn editCard"
-      >Edit Card</router-link> -->
+        :to="{ name: 'ModifyPizza', params: {pizzaID: $route.params.pizzaID} }"
+        class="btn modifyPizza"
+      >Modify Pizza</router-link>
       <button class="btn deletePizza" v-on:click="deletePizza">Delete Pizza</button>
       <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
       <comments-list :comments="pizza.comments" />
@@ -40,46 +40,46 @@ export default {
   methods: {
     retrievePizza() {
       pizzaService
-        .getPizza(this.$route.params.cardID)
+        .getPizza(this.$route.params.pizzaID)
         .then(response => {
-          this.$store.commit("SET_CURRENT_CARD", response.data);
+          this.$store.commit("SET_CURRENT_PIZZA", response.data);
           this.isLoading = false;
         })
         .catch(error => {
           if (error.response && error.response.status === 404) {
             alert(
-              "Card not available. This card may have been deleted or you have entered an invalid card ID."
+              "This pizza may have 'fallen off the truck' or you have entered an imaginary pizza."
             );
-            this.$router.push({ name: 'Home' });
+            this.$router.push({ name: 'employee-home' });
           }
         });
     },
-    deleteCard() {
+    deletePizza() {
       if (
         confirm(
-          "Are you sure you want to delete this card? This action cannot be undone."
+          "Are you sure you want to fuggedabout this pizza?"
         )
       ) {
         pizzaService
-          .deletePizza(this.card.id)
+          .deletePizza(this.pizza.id)
           .then(response => {
             if (response.status === 200) {
-              alert("Card successfully deleted");
-              this.$router.push(`/board/${this.card.boardId}`);
+              alert("Fuggedaboutit");
+              this.$router.push(`/board/${this.pizza.boardId}`);
             }
           })
           .catch(error => {
             if (error.response) {
               this.errorMsg =
-                "Error deleting card. Response received was '" +
+                "Error removing pizza. Response received was '" +
                 error.response.statusText +
                 "'.";
             } else if (error.request) {
               this.errorMsg =
-                "Error deleting card. Server could not be reached.";
+                "Error removing pizza. Server could not be reached.";
             } else {
               this.errorMsg =
-                "Error deleting card. Request could not be created.";
+                "Error removing pizza. Request could not be created.";
             }
           });
       }
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style>
-.btn.editCard {
+.btn.modifyPizza {
   color: #fff;
   background-color: #508ca8;
   border-color: #508ca8;

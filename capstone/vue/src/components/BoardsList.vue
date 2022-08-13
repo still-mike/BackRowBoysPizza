@@ -87,7 +87,7 @@ export default {
           // update active board so it is highlighted in nav
           this.$store.commit("SET_ACTIVE_BOARD", boardId);
 
-          // forward to correct board to display cards for active board
+          // forward to correct board to display items for active board
           this.$router.push({ name: "Board", params: { id: boardId } });
         } else {
           this.$store.commit("SET_ACTIVE_BOARD", null);
