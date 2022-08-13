@@ -1,60 +1,70 @@
 <template>
   <div id="app">
-    <website-header v-if="isLoginPage === false"/>
-    <!--<div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div> FROM STARTER CODE. I DON'T THINK IT'S IMPORTANT--> 
-    <router-view /> 
-    <website-footer/>
+    <div id="empContainer" v-if='Object.keys($store.state.user).length !== 0'>
+    <div class='top'>
+      <router-link v-bind:to="{ name: 'login' }" v-if='Object.keys($store.state.user).length === 0'>Login</router-link>
+      <div v-if='Object.keys($store.state.user).length !== 0' >
+        {{$store.state.user.username}}&nbsp;|&nbsp;
+        <router-link v-bind:to="{ name: 'logout' }">Logout</router-link>
+      </div>
+      <h1>BRB PIZZA</h1>
+      <p>Tech Elevator</p>
+    </div>
+    
+    <boards-list class='boardsList'/>
+    <router-view :key="$route.fullPath" class="routerView"/>
+    
+    </div>
+    <router-view v-if='Object.keys($store.state.user).length === 0' />
   </div>
 </template>
 <script>
-import WebsiteHeader from "./components/WebsiteHeader.vue" 
-import WebsiteFooter from "./components/WebsiteFooter.vue"
+
+import BoardsList from '@/components/BoardsList';
 
 export default {
-  data() {
-    return {
-      state: {
-        isLoginPage: false // Tells us if we are on the login page
-      }
-    }
-  },
   components: {
-    WebsiteHeader,
-    WebsiteFooter
-  },
-  watch: { // Watch section will actively watch part of the app
-    $route: { // Watch the router which has the URL
-      immediate: true, // Always watch
-        handler(to) { // Function to change state
-          if (to.path === "/login") { // If the URL path is the login page 
-            this.isLoginPage = true; // Change state to true
-          } else {
-            this.isLoginPage = false; // Otherwise change state to false
-          }
-        }
-    }
+    BoardsList
   },
   name: "app"
 }
 </script>
 
 <style>
-body {
+
+#empContainer {
+  display: grid;
+  grid-template-rows: 40px calc(100vh - 40px);
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    'boards header'
+    'boards content';
+}
+
+.boardsList{
+  grid-area: boards;
+}
+
+.top{
+  background-color: lightseagreen;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  grid-area: header;
+}
+/* body {
     background-color: #B7D8BD;
     font-family:'Major Mono Display', monospace;
     
-}
-.logoFont {
+} */
+/* .logoFont {
     font-family: 'Slackey',cursive;
 
-}
-#app {
+} */
+/* #app {
   font-family:'Major Mono Display', monospace;
   display:flex;
   min-height: 100vh;
   flex-direction: column;
-}
+} */
 </style>

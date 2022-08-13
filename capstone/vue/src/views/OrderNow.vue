@@ -1,19 +1,22 @@
 
 <template>
-  <div>
+  <div id="capsule">
+    <website-header id="Header"/>
     <div>
     <h1>order now</h1>
     <order-now-add-delivery></order-now-add-delivery>
     <order-now-client-form></order-now-client-form>
     
     </div>
+    <website-footer id ="footer"/>
 </div>
 </template>
 
 <script>
 import OrderNowAddDelivery from '../components/OrderNowAddDelivery.vue';
 import OrderNowClientForm from '../components/OrderNowClientForm.vue';
-
+import WebsiteHeader from "@/components/WebsiteHeader.vue" 
+import WebsiteFooter from "@/components/WebsiteFooter.vue"
 
 export default {
   data() {
@@ -23,7 +26,9 @@ export default {
   },
   components: {
     OrderNowAddDelivery,
-    OrderNowClientForm
+    OrderNowClientForm,
+    WebsiteHeader,
+    WebsiteFooter
     
     
     
@@ -36,4 +41,14 @@ export default {
 }
 </script>
 
-<style></style> 
+<style scoped>
+
+div#capsule {
+    font-family: 'Major Mono Display', monospace;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #B7D8BD;
+}
+
+</style> 

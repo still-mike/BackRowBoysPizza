@@ -1,5 +1,7 @@
 <template>
-  <div class="home">
+  <div id="capsule">
+    <website-header id="Header"/>
+  <div id="landing">
     <div id ='MainBody'>
       <div class="ImgContainer">
         <img id ="BigLogo" src="../assets/UziVert.png">
@@ -10,10 +12,18 @@
         </div>
     </div>
   </div>
+  <website-footer/>
+  </div>
 </template>
 
 <script>
+import WebsiteHeader from "@/components/WebsiteHeader.vue" 
+import WebsiteFooter from "@/components/WebsiteFooter.vue"
 export default {
+  components: {
+    WebsiteHeader,
+    WebsiteFooter
+  },
   name: "home"
 };
 </script>
@@ -33,8 +43,35 @@ export default {
 };
 </script>-->
 
-<style>
-#MainBody {
+<style scoped>
+
+div#capsule {
+    font-family: 'Major Mono Display', monospace;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #B7D8BD;
+}
+
+
+
+body {
+    background-color: #B7D8BD;
+    font-family:'Major Mono Display', monospace;
+     
+}
+.logoFont {
+    font-family: 'Slackey',cursive;
+
+}
+#app {
+  font-family:'Major Mono Display', monospace;
+  display:flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#landing {
     width: 100%;
     height: 800px;
     overflow: hidden;
@@ -52,7 +89,7 @@ export default {
 
 .BTN {
     position: absolute;
-    top: 52%;
+    top: 51%;
     left: 50%;
     font-size: 16px;
     padding: 12px 24px;

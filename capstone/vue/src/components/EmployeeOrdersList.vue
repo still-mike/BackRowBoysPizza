@@ -28,22 +28,22 @@
       <div class="boards">
         <board-column
           title="Pending"
-          :cards="pending"
+          :pizzas="pending"
           :boardID="this.boardId"
         />
         <board-column
           title="Ready"
-          :cards="ready"
+          :pizzas="ready"
           :boardID="this.boardId"
         />
         <board-column
           title="Completed"
-          :cards="completed"
+          :pizzas="completed"
           :boardID="this.boardId"
         />
         <board-column
           title="Cancelled"
-          :cards="cancelled"
+          :pizzas="cancelled"
           :boardID="this.boardId"
         />
       </div>
@@ -68,6 +68,7 @@ export default {
   },
   data() {
     return {
+      
       title: "",
       isLoading: true,
       errorMsg: "",
@@ -169,7 +170,7 @@ export default {
 .board-actions a:hover {
   text-decoration: underline;
 }
-.btn.addNewCard {
+.btn.addNewPizza {
   color: #fff;
   background-color: #508ca8;
   border-color: #508ca8;

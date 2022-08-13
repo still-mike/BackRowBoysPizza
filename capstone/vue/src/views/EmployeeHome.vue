@@ -1,26 +1,26 @@
 <template>
   <div class="container">
-    <div class='top'>
+    <!-- <div class='top'>
       <router-link v-bind:to="{ name: 'login' }" v-if='Object.keys($store.state.user).length === 0'>Login</router-link>
       <div v-if='Object.keys($store.state.user).length !== 0' >
         {{$store.state.user.username}}&nbsp;|&nbsp;
         <router-link v-bind:to="{ name: 'logout' }">Logout</router-link>
       </div>
       <h1>Employee Home</h1>
-    </div>
+    </div> -->
 
-    <boards-list class='boardsList'/>
-    <router-view :key="$route.fullPath" class="routerView" />
+    <!-- <boards-list class='boardsList'/> -->
+    <!-- <router-view :key="$route.fullPath" class="routerView" /> -->
     
   </div>
 </template>
 
 <script>
-import BoardsList from '@/components/BoardsList';
+// import BoardsList from '@/components/BoardsList';
 
 export default {
   components: {
-    BoardsList
+    // BoardsList
   },
 
   methods: {

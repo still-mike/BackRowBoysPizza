@@ -10,12 +10,12 @@
       >
         <div class="header">
           <h3>{{ pizza.id }}</h3>
-          <!-- <img :src="card.avatar" class="avatar" /> -->
+          <!-- <img :src="pizza.avatar" class="avatar" /> -->
         </div>
         <div class="footer">
-          <span class="date">{{ card.date }}</span>
-          <span class="pill" :class="getTagClass(card.tag)">{{
-            card.tag
+          <span class="date">{{ pizza.date }}</span>
+          <span class="pill" :class="getTagClass(pizza.tag)">{{
+            pizza.tag
           }}</span>
         </div>
       </div>

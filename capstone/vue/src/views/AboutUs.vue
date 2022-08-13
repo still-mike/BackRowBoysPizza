@@ -1,6 +1,8 @@
 <template>
-<div>
-  <h1 class = "AboutUs">about us</h1>
+ <div id="capsule">
+    <website-header id="Header"/>
+    <div>
+      <h1 class = "AboutUs">about us</h1>
   <div class="TomatoContainer">
     <div class="Hours"> 
       <h2>business hours</h2>
@@ -17,22 +19,39 @@
   </div>
   <div class="OurStory">
     <h2>our story</h2>
-    <p id ="OriginStory">at back row boyz pizza we serve pizza and...well... that's pretty much it. you can order one of our specialty pizza's; the fettig, the finkeldey, the nowell, or the still! if you're picky that's fine! you also have the option of customizing your own pizza!
+    <p id ="OriginStory">at back row boyz pizza we serve pizza and...well... that's pretty much it. you can order one of our specialty pizzas - the fettig, the finkeldey, the nowell, or the still! if you're picky that's fine! you also have the option of customizing your own pizza!
 
 if you can't make it to us - no problem - we'll come to you! click on the order now tab above and we'll get it to you.</p>
   </div>
   </div>
-
+    </div>
+    <website-footer id ="footer"/>
 </div>
 </template>
 
 <script>
-export default {
 
+import WebsiteHeader from "@/components/WebsiteHeader.vue" 
+import WebsiteFooter from "@/components/WebsiteFooter.vue"
+
+export default {
+  components: {
+    WebsiteHeader,
+    WebsiteFooter
+  }
 }
 </script>
 
-<style>
+<style scoped>
+
+div#capsule {
+    font-family: 'Major Mono Display', monospace;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #B7D8BD;
+}
+
 .TomatoContainer {
   background-image: URL("https://images.unsplash.com/photo-1624821588855-a3ffb0b050ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
   height: 700px;
