@@ -4,15 +4,15 @@ import java.io.IOException;
 
 
 public class sendGridEmail implements email{
-
+//todo - make this a regular method by changing the name and giving it the parameter we want to pass in: subject, to, content
     public static void main(String[] args) throws IOException {
-        Email from = new Email("test@example.com");
-        String subject = "Sending with SendGrid is Fun";
-        Email to = new Email("test@example.com");
-        Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
+        Email from = new Email("backrowboyzpizza@gmail.com");
+        String subject = "This email is from our java server";
+        Email to = new Email("mikestill12@gmail.com");
+        Content content = new Content("text/plain", "Hi Mike, how does it feel to get an email from your backend server? - Jonathan  ");
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+        SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
