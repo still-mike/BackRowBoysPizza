@@ -1,9 +1,11 @@
 <template>
 <div>
    <div>
+     
   </div>
+  Create-Your-Own
     <div class="pizza-size-list">
-      <h1>Choose a size</h1>
+      <h2>Choose a size</h2>
       <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
             v-bind:class="{ finished: size.selected }">
