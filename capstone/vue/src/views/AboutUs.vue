@@ -19,7 +19,7 @@
   </div>
   <div class="OurStory">
     <h2>our story</h2>
-    <p id ="OriginStory">at back row boyz pizza we serve pizza and...well... that's pretty much it. you can order one of our specialty pizza's; the fettig, the finkeldey, the nowell, or the still! if you're picky that's fine! you also have the option of customizing your own pizza!
+    <p id ="OriginStory">at back row boyz pizza we serve pizza and...well... that's pretty much it. you can order one of our specialty pizzas - the fettig, the finkeldey, the nowell, or the still! if you're picky that's fine! you also have the option of customizing your own pizza!
 
 if you can't make it to us - no problem - we'll come to you! click on the order now tab above and we'll get it to you.</p>
   </div>
