@@ -6,6 +6,7 @@ import com.techelevator.model.process.Pizza;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,6 +121,8 @@ public class JdbcPizzaDAO implements PizzaDAO {
         }
     }
 
+
+    //TODO - create order
         /** This works in pgadmin:
          * INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email)
          VALUES ('test7',FALSE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');
@@ -130,7 +133,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
          -- Use Tenmo @Transactional transfer as a model.
          */
 
-
+    @Transactional
     @Override
     public Order createOrder(Order order) {
         String sql = "INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, " +

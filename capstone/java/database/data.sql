@@ -150,10 +150,16 @@ INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 1);
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 27);
 
 --test order
-INSERT INTO orders (order_status, is_delivery, employee_name, cust_address, cust_email)
-VALUES ('test',FALSE,'test employee','123 Maple Street','test@gmail.com');
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id)
-VALUES ('large','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina,
-roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT id FROM orders WHERE cust_email = 'test@gmail.com'));
+INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email) VALUES ('test7',TRUE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');
+INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id) VALUES ('large','classic','round','traditional red',
+	'Test 7 - THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT MAX(id)FROM orders));
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES ((SELECT MAX(id)FROM pizzas), (SELECT (id)FROM ingredients where ingredient_name = 'Red onion' ));
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES ((SELECT MAX(id)FROM pizzas), (SELECT (id)FROM ingredients where ingredient_name = 'housemade mozzarella' ));
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES ((SELECT MAX(id)FROM pizzas), (SELECT (id)FROM ingredients where ingredient_name = 'fontina' ));
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES ((SELECT MAX(id)FROM pizzas), (SELECT (id)FROM ingredients where ingredient_name = 'roasted chicken' ));
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES ((SELECT MAX(id)FROM pizzas), (SELECT (id)FROM ingredients where ingredient_name = 'banana pepper' ));
+INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES ((SELECT MAX(id)FROM pizzas), (SELECT (id)FROM ingredients where ingredient_name = 'Smoked bbq sauce' ));
+
+
 
 COMMIT TRANSACTION;
