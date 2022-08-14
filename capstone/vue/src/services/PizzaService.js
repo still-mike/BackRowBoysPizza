@@ -22,6 +22,10 @@ export default {
         return http.get('/pizzas/specialty');
     },
 
+    getAllPizzas() {
+        return http.get('pizzas');
+    },
+
     createPizza(pizza) {
         return http.post('/pizzas', pizza);
     },
