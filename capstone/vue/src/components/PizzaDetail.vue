@@ -4,7 +4,7 @@
       <img src="../assets/pizza_loader.gif" />
     </div>
     <div v-else>
-      <h1>{{ pizza.id }}</h1>
+      <h1>Pizza ID: {{ pizza.id }}</h1>
       <p>{{ pizza.description }}</p>
       <router-link
         tag="button"
@@ -13,7 +13,7 @@
       >Modify Pizza</router-link>
       <button class="btn deletePizza" v-on:click="deletePizza">Delete Pizza</button>
       <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
-      <comments-list :comments="pizza.comments" />
+      <ingredients-list :ingredients="pizza.ingredients" />
     </div>
 
     <div class="board-actions" v-if="!isLoading">
@@ -24,12 +24,12 @@
 
 <script>
 import pizzaService from "../services/PizzaService";
-// import CommentsList from "@/components/CommentsList";
+import IngredientsList from "@/components/IngredientsList";
 
 export default {
   name: "pizza-detail",
   components: {
-    // CommentsList
+    IngredientsList
   },
   data() {
     return {

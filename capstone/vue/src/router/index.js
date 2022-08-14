@@ -110,7 +110,7 @@ const router = new Router({
     },
     {
       path: '/board/:boardID/pizza/:pizzaID',
-      name: 'pizza',
+      name: 'Pizza',
       component: Pizza,
       meta: {
         requiresAuth: true

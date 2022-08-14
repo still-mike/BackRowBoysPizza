@@ -1,11 +1,11 @@
 <template>
   <div class="ingredients">
     <h2>Ingredients</h2>
-    <!-- <div class="ingredient" v-for="ingredient in ingredients" v-bind:key="ingredient.id">
-      <h3>{{ comment.author }}</h3>
-      <p class="postedOn">{{ comment.postedOn }}</p>
-      <p>{{ comment.body }}</p>
-    </div> -->
+    <div class="ingredient" v-for="ingredient in ingredients" v-bind:key="ingredient.id">
+      <h3>{{ ingredient.name }}</h3>
+      <p class="postedOn">{{ ingredient.price }}</p>
+      <p>{{ ingredient.tier }}</p>
+    </div>
   </div>
 </template>
 

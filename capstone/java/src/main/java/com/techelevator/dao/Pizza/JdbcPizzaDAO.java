@@ -174,18 +174,18 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return order;
     }
 
-    //test of ingredient looping
-    public boolean addIngredients(Pizza pizza){
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients = pizza.getIngredients();
-        if (ingredients.size() != 0 )  {
-            for (Ingredient ing : ingredients ){
-                String name = ing.getIngredientName();
-
-            }
-
-        }
-    }
+//    //test of ingredient looping
+//    public boolean addIngredients(Pizza pizza){
+//        List<Ingredient> ingredients = new ArrayList<>();
+//        ingredients = pizza.getIngredients();
+//        if (ingredients.size() != 0 )  {
+//            for (Ingredient ing : ingredients ){
+//                String name = ing.getIngredientName();
+//
+//            }
+//
+//        }
+//    }
 
 
     @Override
@@ -275,5 +275,26 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
+//comment mapping
 
+    private List<Ingredient> getIngredientsForPizzaId(long pizzaId) {
+        List<Ingredient> result = new ArrayList<>();
+        String sql = "SELECT id, author, body, posted_on FROM comments WHERE card_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, pizzaId);
+        while (rowSet.next()) {
+            Ingredient ingredient = mapRowToIngredient(rowSet);
+            result.add(ingredient);
+        }
+        return result;
+    }
+
+    private Ingredient mapRowToIngredient(SqlRowSet rowSet) {
+        Ingredient result = new Ingredient();
+        result.setId(rowSet.getLong("id"));
+        result.setIngredientName(rowSet.getString("author"));
+        result.setTier((rowSet.getString("body")));
+        result.setIngredientPrice(rowSet.getBigDecimal("posted_on"));
+        result.setAvailable(rowSet.getBoolean("true"));
+        return result;
+    }
 }
