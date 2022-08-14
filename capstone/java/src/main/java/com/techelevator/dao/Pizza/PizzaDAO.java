@@ -7,6 +7,9 @@ import com.techelevator.model.process.Pizza;
 import java.util.List;
 
 public interface PizzaDAO {
+
+    public List<Pizza> getAllPizzas();
+
     public List<Pizza> getSpecialtyPizzas();
 
     public Pizza getPizza(long pizzaId);

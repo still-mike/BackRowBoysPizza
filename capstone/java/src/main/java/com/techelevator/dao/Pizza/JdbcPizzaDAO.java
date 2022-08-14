@@ -21,6 +21,19 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
     @Override
+    public List<Pizza> getAllPizzas() {
+        List<Pizza> pizzas = new ArrayList<>();
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
+                "FROM pizzas;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            Pizza pizza = mapRowToPizza(rowSet);
+            pizzas.add(pizza);
+        }
+        return pizzas;
+    }
+
+    @Override
     public List<Pizza> getSpecialtyPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
         String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
