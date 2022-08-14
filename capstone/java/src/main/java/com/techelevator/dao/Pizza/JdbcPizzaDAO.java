@@ -292,7 +292,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     @Override
     public List<Ingredient> getIngredientsForPizzaId(long pizzaId) {
         List<Ingredient> result = new ArrayList<>();
-        String sql = "SELECT id, ingredient_name, tier, available, ingredient_price FROM ingredients i " +
+        String sql = "SELECT i.id, i.ingredient_name, i.tier, i.available, i.ingredient_price FROM ingredients i " +
                 "JOIN pizza_ingredients pi ON i.id = pi.ingredient_id " +
                 "JOIN pizzas p ON pi.pizza_id = p.id " +
                 "WHERE p.id = ?;";
