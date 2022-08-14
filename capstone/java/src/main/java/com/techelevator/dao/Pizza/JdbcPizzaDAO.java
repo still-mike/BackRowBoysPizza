@@ -29,6 +29,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
+            pizza.setIngredients(getIngredientsForPizzaId(pizza.getId()));
             pizzas.add(pizza);
         }
         return pizzas;
@@ -43,6 +44,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
+            pizza.setIngredients(getIngredientsForPizzaId(pizza.getId()));
             pizzas.add(pizza);
         }
         return pizzas;
@@ -62,6 +64,18 @@ public class JdbcPizzaDAO implements PizzaDAO {
         }
     }
 
+    private List<Pizza> getPizzasForBoardId(long boardId) {
+        List<Pizza> result = new ArrayList<>();
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id FROM pizzas WHERE board_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, boardId);
+        while (rowSet.next()) {
+            Pizza pizza = mapRowToPizza(rowSet);
+            pizza.setIngredients(getIngredientsForPizzaId(pizza.getId()));
+            result.add(pizza);
+        }
+        return result;
+    }
+
     @Override
     public Pizza createPizza(Pizza pizza) {
         String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id ) " +
@@ -79,6 +93,10 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 pizza.getStatus(),
                 pizza.getBoardId());
         pizza.setId(newId);
+
+/*      for (Comment comment : card.getComments()) {
+        comment = createComment(card.getId(), comment);
+        } */
 
         return pizza;
     }
@@ -149,15 +167,17 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
 
     //TODO - create order
-        /** This works in pgadmin:
-         * INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email)
-         VALUES ('test7',FALSE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');
-         INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id)
-         VALUES ('large','classic','round','traditional red','Test 7 - THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina,
-         roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT MAX(id)FROM orders));
 
-         -- Use Tenmo @Transactional transfer as a model.
-         */
+    /**
+     * This works in pgadmin:
+     * INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email)
+     * VALUES ('test7',FALSE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');
+     * INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id)
+     * VALUES ('large','classic','round','traditional red','Test 7 - THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina,
+     * roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT MAX(id)FROM orders));
+     * <p>
+     * -- Use Tenmo @Transactional transfer as a model.
+     */
 
     @Transactional
     @Override
@@ -260,21 +280,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
-    private List<Pizza> getPizzasForBoardId(long boardId) {
-        List<Pizza> result = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id FROM pizzas WHERE board_id = ?;";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, boardId);
-        while (rowSet.next()) {
-            Pizza pizza = mapRowToPizza(rowSet);
-/*            TODO - if we want ingredients nested -- we need to think it through.
-               Kanban did not have a comment duplicated on multiple cards.
-                How do we duplicate an ingredient?
-                pizza.setIngredients(???)*/
-//            card.setComments(getCommentsForCardId(card.getId()));
-            result.add(pizza);
-        }
-        return result;
-    }
+
 
 //comment / ingredient mapping
 
@@ -289,6 +295,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         }
         return result;
     }
+
     @Override
     public List<Ingredient> getIngredientsForPizzaId(long pizzaId) {
         List<Ingredient> result = new ArrayList<>();
@@ -313,4 +320,18 @@ public class JdbcPizzaDAO implements PizzaDAO {
         result.setAvailable(rowSet.getBoolean("available"));
         return result;
     }
+
+    /*
+        @Override
+        public Comment createComment(long cardId, Comment comment) {
+        String sql = "INSERT INTO comments (card_id, author, body, posted_on) " +
+                "VALUES (?, ?, ?, ?) RETURNING id;";
+        Long newId = jdbcTemplate.queryForObject(sql, Long.class, cardId, comment.getAuthor(), comment.getBody(), comment.getPostedOn());
+        comment.setId(newId);
+
+        return comment;
+    }*/
+
+    // Need a method to insert into pizza_ingredient table - this is our 'comment'
+
 }
