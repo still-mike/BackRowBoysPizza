@@ -1,7 +1,11 @@
 <template>
   <div>
     <div>
-      <button
+      <div class='BTTNS'>
+        <button tag="button" class="PickupDelivery">Pickup</button>
+        <button tag="button" class="PickupDelivery">Delivery</button>
+      </div>
+      <!-- <button
         class="btn Pickup"
         v-if="!isLoading && !addToPickUp"
         v-on:click="addToPickUp"
@@ -17,7 +21,7 @@
 
         >
       Delivery
-    </button>
+    </button> -->
 
     <form v-on:submit.prevent="addDeliveryInfo" v-if="showAddDeliveryInfo === true">
       <div class="form-element">
@@ -78,5 +82,29 @@ export default {
 </script>
 
 <style>
+.BTTNS {
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+}
+.PickupDelivery {
+    font-size: 16px;
+    margin: 20px;
+    width: 120px;
+    height: 60px;
+    background-color: #F76C4B;
+    border-radius: 60px;
+    border: solid white 2px;
+    color: white;
+    cursor: pointer;
+}
+    
+    
 
 </style>
