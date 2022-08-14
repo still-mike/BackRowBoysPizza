@@ -3,9 +3,19 @@
    <div>
      
   </div>
-  <h1>Create-Your-Own</h1>
+  <h1>create-your-own</h1>
+  
     <div class="pizza-size-list">
-      <h2>Choose a size</h2>
+      <h2>choose a size</h2>
+      <!-- drop down -->
+      <div>{{ selected }}</div>
+    <select v-model="selected" >
+      <option disabled value="">please select one</option>
+      <option>12" Small</option>
+      <option>16" Medium</option>
+      <option>20" Large</option>
+      </select>
+      <!-- check boxes -->
       <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
             v-bind:class="{ finished: size.selected }">
@@ -14,8 +24,18 @@
         </li>
       </ul>
     </div>
+    
     <div class="dough-list">
-      <h2>Choose a dough</h2>
+      <h2>choose a dough</h2>
+      <!-- drop down -->
+      <div>{{ selected }}</div>
+    <select v-model="selected" >
+      <option disabled value="">Please select one</option>
+      <option>DOUGH</option>
+      <option>DOUGH</option>
+      <option>DOUGH</option>
+      </select>
+      <!-- check boxes -->
       <ul>
         <li v-for="dough in filteredDoughs" v-bind:key="dough.choice"
             v-bind:class="{ finished: dough.done }">
@@ -24,8 +44,18 @@
         </li>
       </ul>
     </div>
+
     <div class="style-list">
-      <h2>Choose a style</h2>
+      <h2>choose a style</h2>
+      <!-- drop down -->
+      <div>{{ selected }}</div>
+    <select v-model="selected" >
+      <option disabled value="">Please select one</option>
+      <option>STYLE</option>
+      <option>STYLE</option>
+      <option>STYLE</option>
+      </select>
+      <!-- check boxes -->
       <ul>
         <li v-for="style in filteredStyles" v-bind:key="style.choice"
             v-bind:class="{ finished: style.done }">
@@ -34,8 +64,18 @@
         </li>
       </ul>
     </div>
+
     <div class="sauce-list">
-      <h2>Choose a sauce</h2>
+      <h2>choose a sauce</h2>
+      <!-- drop down -->
+      <div>{{ selected }}</div>
+    <select v-model="selected" >
+      <option disabled value="">Please select one</option>
+      <option>SAUCE</option>
+      <option>SAUCE</option>
+      <option>SAUCE</option>
+      </select>
+      <!-- check boxes -->
       <ul>
         <li v-for="sauce in filteredSauces" v-bind:key="sauce.choice"
             v-bind:class="{ finished: sauce.done }">
@@ -44,8 +84,11 @@
         </li>
       </ul>
     </div>
+
     <div class="standard-topping-list">
-      <h2>Choose standard toppings</h2>
+
+
+      <h2>choose standard toppings</h2>
       <ul>
         <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
             v-bind:class="{ finished: standardTopping.done }">
@@ -55,7 +98,9 @@
       </ul>
     </div>
      <div class="premium-topping-list">
-      <h2>Choose premium toppings</h2>
+
+       
+      <h2>choose premium toppings</h2>
       <ul>
         <li v-for="premiumTopping in filteredPremiumToppings" v-bind:key="premiumTopping.choice"
             v-bind:class="{ finished: premiumTopping.done }">
@@ -79,15 +124,15 @@ export default {
       filterSizes: '',
       sizes: [
         {
-          choice: '12" Small',
+          choice: '12" small',
           done: false
         },
         {
-          choice: '16" Medium',
+          choice: '16" medium',
           done: false
         },
         {
-          choice: '20" Large',
+          choice: '20" large',
           done: false
         }
       ],
@@ -95,15 +140,15 @@ export default {
     filterDoughs: '',
     doughs: [
         {
-          choice: 'Hand-tossed traditional',
+          choice: 'hand-tossed traditional',
           done: false
         },
         {
-          choice: 'Gluten-free', // plus $3.50 upcharge
+          choice: 'gluten-free', // plus $3.50 upcharge
           done: false
         },
         {
-          choice: 'Cauliflower, vegan', // plus $3.50 upcharge, italicize vegan
+          choice: 'cauliflower, vegan', // plus $3.50 upcharge, italicize vegan
           done: false
         },
       ],
@@ -111,15 +156,15 @@ export default {
       filterStyles: '',
       styles: [
         {
-          choice: 'Classic pie',
+          choice: 'classic pie',
           done: false
         },
         {
-          choice: 'Flatbread', 
+          choice: 'flatbread', 
           done: false
         },
         {
-          choice: 'Deepdish', // plus $2.50 upcharge
+          choice: 'deepdish', // plus $2.50 upcharge
           done: false
         },
       ],
@@ -127,19 +172,19 @@ export default {
       filterSauces: '',
       sauces: [
         {
-          choice: 'Traditional red',
+          choice: 'traditional red',
           done: false
         },
         {
-          choice: 'White garlic', 
+          choice: 'white garlic', 
           done: false
         },
         {
-          choice: 'Basil pesto', 
+          choice: 'basil pesto', 
           done: false
         },
         {
-          choice: 'Spicy buffalo', 
+          choice: 'spicy buffalo', 
           done: false
         },
       ],
@@ -147,39 +192,39 @@ export default {
       filterStandardToppings: '',
       standardToppings: [
         {
-          choice: 'Red onion',
+          choice: 'red onion',
           done: false
         },
         {
-          choice: 'Broccoli', 
+          choice: 'broccoli', 
           done: false
         },
         {
-          choice: 'Jalapeño',
+          choice: 'jalapeño',
           done: false
         },
         {
-          choice: 'Sweet pepper',
+          choice: 'sweet pepper',
           done: false
         },
         {
-          choice: 'Mushroom', 
+          choice: 'mushroom', 
           done: false
         },
         {
-          choice: 'Black olive',
+          choice: 'black olive',
           done: false
         },
         {
-          choice: 'Spinach',
+          choice: 'spinach',
           done: false
         },
         {
-          choice: 'Ham', 
+          choice: 'ham', 
           done: false
         },
         {
-          choice: 'Pepperoni',
+          choice: 'pepperoni',
           done: false
         },
       ],
@@ -187,39 +232,39 @@ export default {
       filterPremiumToppings: '',
       premiumToppings: [
         {
-          choice: 'Grilled chicken',
+          choice: 'grilled chicken',
           done: false
         },
         {
-          choice: 'Fennel sausage', 
+          choice: 'fennel sausage', 
           done: false
         },
         {
-          choice: 'Crispy pancetta',
+          choice: 'crispy pancetta',
           done: false
         },
         {
-          choice: 'Spicy meatball',
+          choice: 'spicy meatball',
           done: false
         },
         {
-          choice: 'Marinated tofu', 
+          choice: 'marinated tofu', 
           done: false
         },
         {
-          choice: 'Sautéed spinach',
+          choice: 'sautéed spinach',
           done: false
         },
         {
-          choice: 'Broccoli rabe',
+          choice: 'broccoli rabe',
           done: false
         },
         {
-          choice: 'Fried chickpea', 
+          choice: 'fried chickpea', 
           done: false
         },
         {
-          choice: 'Grilled pineapple',
+          choice: 'grilled pineapple',
           done: false
         },
       ]

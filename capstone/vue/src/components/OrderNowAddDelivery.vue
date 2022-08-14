@@ -21,19 +21,19 @@
 
     <form v-on:submit.prevent="addDeliveryInfo" v-if="showAddDeliveryInfo === true">
       <div class="form-element">
-        <label for="name">Name:</label>
+        <label for="name">name:</label>
         <input id="name" type="text" v-model="newDeliveryInfo.name" />
       </div>
       <div class="form-element">
-        <label for="email">Email:</label>
+        <label for="email">email:</label>
         <input id="email" type="text" v-model="newDeliveryInfo.email" />
       </div>
       <div class="form-element">
-        <label for="address">Address:</label>
+        <label for="address">address:</label>
         <input id="address" type="text" v-model="newDeliveryInfo.address" />
       </div>
       <div class="form-element">
-        <label for="cardNumber">Credit card number:</label>
+        <label for="cardNumber">credit card number:</label>
         <input id="cardNumber" type="text" v-model="newDeliveryInfo.cardNumber" />
         <textarea id="cardNumber" v-model="newDeliveryInfo.cardNumber"></textarea>
       </div>
