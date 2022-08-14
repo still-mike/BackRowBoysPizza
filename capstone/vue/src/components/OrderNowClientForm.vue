@@ -3,7 +3,7 @@
    <div>
      
   </div>
-  Create-Your-Own
+  <h1>Create-Your-Own</h1>
     <div class="pizza-size-list">
       <h2>Choose a size</h2>
       <ul>
@@ -15,7 +15,7 @@
       </ul>
     </div>
     <div class="dough-list">
-      <h1>Choose a dough</h1>
+      <h2>Choose a dough</h2>
       <ul>
         <li v-for="dough in filteredDoughs" v-bind:key="dough.choice"
             v-bind:class="{ finished: dough.done }">
@@ -25,7 +25,7 @@
       </ul>
     </div>
     <div class="style-list">
-      <h1>Choose a style</h1>
+      <h2>Choose a style</h2>
       <ul>
         <li v-for="style in filteredStyles" v-bind:key="style.choice"
             v-bind:class="{ finished: style.done }">
@@ -35,7 +35,7 @@
       </ul>
     </div>
     <div class="sauce-list">
-      <h1>Choose a sauce</h1>
+      <h2>Choose a sauce</h2>
       <ul>
         <li v-for="sauce in filteredSauces" v-bind:key="sauce.choice"
             v-bind:class="{ finished: sauce.done }">
@@ -45,7 +45,7 @@
       </ul>
     </div>
     <div class="standard-topping-list">
-      <h1>Choose standard toppings</h1>
+      <h2>Choose standard toppings</h2>
       <ul>
         <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
             v-bind:class="{ finished: standardTopping.done }">
@@ -55,7 +55,7 @@
       </ul>
     </div>
      <div class="premium-topping-list">
-      <h1>Choose premium toppings</h1>
+      <h2>Choose premium toppings</h2>
       <ul>
         <li v-for="premiumTopping in filteredPremiumToppings" v-bind:key="premiumTopping.choice"
             v-bind:class="{ finished: premiumTopping.done }">

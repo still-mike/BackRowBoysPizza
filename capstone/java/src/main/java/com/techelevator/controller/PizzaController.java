@@ -20,6 +20,11 @@ public class PizzaController {
         this.dao = pizzaDAO;
     }
 
+    @GetMapping("/pizzas")
+    public List<Pizza> getAllPizzas() {
+        return dao.getAllPizzas();
+    }
+
     @GetMapping("/pizzas/specialty")
     public List<Pizza> getSpecialtyPizzas() {
         return dao.getSpecialtyPizzas();

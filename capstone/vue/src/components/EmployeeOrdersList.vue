@@ -65,7 +65,13 @@ export default {
       type: Number,
       default: 0,
     },
+    // boardTitle: {
+    //   type: String,
+    //   default: 'All Pizzas',
+    // },
+    // boardTitle: ''
   },
+
   data() {
     return {
       
@@ -77,6 +83,14 @@ export default {
   },
   methods: {
     retrievePizzas() {
+      // if (this.boardTitle == "All Pizzas") {
+      // pizzaService.getAllPizzas()
+      // .then((response) => {
+      //     this.title = response.data.title;
+      //     this.$store.commit("SET_BOARD_PIZZAS", response.data.pizzas);
+      //     this.isLoading = false;
+      //   })} else {
+      
       pizzaService
         .getPizzas(this.boardId)
         .then((response) => {

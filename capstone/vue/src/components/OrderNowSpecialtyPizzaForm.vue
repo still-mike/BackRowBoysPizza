@@ -1,9 +1,9 @@
 <template>
 <div>
-   <div>
-  </div>
-    <div class="specialty-list">
-      <h1>Choose a size</h1>
+    
+    <h1>Specialty Pies</h1>
+    <div class="fettig">
+      <h2>The Fettig</h2>
       <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
             v-bind:class="{ finished: size.selected }">
@@ -12,8 +12,8 @@
         </li>
       </ul>
     </div>
-    <div class="dough-list">
-      <h1>Choose a dough</h1>
+    <div class="finkeldey">
+      <h2>The Finkeldey</h2>
       <ul>
         <li v-for="dough in filteredDoughs" v-bind:key="dough.choice"
             v-bind:class="{ finished: dough.done }">
@@ -22,8 +22,8 @@
         </li>
       </ul>
     </div>
-    <div class="style-list">
-      <h1>Choose a style</h1>
+    <div class="nowell">
+      <h2>The Nowell</h2>
       <ul>
         <li v-for="style in filteredStyles" v-bind:key="style.choice"
             v-bind:class="{ finished: style.done }">
@@ -32,8 +32,8 @@
         </li>
       </ul>
     </div>
-    <div class="sauce-list">
-      <h1>Choose a sauce</h1>
+    <div class="still">
+      <h2>The Still</h2>
       <ul>
         <li v-for="sauce in filteredSauces" v-bind:key="sauce.choice"
             v-bind:class="{ finished: sauce.done }">
@@ -41,6 +41,7 @@
           {{ sauce.choice }}
         </li>
       </ul>
+    </div>
     </div>
   
 </template>

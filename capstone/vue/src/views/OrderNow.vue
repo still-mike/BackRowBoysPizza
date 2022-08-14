@@ -6,7 +6,7 @@
     <h1>order now</h1>
     <order-now-add-delivery></order-now-add-delivery>
     <order-now-client-form></order-now-client-form>
-    <order-now-specialty-pizza-form><order-now-specialty-pizza-form>
+    <order-now-specialty-pizza-form></order-now-specialty-pizza-form>
     
     </div>
     <website-footer id ="footer"/>
