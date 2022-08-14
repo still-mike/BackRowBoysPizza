@@ -18,7 +18,7 @@ export default {
         return http.get(`/pizzas/${pizzaID}`)
       },
     
-    getSpecialtyPizza() {
+    getSpecialtyPizzas() {
         return http.get('/pizzas/specialty');
     },
 

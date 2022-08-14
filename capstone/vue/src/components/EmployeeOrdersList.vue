@@ -65,10 +65,10 @@ export default {
       type: Number,
       default: 0,
     },
-    //  boardTitle: {
-    //   type: String,
-    //   default: 'All Pizzas',
-    // },
+     boardTitle: {
+      type: String,
+      default: '',
+    },
   
   },
 
@@ -78,33 +78,31 @@ export default {
       title: "",
       isLoading: true,
       errorMsg: "",
-      status: "",
+      // status: "",
     };
   },
   methods: {
     retrievePizzas() {
-      // if (this.boardTitle == 'All Pizzas') {
-      pizzaService.getAllPizzas()
-      .then((response) => {
+      
+      if (this.boardId == 2) {
+      
+        pizzaService.getAllPizzas()
+        .then( ( response ) => {
           this.title = response.data.title;
           let allPizzas = response.data;
-          let boardPizzas = allPizzas.filter((pizza) => {
-            return pizza.isSpecialty == true;
-          });
-          this.$store.commit("SET_BOARD_PIZZAS", boardPizzas);
+          this.$store.commit("SET_BOARD_PIZZAS", allPizzas);
           this.isLoading = false;
         })
-        
-        .catch((error) => {
-          if (error.response && error.response.status === 404) {
-            alert(
-              "Board pizzas not available. This board may have been deleted or you have entered an invalid board ID."
-            );
-            this.$router.push({ name: "employee-home" });
-          }
-        });
-      // } else {
+
+      } else if (this.boardId == 1) {
       
+        pizzaService.getSpecialtyPizzas()
+        .then( ( response ) => {
+          this.title = response.data.title;
+          let specialtyPizzas = response.data;
+          this.$store.commit("SET_BOARD_PIZZAS", specialtyPizzas);
+          this.isLoading = false;
+        })
       // pizzaService
       //   .getPizzas(this.boardId)
       //   .then((response) => {
@@ -120,7 +118,7 @@ export default {
       //       this.$router.push({ name: "employee-home" });
       //     }
       //   });
-    },
+    }},
     clearAllOrders() {
       if (confirm("Do you seriously want to clear all order items?")) {
         pizzaService
