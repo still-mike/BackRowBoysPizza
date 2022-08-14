@@ -17,14 +17,14 @@
         Clear All Orders
       </button>
     </div>
-        <!-- </div>
+        
     <div class="loading" v-if="isLoading">
-      <img src="../assets/ping_pong_loader.gif" />
+      <img src="../assets/pizza_loader.gif" />
     </div>
     <div v-else>
       <div class="status-message error" v-show="errorMsg !== ''">
         {{ errorMsg }}
-      </div> -->
+      </div>
       <div class="boards">
         <board-column
           title="Pending"
@@ -47,7 +47,7 @@
           :boardID="this.boardId"
         />
       </div>
-      
+    </div>
   </div>
 </template>
 
@@ -65,11 +65,11 @@ export default {
       type: Number,
       default: 0,
     },
-    // boardTitle: {
+    //  boardTitle: {
     //   type: String,
     //   default: 'All Pizzas',
     // },
-    // boardTitle: ''
+  
   },
 
   data() {
@@ -83,21 +83,18 @@ export default {
   },
   methods: {
     retrievePizzas() {
-      // if (this.boardTitle == "All Pizzas") {
-      // pizzaService.getAllPizzas()
-      // .then((response) => {
-      //     this.title = response.data.title;
-      //     this.$store.commit("SET_BOARD_PIZZAS", response.data.pizzas);
-      //     this.isLoading = false;
-      //   })} else {
-      
-      pizzaService
-        .getPizzas(this.boardId)
-        .then((response) => {
+      // if (this.boardTitle == 'All Pizzas') {
+      pizzaService.getAllPizzas()
+      .then((response) => {
           this.title = response.data.title;
-          this.$store.commit("SET_BOARD_PIZZAS", response.data.pizzas);
+          let allPizzas = response.data;
+          let boardPizzas = allPizzas.filter((pizza) => {
+            return pizza.isSpecialty == true;
+          });
+          this.$store.commit("SET_BOARD_PIZZAS", boardPizzas);
           this.isLoading = false;
         })
+        
         .catch((error) => {
           if (error.response && error.response.status === 404) {
             alert(
@@ -106,6 +103,23 @@ export default {
             this.$router.push({ name: "employee-home" });
           }
         });
+      // } else {
+      
+      // pizzaService
+      //   .getPizzas(this.boardId)
+      //   .then((response) => {
+      //     this.title = response.data.title;
+      //     this.$store.commit("SET_BOARD_PIZZAS", response.data.pizzas);
+      //     this.isLoading = false;
+      //   })
+      //   .catch((error) => {
+      //     if (error.response && error.response.status === 404) {
+      //       alert(
+      //         "Board pizzas not available. This board may have been deleted or you have entered an invalid board ID."
+      //       );
+      //       this.$router.push({ name: "employee-home" });
+      //     }
+      //   });
     },
     clearAllOrders() {
       if (confirm("Do you seriously want to clear all order items?")) {
