@@ -8,9 +8,9 @@ public class sendGridEmail implements email{
     public static void main(String[] args) throws IOException {
         Email from = new Email("backrowboyzpizza@gmail.com");
 
-        String subject = "after dynamic test - This email is from our java server - test for sendGrid";
-        Email to = new Email("Jonathanpfettig@gmail.com");
-        Content content = new Content("text/plain", "Hi Jonathan, how does it feel to get an email from your backend server? - Jonathan - test 3 bof the dynamic  ");
+        String subject = "This email is from our java server - test for sendGrid";
+        Email to = new Email("matthewnowell97@gmail.com");
+        Content content = new Content("text/plain", "Hi Matt, how does it feel to get an email from your backend server? Our external API call is working now. - Jonathan ");
         Mail mail = new Mail(from, subject, to, content);
 
         //This is the template I created online at https://mc.sendgrid.com/dynamic-templates :

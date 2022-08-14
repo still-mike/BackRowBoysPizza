@@ -1,6 +1,7 @@
 package com.techelevator.dao.Pizza;
 
 import com.techelevator.model.process.Board;
+import com.techelevator.model.process.Ingredient;
 import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -170,8 +171,22 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 " status, board_id, order_id) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(id)FROM orders));";
         jdbcTemplate.update(sql);
-        return null;
+        return order;
     }
+
+    //test of ingredient looping
+    public boolean addIngredients(Pizza pizza){
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients = pizza.getIngredients();
+        if (ingredients.size() != 0 )  {
+            for (Ingredient ing : ingredients ){
+                String name = ing.getIngredientName();
+
+            }
+
+        }
+    }
+
 
     @Override
     public boolean updateOrder(Order order) {
