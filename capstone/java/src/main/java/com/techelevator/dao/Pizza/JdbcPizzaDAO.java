@@ -159,14 +159,17 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     @Transactional
     @Override
-    public Order createOrder(Order order) {
+    public Order createOrder(Order order, Pizza pizza) {
         String sql = "INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, " +
                 "cust_email) VALUES (?, ?, ?, ?, ?, ?) RETURNING id;";
         Long newId = jdbcTemplate.queryForObject(sql, long.class, order.getOrderStatus(), order.isDelivery(),
                 order.getEmployeeName(), order.getOrderTime(), order.getCustAddress(), order.getCustEmail());
         order.setId(newId);
 
-
+        sql = " INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty," +
+                " status, board_id, order_id) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(id)FROM orders));";
+        jdbcTemplate.update(sql);
         return null;
     }
 

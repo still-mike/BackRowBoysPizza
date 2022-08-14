@@ -13,7 +13,7 @@ public class sendGridEmail implements email{
         Content content = new Content("text/plain", "Hi Jonathan, how does it feel to get an email from your backend server? - Jonathan - test 3 bof the dynamic  ");
         Mail mail = new Mail(from, subject, to, content);
 
-        //This is the template I created online at https://mc.sendgrid.com/dynamic-templates:
+        //This is the template I created online at https://mc.sendgrid.com/dynamic-templates :
         //        mail.setTemplateId("d-1a77882e59154014a3ca8870a98c3ff1");
         // it broke the basic text email though
 

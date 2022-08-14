@@ -3,6 +3,7 @@ package com.techelevator.dao.Pizza;
 import com.techelevator.model.process.Board;
 import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,7 +27,8 @@ public interface PizzaDAO {
 
     public Order getOrder(long orderId);
 
-    public Order createOrder(Order order);
+    @Transactional
+    Order createOrder(Order order, Pizza pizza);
 
     public boolean updateOrder(Order order);
 

@@ -83,10 +83,9 @@ public class PizzaController {
 
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
-    public Order createOrder(@RequestBody Order order) {
-        return dao.createOrder(order);
+    public Order createOrder(@RequestBody Order order, Pizza pizza) {
+        return dao.createOrder(order, pizza);
     }
-
 
     //board endpoints
     @GetMapping("/boards")
