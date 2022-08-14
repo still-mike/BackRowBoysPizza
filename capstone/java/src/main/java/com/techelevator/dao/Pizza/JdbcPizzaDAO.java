@@ -82,6 +82,17 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
     @Override
+    public boolean updatePizza(Pizza pizza) {
+        String sql = "UPDATE pizzas SET pizza_size = ?, dough = ?, shape = ?, sauce_type = ?, description = ?," +
+                " is_available = ?, order_id = ?, pizza_price = ?, is_specialty = ?, status = ?, board_id = ?, id = ? );";
+        int count = jdbcTemplate.update(sql, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(),
+                pizza.getDescription(), pizza.isAvailable(), pizza.getOrderId(), pizza.getPizzaPrice(), pizza.getIsSpecialty(),
+                pizza.getStatus(), pizza.getBoardId(), pizza.getId());
+
+        return count == 1;
+    }
+
+    @Override
     public boolean deletePizza(long pizzaId) {
         String sql = "DELETE FROM pizzas WHERE id = ?;";
         int count = jdbcTemplate.update(sql, pizzaId);

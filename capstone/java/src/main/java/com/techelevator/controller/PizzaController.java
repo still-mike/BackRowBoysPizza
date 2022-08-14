@@ -36,6 +36,16 @@ public class PizzaController {
         return dao.createPizza(pizza);
     }
 
+    @PutMapping("/pizzas/{id}")
+    public Pizza putPizza(@PathVariable long id, @RequestBody Pizza updatedPizza){
+        updatedPizza.setId(id);
+        if(dao.updatePizza(updatedPizza)){
+            return updatedPizza;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Get outahere! That Pizza was never made!");
+        }
+    }
+
     @GetMapping("/pizzas/{id}")
     public Pizza getPizza(@PathVariable long id) throws InterruptedException {
         Thread.sleep(1000); //Simulated loading time

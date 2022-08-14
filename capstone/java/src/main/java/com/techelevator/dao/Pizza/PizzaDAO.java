@@ -16,7 +16,7 @@ public interface PizzaDAO {
 
     public Pizza createPizza(Pizza pizza);
 
-//    public boolean updatePizza(Pizza pizza);
+    boolean updatePizza(Pizza pizza);
 
     public boolean deletePizza(long pizzaID);
 

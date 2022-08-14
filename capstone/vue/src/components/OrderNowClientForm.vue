@@ -9,7 +9,7 @@
       <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
             v-bind:class="{ finished: size.selected }">
-          <input type="checkbox" v-model="size.selected" />
+          <input type="radio" v-model="size.selected" />
           {{ size.choice }}
         </li>
       </ul>
