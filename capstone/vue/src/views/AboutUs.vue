@@ -4,8 +4,10 @@
     <div>
       <h1 class = "AboutUs">about us</h1>
   <div class="TomatoContainer">
-    <div class="Hours"> 
-      <h2>business hours</h2>
+    <div class="Hours">
+      <div class="titleContainer">
+      <h2 class="titleUnderline">business hours</h2>
+      </div>
       <ul class="HoursList">
         <li class="Weekday">monday: 10am-11pm</li>
         <li class="Weekday">tuesday: 10am-11pm</li>
@@ -18,7 +20,9 @@
       </ul>
   </div>
   <div class="OurStory">
-    <h2>our story</h2>
+    <div class="titleContainer">
+      <h2 class="titleUnderline">our story</h2>
+    </div>
     <p id ="OriginStory">at back row boyz pizza we serve pizza and...well... that's pretty much it. you can order one of our specialty pizzas - the fettig, the finkeldey, the nowell, or the still! if you're picky that's fine! you also have the option of customizing your own pizza!
 
 if you can't make it to us - no problem - we'll come to you! click on the order now tab above and we'll get it to you.</p>
@@ -68,6 +72,8 @@ div#capsule {
    margin-top: 0em;
    padding: 1em;
    background-color: #F7F3E8;
+   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+   border-radius: 20px;
   
 }
 #HoursList{
@@ -84,9 +90,19 @@ div#capsule {
   margin: auto;
   padding: 1em;
   background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 20px;
 }
 #OriginStory {
   text-align: justify;
   padding: 1em;
+}
+.titleUnderline {
+  border-bottom: 1.5px solid black;
+  padding-bottom: 1px;
+  width: fit-content;
+}
+.titleContainer {
+  text-align: -webkit-center;
 }
 </style>
