@@ -55,6 +55,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, pizzaId);
         if (rowSet.next()) {
             Pizza pizza = mapRowToPizza(rowSet);
+            pizza.setIngredients(getIngredientsForPizzaId(pizza.getId()));
             return pizza;
         } else {
             return null;
