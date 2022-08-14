@@ -46,4 +46,6 @@ public interface PizzaDAO {
     public boolean deleteBoard(long boardId);
 
     List<Ingredient> getAllIngredients();
+
+    List<Ingredient> getIngredientsForPizzaId(long pizzaId);
 }
