@@ -275,9 +275,21 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
-//comment mapping
+//comment / ingredient mapping
 
-    private List<Ingredient> getIngredientsForPizzaId(long pizzaId) {
+    @Override
+    public List<Ingredient> getAllIngredients() {
+        List<Ingredient> result = new ArrayList<>();
+        String sql = "SELECT id, ingredient_name, tier, available, ingredient_price FROM ingredients;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            Ingredient ingredient = mapRowToIngredient(rowSet);
+            result.add(ingredient);
+        }
+        return result;
+    }
+
+    public List<Ingredient> getIngredientsForPizzaId(long pizzaId) {
         List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT id, author, body, posted_on FROM comments WHERE card_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, pizzaId);
@@ -288,13 +300,13 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
-    private Ingredient mapRowToIngredient(SqlRowSet rowSet) {
+    public Ingredient mapRowToIngredient(SqlRowSet rowSet) {
         Ingredient result = new Ingredient();
         result.setId(rowSet.getLong("id"));
-        result.setIngredientName(rowSet.getString("author"));
-        result.setTier((rowSet.getString("body")));
-        result.setIngredientPrice(rowSet.getBigDecimal("posted_on"));
-        result.setAvailable(rowSet.getBoolean("true"));
+        result.setIngredientName(rowSet.getString("ingredient_name"));
+        result.setTier((rowSet.getString("tier")));
+        result.setIngredientPrice(rowSet.getBigDecimal("ingredient_price"));
+        result.setAvailable(rowSet.getBoolean("available"));
         return result;
     }
 }

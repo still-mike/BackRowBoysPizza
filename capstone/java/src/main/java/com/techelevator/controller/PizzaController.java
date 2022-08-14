@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.Pizza.PizzaDAO;
 import com.techelevator.model.process.Board;
+import com.techelevator.model.process.Ingredient;
 import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
 import org.springframework.http.HttpStatus;
@@ -66,7 +67,13 @@ public class PizzaController {
         }
     }
 
-    //todo - add GET, UPDATE and ADD Ingredient endpoints
+   @GetMapping("/ing")
+    public List<Ingredient> getIngredientsList(){
+        return dao.getAllIngredients();
+    }
+
+
+    // Todo - UPDATE and ADD pizza_ingredient endpoints
 
     //order endpoints
     @GetMapping("/orders/{id}")

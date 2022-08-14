@@ -1,6 +1,7 @@
 package com.techelevator.dao.Pizza;
 
 import com.techelevator.model.process.Board;
+import com.techelevator.model.process.Ingredient;
 import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,4 +45,5 @@ public interface PizzaDAO {
 
     public boolean deleteBoard(long boardId);
 
+    List<Ingredient> getAllIngredients();
 }
