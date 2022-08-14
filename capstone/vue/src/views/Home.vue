@@ -1,7 +1,7 @@
 <template>
   <div id="capsule">
     <website-header id="Header"/>
-  <div id="landing">
+  <div class="landing">
     <div id ='MainBody'>
       <div class="ImgContainer">
         <img id ="BigLogo" src="../assets/UziVert.png">
@@ -71,7 +71,7 @@ body {
   flex-direction: column;
 }
 
-#landing {
+.landing {
     width: 100%;
     height: 800px;
     overflow: hidden;
