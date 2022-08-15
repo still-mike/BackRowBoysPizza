@@ -7,8 +7,8 @@
     <div class="pizza-size-list">
       <h2>choose a size</h2>
       <!-- drop down -->
-      <div>{{ selected }}</div>
-    <select v-model="selected" >
+      <!-- <div>{{ selected }}</div> -->
+    <select v-model="pizza.pizzaSize" >
       <option disabled value="">please select one</option>
       <option>12" Small</option>
       <option>16" Medium</option>
@@ -17,8 +17,8 @@
       <!-- check boxes -->
       <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
-            v-bind:class="{ finished: size.selected }">
-          <input type="radio" v-model="size.selected" />
+            v-bind:class="{ finished: pizza.pizzaSize }">
+          <input type="radio" v-model="pizza.pizzaSize" />
           {{ size.choice }}
         </li>
       </ul>
@@ -68,9 +68,7 @@
         </li> -->
       </ul>
     </div>
-    <div>
-    <button>Submit</button>
-  </div>
+   
     </div>
   
 </template>
@@ -80,6 +78,10 @@ export default {
   data () {
     return {
     }
+  },
+
+  methods: {
+
   }
 
 }
