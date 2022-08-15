@@ -2,6 +2,28 @@
 <div>
     
     <h1>specialty pies</h1>
+    12" small ($14.99) | 16" medium ($16.99) | 20" ($19.99)
+
+    <div class="pizza-size-list">
+      <h2>choose a size</h2>
+      <!-- drop down -->
+      <div>{{ selected }}</div>
+    <select v-model="selected" >
+      <option disabled value="">please select one</option>
+      <option>12" Small</option>
+      <option>16" Medium</option>
+      <option>20" Large</option>
+      </select>
+      <!-- check boxes -->
+      <ul>
+        <li v-for="size in filteredSizes" v-bind:key="size.choice"
+            v-bind:class="{ finished: size.selected }">
+          <input type="radio" v-model="size.selected" />
+          {{ size.choice }}
+        </li>
+      </ul>
+    </div>
+  
     <div class="fettig">
       <h2>the fettig</h2>
       <p>balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil</p>
@@ -46,6 +68,9 @@
         </li>
       </ul>
     </div>
+    <div>
+    <button>Submit</button>
+  </div>
     </div>
   
 </template>
