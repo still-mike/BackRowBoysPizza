@@ -202,10 +202,15 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 order.getEmployeeName(), order.getOrderTime(), order.getCustAddress(), order.getCustEmail());
         order.setId(newId);
 
-        sql = " INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty," +
-                " status, board_id, order_id) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(id)FROM orders));";
-        jdbcTemplate.update(sql);
+        sql = " INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description," +
+                "is_available,pizza_price,is_specialty, status, board_id," +
+                " order_id) " +
+                "VALUES (?,?,?,?,?," +
+                "?,?,?,?,?," +
+                "(SELECT MAX(id)FROM orders));";
+        //TODO - of course this broke it needs the parameters passed in, testing with parameters after meeting with Amber.
+        jdbcTemplate.update(sql, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(), pizza.getDescription(),
+                pizza.isAvailable(), pizza.getPizzaPrice(), pizza.getIsSpecialty(), pizza.getStatus(), pizza.getBoardId());
         order.setPizzas(getPizzasForOrderId(order.getId()));
 
         for (Ingredient ingredient : pizza.getIngredients()) {
