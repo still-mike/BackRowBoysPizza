@@ -5,9 +5,9 @@
       <router-link
         tag="button"
         class="btn addNewOrder"
-        :to="{ name: 'AddOrder', params: { boardID: this.boardId } }"
+        :to="{ name: 'AddCard', params: { boardID: this.boardId } }"
         v-if="!isLoading"
-        >Add New Order</router-link
+        >Define New Pizza</router-link
       >
       <button
         class="btn btn-cancel clearAllOrders"
@@ -26,22 +26,27 @@
         {{ errorMsg }}
       </div>
       <div class="boards">
-        <board-column
+        <board-column v-if="this.boardId == 1"
           title="Pending"
           :pizzas="pending"
           :boardID="this.boardId"
         />
-        <board-column
+        <board-column v-if="this.boardId != 1"
+          title="Pending"
+          :pizzas="pending"
+          :boardID="this.boardId"
+        />
+        <board-column v-if="this.boardId != 1"
           title="Ready"
           :pizzas="ready"
           :boardID="this.boardId"
         />
-        <board-column
+        <board-column v-if="this.boardId != 1"
           title="Completed"
           :pizzas="completed"
           :boardID="this.boardId"
         />
-        <board-column
+        <board-column v-if="this.boardId != 1"
           title="Cancelled"
           :pizzas="cancelled"
           :boardID="this.boardId"
@@ -64,10 +69,6 @@ export default {
     boardId: {
       type: Number,
       default: 0,
-    },
-     boardTitle: {
-      type: String,
-      default: '',
     },
   
   },
@@ -181,7 +182,7 @@ export default {
 <style>
 .boards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 .board-actions {
