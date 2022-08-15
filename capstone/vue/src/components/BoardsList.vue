@@ -20,13 +20,13 @@
       >
         {{ board.title }}
       </router-link>
-      <button
+      <!-- <button
         class="btn addBoard"
         v-if="!isLoading && !showAddBoard"
         v-on:click="showAddBoard = !showAddBoard"
       >
         Add Board
-      </button>
+      </button> -->
       <form v-if="showAddBoard">
         Board Title:
         <input type="text" class="form-control" v-model="newBoard.title" />
