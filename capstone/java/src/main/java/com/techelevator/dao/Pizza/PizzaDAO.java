@@ -29,7 +29,7 @@ public interface PizzaDAO {
     public Order getOrder(long orderId);
 
     @Transactional
-    Order createOrder(Order order, Pizza pizza);
+    Order createOrder(Order order);
 
     public boolean updateOrder(Order order);
 
