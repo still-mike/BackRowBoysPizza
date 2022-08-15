@@ -180,19 +180,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
 
-    //TODO - test create order
-
-    /**
-     * This works in pgadmin:
-     * INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email)
-     * VALUES ('test7',FALSE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');
-     * INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id, order_id)
-     * VALUES ('large','classic','round','traditional red','Test 7 - THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina,
-     * roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1, (SELECT MAX(id)FROM orders));
-     * <p>
-     * -- Use Tenmo @Transactional transfer as a model.
-     */
-
     @Transactional
     @Override
     public Order createOrder(Order order) {
@@ -208,7 +195,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
                     "VALUES (?,?,?,?,?," +
                     "?,?,?,?,?," +
                     "(SELECT MAX(id)FROM orders));";
-            //TODO - of course this broke it needs the parameters passed in, testing with parameters after meeting with Amber.
             jdbcTemplate.update(sql, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(), pizza.getDescription(),
                     pizza.isAvailable(), pizza.getPizzaPrice(), pizza.getIsSpecialty(), pizza.getStatus(), pizza.getBoardId());
             order.setPizzas(getPizzasForOrderId(order.getId()));
@@ -273,13 +259,11 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
 
-    //todo - createBoard maybe not needed?
     @Override
     public Board createBoard(Board board) {
         return null;
     }
 
-    //todo - deleteBoard maybe not needed?
     @Override
     public boolean deleteBoard(long boardId) {
         return false;
@@ -292,7 +276,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
         result.setBackgroundColor(rowSet.getString("background_color"));
         return result;
     }
-
 
 
 //comment / ingredient mapping
@@ -335,7 +318,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
     // method to insert into pizza_ingredient table - this is our version of a kanban 'comment' except ours will work.
-    public void setIngredientsForPizzaId(Long pizzaId, Ingredient ingredient){
+    public void setIngredientsForPizzaId(Long pizzaId, Ingredient ingredient) {
         String sql = "INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (?, " +
                 "(SELECT (id)FROM ingredients where ingredient_name = ?));";
         jdbcTemplate.update(sql, pizzaId, ingredient.getIngredientName());
