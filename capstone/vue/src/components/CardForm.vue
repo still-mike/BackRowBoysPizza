@@ -1,13 +1,13 @@
 <template>
   <form v-on:submit.prevent="submitForm" class="cardForm">
     <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="title">Title:</label>
       <input id="title" type="text" class="form-control" v-model="card.title" autocomplete="off" />
-    </div>
+    </div> -->
     <div class="form-group">
-      <label for="tag">Tag:</label>
-      <select id="tag" class="form-control" v-model="card.tag">
+      <label for="size">Size:</label>
+      <select id="size" class="form-control" v-model="card.tag">
         <option value="Feature Request">Feature Request</option>
         <option value="Design">Design</option>
         <option value="Q&A">Q&A</option>
@@ -46,6 +46,16 @@ export default {
   },
   data() {
     return {
+      card: {
+        title: "",
+        description: "",
+        status: "Planned",
+        tag: "",
+        avatar: "",
+        date: null,
+        cat: false
+      },
+      
       pizza: {
       id: 0,
       pizzaSize: '',
