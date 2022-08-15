@@ -76,10 +76,23 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
+    private List<Pizza> getPizzasForOrderId(long orderId) {
+        List<Pizza> result = new ArrayList<>();
+        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id FROM pizzas WHERE order_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, orderId);
+        while (rowSet.next()) {
+            Pizza pizza = mapRowToPizza(rowSet);
+            pizza.setIngredients(getIngredientsForPizzaId(pizza.getId()));
+            result.add(pizza);
+        }
+        return result;
+    }
+
+    //creates a pizza with a null order id
     @Override
-    public Pizza createPizza(Pizza pizza) {
+    public Pizza employeeCreatePizza(Pizza pizza) {
         String sql = "INSERT INTO pizzas (pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id ) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         Long newId = jdbcTemplate.queryForObject(sql, Long.class,
                 pizza.getPizzaSize(),
                 pizza.getDough(),
@@ -94,10 +107,9 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 pizza.getBoardId());
         pizza.setId(newId);
 
-/*      for (Comment comment : card.getComments()) {
-        comment = createComment(card.getId(), comment);
-        } */
-
+        for (Ingredient ingredient : pizza.getIngredients()) {
+            setIngredientsForPizzaId(pizza.getId(), ingredient);
+        }
         return pizza;
     }
 
@@ -146,7 +158,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Order order = mapRowToOrder(rowSet);
-            //TODO - determine if we need functionality like this: board.setCards(getCardsForBoardId(board.getId()));
+            order.setPizzas(getPizzasForOrderId(order.getId()));
             orders.add(order);
         }
         return orders;
@@ -159,6 +171,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, orderId);
         if (rowSet.next()) {
             Order order = mapRowToOrder(rowSet);
+            order.setPizzas(getPizzasForOrderId(order.getId()));
             return order;
         } else {
             return null;
@@ -192,21 +205,13 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 " status, board_id, order_id) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(id)FROM orders));";
         jdbcTemplate.update(sql);
+        order.setPizzas(getPizzasForOrderId(order.getId()));
+
+        /*for (Ingredient ingredient : pizza.getIngredients()) {
+            setIngredientsForPizzaId(pizza.getId(), ingredient);*/
+
         return order;
     }
-
-//    //test of ingredient looping
-//    public boolean addIngredients(Pizza pizza){
-//        List<Ingredient> ingredients = new ArrayList<>();
-//        ingredients = pizza.getIngredients();
-//        if (ingredients.size() != 0 )  {
-//            for (Ingredient ing : ingredients ){
-//                String name = ing.getIngredientName();
-//
-//            }
-//
-//        }
-//    }
 
 
     @Override
@@ -321,17 +326,10 @@ public class JdbcPizzaDAO implements PizzaDAO {
         return result;
     }
 
-    /*
-        @Override
-        public Comment createComment(long cardId, Comment comment) {
-        String sql = "INSERT INTO comments (card_id, author, body, posted_on) " +
-                "VALUES (?, ?, ?, ?) RETURNING id;";
-        Long newId = jdbcTemplate.queryForObject(sql, Long.class, cardId, comment.getAuthor(), comment.getBody(), comment.getPostedOn());
-        comment.setId(newId);
-
-        return comment;
-    }*/
-
-    // Need a method to insert into pizza_ingredient table - this is our 'comment'
-
+    // method to insert into pizza_ingredient table - this is our version of a kanban 'comment' except ours will work.
+    public void setIngredientsForPizzaId(Long pizzaId, Ingredient ingredient){
+        String sql = "INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (?, " +
+                "(SELECT (id)FROM ingredients where ingredient_name = ?));";
+        jdbcTemplate.update(sql, pizzaId, ingredient.getIngredientName());
+    }
 }

@@ -33,8 +33,8 @@ public class PizzaController {
 
     @PostMapping("/pizzas")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pizza createPizza(@RequestBody Pizza pizza) {
-        return dao.createPizza(pizza);
+    public Pizza employeeCreatePizza(@RequestBody Pizza pizza) {
+        return dao.employeeCreatePizza(pizza);
     }
 
     @PutMapping("/pizzas/{id}")
