@@ -180,7 +180,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
 
-    //TODO - create order
+    //TODO - test create order
 
     /**
      * This works in pgadmin:
@@ -208,8 +208,9 @@ public class JdbcPizzaDAO implements PizzaDAO {
         jdbcTemplate.update(sql);
         order.setPizzas(getPizzasForOrderId(order.getId()));
 
-        /*for (Ingredient ingredient : pizza.getIngredients()) {
-            setIngredientsForPizzaId(pizza.getId(), ingredient);*/
+        for (Ingredient ingredient : pizza.getIngredients()) {
+            setIngredientsForPizzaId(pizza.getId(), ingredient);
+        }
 
         return order;
     }
