@@ -34,7 +34,6 @@ export default {
         return http.put(`/pizzas/${pizza.id}`, pizza)
     },
 
-
     deletePizza(pizzaID) {
         return http.delete(`/pizzas/${pizzaID}`); 
     },
@@ -42,10 +41,6 @@ export default {
     deleteBoard(boardID) {
         const authStr = 'Bearer ' + localStorage.getItem('token'); 
         return http.delete(`/boards/${boardID}`, { headers: { Authorization: authStr } })
-      }, 
-
-      createOrder(order) {
-        return http.post('/orders', order);
-    },
+      }
 
 }

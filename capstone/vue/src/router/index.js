@@ -12,6 +12,8 @@ import OrderNow from '../views/OrderNow.vue'
 import Location from '../views/Location.vue'
 import Pizza from '../views/Pizza.vue'
 import Board from '../views/Board.vue'
+import AddCard from '../views/AddCard.vue'
+
 
 Vue.use(Router)
 
@@ -116,6 +118,12 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/board/:boardID/card/create',
+      name: 'AddCard',
+      component: AddCard
+    },
+
 
     // need path for ModifyPizza
 

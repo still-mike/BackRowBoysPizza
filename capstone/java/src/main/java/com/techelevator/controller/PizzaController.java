@@ -21,6 +21,7 @@ public class PizzaController {
         this.dao = pizzaDAO;
     }
 
+    //pizza endpoints
     @GetMapping("/pizzas")
     public List<Pizza> getAllPizzas() {
         return dao.getAllPizzas();
@@ -38,9 +39,9 @@ public class PizzaController {
     }
 
     @PutMapping("/pizzas/{id}")
-    public Pizza putPizza(@PathVariable long id, @RequestBody Pizza updatedPizza){
+    public Pizza updatePizza(@PathVariable long id, @RequestBody Pizza updatedPizza) {
         updatedPizza.setId(id);
-        if(dao.updatePizza(updatedPizza)){
+        if (dao.updatePizza(updatedPizza)) {
             return updatedPizza;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Get outahere! That Pizza was never made!");
@@ -67,13 +68,21 @@ public class PizzaController {
         }
     }
 
-   @GetMapping("/ing")
-    public List<Ingredient> getIngredientsList(){
+    //ingredient endpoints
+    @GetMapping("/ing")
+    public List<Ingredient> getIngredientsList() {
         return dao.getAllIngredients();
     }
 
-
-    // Todo - UPDATE and ADD pizza_ingredient endpoints
+    @PutMapping("/ing/{id}")
+    public Ingredient updateIngredient(@PathVariable long id, @RequestBody Ingredient updatedIngredient) {
+        updatedIngredient.setId(id);
+        if (dao.updateIngredient(updatedIngredient)) {
+            return updatedIngredient;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "That ingredient isn't here...maybe you should go check in the back");
+        }
+    }
 
     //order endpoints
     @GetMapping("/orders/{id}")
@@ -97,7 +106,7 @@ public class PizzaController {
     //board endpoints
     @GetMapping("/boards")
     public List<Board> getBoards() throws InterruptedException {
-        Thread.sleep( 1000);
+        Thread.sleep(1000);
         return dao.getAllBoards();
     }
 
