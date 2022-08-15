@@ -30,6 +30,12 @@ export default {
         return http.post('/pizzas', pizza);
     },
 
+    refreshPizza(pizza) {
+        return http.put(`/pizzas/${pizza.id}`, pizza)
+    },
+
+
+
     deletePizza(pizzaID) {
         return http.delete(`/pizzas/${pizzaID}`); 
     },

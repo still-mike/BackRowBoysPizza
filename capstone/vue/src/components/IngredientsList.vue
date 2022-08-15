@@ -2,8 +2,8 @@
   <div class="ingredients">
     <h2>Ingredients</h2>
     <div class="ingredient" v-for="ingredient in ingredients" v-bind:key="ingredient.id">
-      <h3>{{ ingredient.name }}</h3>
-      <p class="postedOn">{{ ingredient.price }}</p>
+      <h3>{{ ingredient.ingredientName }}</h3>
+      <p class="out-of-stock" v-if="!ingredient.available">OUT OF STOCK</p>
       <p>{{ ingredient.tier }}</p>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
 .ingredient h3 {
   margin-bottom: 0;
 }
-.postedOn {
+.out-of-stock {
   margin-top: 4px;
   font-size: 0.75rem;
 }
