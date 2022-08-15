@@ -6,11 +6,15 @@
     <div v-else>
       <h1>Pizza ID: {{ pizza.id }}</h1>
       <p>{{ pizza.description }}</p>
-      <router-link
+      <!-- <router-link
         tag="button"
         :to="{ name: 'ModifyPizza', params: {pizzaID: $route.params.pizzaID} }"
         class="btn modifyPizza"
-      >Modify Pizza</router-link>
+      >Modify Pizza</router-link> -->
+      <button class="btn pendPizza" v-on:click="updatePizza('Pending')">PENDING</button>
+      <button class="btn readyPizza" v-on:click="updatePizza('Ready')">READY</button>
+      <button class="btn completePizza" v-on:click="updatePizza('Completed')">COMPLETED</button>
+      <button class="btn cancelPizza" v-on:click="updatePizza('Cancelled')">CANCELLED</button>
       <button class="btn deletePizza" v-on:click="deletePizza">Delete Pizza</button>
       <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
       <ingredients-list :ingredients="pizza.ingredients" />
@@ -35,6 +39,21 @@ export default {
     return {
       isLoading: true,
       errorMsg: "",
+      // pizza: {
+      //   id: 0,
+      //   pizzaSize: "",
+      //   dough: "",
+      //   shape: "",
+      //   sauceType: "",
+      //   description: "",
+      //   pizzaPrice: 0,
+      //   isSpecialty: false,
+      //   orderId: 0,
+      //   ingredients: [],
+      //   boardId: 0,
+      //   status: this.status,
+      //   available: this.available
+      // }
     };
   },
   methods: {
@@ -54,6 +73,53 @@ export default {
           }
         });
     },
+    
+    updatePizza(newStatus) {
+      const newPizza = {
+        id: this.pizza.id,
+        pizzaSize: this.pizza.pizzaSize,
+        dough: this.pizza.dough,
+        shape: this.pizza.shape,
+        sauceType: this.pizza.sauceType,
+        description: this.pizza.description,
+        pizzaPrice: this.pizza.pizzaPrice,
+        isSpecialty: this.pizza.isSpecialty,
+        orderId: this.pizza.orderId,
+        ingredients: this.pizza.ingredients,
+        boardId: this.pizza.boardId,
+        status: this.pizza.status,
+        available: this.pizza.available
+      };
+      
+      
+
+      newPizza.status = newStatus;
+      pizzaService
+        .refreshPizza(newPizza)
+        // .then(response => {
+        //   if (response.status === 200) {
+        //     // alert("Fuggedaboutit");
+        //     this.$router.push(`/board/${this.pizza.boardId}`);
+        //   }
+        // })
+        // .catch(error => {
+        //   if (error.response) {
+        //     this.errorMsg =
+        //       "Error removing pizza. Response received was '" +
+        //       error.response.statusText +
+        //       "'.";
+        //   } else if (error.request) {
+        //     this.errorMsg =
+        //       "Error removing pizza. Server could not be reached.";
+        //   } else {
+        //     this.errorMsg =
+        //       "Error removing pizza. Request could not be created.";
+        //   }
+        // });
+      
+    },
+    
+    
     deletePizza() {
       if (
         confirm(
@@ -97,12 +163,34 @@ export default {
 </script>
 
 <style>
-.btn.modifyPizza {
+.btn.pendPizza {
+  color: rgb(255, 255, 255);
+  background-color: #efdf03;
+  border-color: #ef031a;
+  margin-bottom: 10px;
+}
+
+.btn.readyPizza {
+  color: rgb(255, 255, 255);
+  background-color: #3ad11c;
+  border-color: #ef031a;
+  margin-bottom: 10px;
+}
+
+.btn.completePizza {
+  color: #fff;
+  background-color: #0b93d3;
+  border-color: #183da3;
+  margin-bottom: 10px;
+}
+
+.btn.cancelPizza {
   color: #fff;
   background-color: #508ca8;
   border-color: #508ca8;
   margin-bottom: 10px;
 }
+
 .btn.deletePizza {
   color: #fff;
   background-color: #ef031a;
