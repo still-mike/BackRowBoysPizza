@@ -4,6 +4,7 @@
      
   </div>
   <h1>create-your-own</h1>
+  12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
   
     <div class="pizza-size-list">
       <h2>choose a size</h2>
@@ -31,9 +32,9 @@
       <div>{{ selected }}</div>
     <select v-model="selected" >
       <option disabled value="">Please select one</option>
-      <option>DOUGH</option>
-      <option>DOUGH</option>
-      <option>DOUGH</option>
+      <option>Hand-tossed traditional</option>
+      <option>Gluten-free (+$3.50)</option>
+      <option>Cauliflower, <em>vegan</em> (+$3.50)</option>
       </select>
       <!-- check boxes -->
       <ul>
@@ -51,9 +52,9 @@
       <div>{{ selected }}</div>
     <select v-model="selected" >
       <option disabled value="">Please select one</option>
-      <option>STYLE</option>
-      <option>STYLE</option>
-      <option>STYLE</option>
+      <option>Classic pie</option>
+      <option>Flatbread</option>
+      <option>Deepdish (+$2.50)</option>
       </select>
       <!-- check boxes -->
       <ul>
@@ -71,9 +72,10 @@
       <div>{{ selected }}</div>
     <select v-model="selected" >
       <option disabled value="">Please select one</option>
-      <option>SAUCE</option>
-      <option>SAUCE</option>
-      <option>SAUCE</option>
+      <option>Traditional red</option>
+      <option>White garlic</option>
+      <option>Basil pesto</option>
+      <option>Spicy buffalo</option>
       </select>
       <!-- check boxes -->
       <ul>
@@ -89,6 +91,10 @@
 
 
       <h2>choose standard toppings</h2>
+      select up to (4) | additional toppings ($0.25) each
+      
+
+
       <ul>
         <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
             v-bind:class="{ finished: standardTopping.done }">
@@ -101,6 +107,7 @@
 
        
       <h2>choose premium toppings</h2>
+      select up to (2) | additional toppings ($0.50) each
       <ul>
         <li v-for="premiumTopping in filteredPremiumToppings" v-bind:key="premiumTopping.choice"
             v-bind:class="{ finished: premiumTopping.done }">
@@ -109,9 +116,6 @@
         </li>
       </ul>
     </div>
-  <div>
-    <button>Submit</button>
-  </div>
 </div>
 </template>
 
@@ -144,11 +148,11 @@ export default {
           done: false
         },
         {
-          choice: 'gluten-free', // plus $3.50 upcharge
+          choice: 'gluten-free (+$3.50)', // plus $3.50 upcharge
           done: false
         },
         {
-          choice: 'cauliflower, vegan', // plus $3.50 upcharge, italicize vegan
+          choice: 'cauliflower, vegan (+$3.50)', // plus $3.50 upcharge
           done: false
         },
       ],
@@ -164,7 +168,7 @@ export default {
           done: false
         },
         {
-          choice: 'deepdish', // plus $2.50 upcharge
+          choice: 'deepdish (+$2.50)', // plus $2.50 upcharge
           done: false
         },
       ],
@@ -228,6 +232,7 @@ export default {
           done: false
         },
       ],
+      
       // Up to (2) selections. Need additional $0.50 upcharge for any more than (2).
       filterPremiumToppings: '',
       premiumToppings: [

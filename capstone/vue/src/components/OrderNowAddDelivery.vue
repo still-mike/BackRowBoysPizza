@@ -39,7 +39,6 @@
       <div class="form-element">
         <label for="cardNumber">credit card number:</label>
         <input id="cardNumber" type="text" v-model="newDeliveryInfo.cardNumber" />
-        <textarea id="cardNumber" v-model="newDeliveryInfo.cardNumber"></textarea>
       </div>
       <input type="submit" value="Save" />
       <input type="button" value="Cancel" v-on:click.prevent="resetForm" />
@@ -103,6 +102,9 @@ export default {
     border: solid white 2px;
     color: white;
     cursor: pointer;
+}
+.form-element {
+  border-radius: 25px;
 }
     
     
