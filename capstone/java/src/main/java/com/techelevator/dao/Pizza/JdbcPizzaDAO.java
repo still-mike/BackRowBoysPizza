@@ -203,7 +203,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 setIngredientsForPizzaId(pizza.getId(), ingredient);
             }
         }
-
+        //TODO - call sendGrid method here.  subject, toEmail = to, content
         return order;
     }
 
@@ -306,6 +306,29 @@ public class JdbcPizzaDAO implements PizzaDAO {
         }
         return result;
     }
+
+    @Override
+    public boolean updateIngredient(Ingredient ingredient) {
+        String sql = "UPDATE ingredients SET id = ?, ingredient_name = ?, tier = ?, available = ?, ingredient_price = ? " +
+                "WHERE id = ?;";
+        int count = jdbcTemplate.update(sql,ingredient.getId(), ingredient.getIngredientName(), ingredient.getTier(),
+                ingredient.isAvailable(), ingredient.getIngredientPrice(), ingredient.getId());
+        return count == 1;
+    }
+
+    /*    @Override
+    public boolean updatePizza(Pizza pizza) {
+        String sql = "UPDATE pizzas SET pizza_size = ?, dough = ?, shape = ?, sauce_type = ?, description = ?," +
+                " is_available = ?, pizza_price = ?, is_specialty = ?, status = ?, board_id = ?, id = ? " +
+                "WHERE id = ?;";
+        int count = jdbcTemplate.update(sql, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(),
+                pizza.getDescription(), pizza.isAvailable(), pizza.getPizzaPrice(), pizza.getIsSpecialty(),
+                pizza.getStatus(), pizza.getBoardId(), pizza.getId(), pizza.getId());
+
+        return count == 1;
+    }
+    * */
+
 
     public Ingredient mapRowToIngredient(SqlRowSet rowSet) {
         Ingredient result = new Ingredient();
