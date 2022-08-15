@@ -96,26 +96,26 @@ export default {
       newPizza.status = newStatus;
       pizzaService
         .refreshPizza(newPizza)
-        // .then(response => {
-        //   if (response.status === 200) {
-        //     // alert("Fuggedaboutit");
-        //     this.$router.push(`/board/${this.pizza.boardId}`);
-        //   }
-        // })
-        // .catch(error => {
-        //   if (error.response) {
-        //     this.errorMsg =
-        //       "Error removing pizza. Response received was '" +
-        //       error.response.statusText +
-        //       "'.";
-        //   } else if (error.request) {
-        //     this.errorMsg =
-        //       "Error removing pizza. Server could not be reached.";
-        //   } else {
-        //     this.errorMsg =
-        //       "Error removing pizza. Request could not be created.";
-        //   }
-        // });
+        .then(response => {
+          if (response.status === 200) {
+            
+            this.$router.push(`/board/${this.pizza.boardId}`);
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            this.errorMsg =
+              "Error changing pizza. Response received was '" +
+              error.response.statusText +
+              "'.";
+          } else if (error.request) {
+            this.errorMsg =
+              "Error changing pizza. Server could not be reached.";
+          } else {
+            this.errorMsg =
+              "Error changing pizza. Request could not be created.";
+          }
+        });
       
     },
     
