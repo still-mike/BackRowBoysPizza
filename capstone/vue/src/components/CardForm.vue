@@ -218,9 +218,9 @@ export default {
   created() {
     if (this.cardID != 0) {
       pizzaService
-        .getCard(this.cardID)
+        .getPizza(this.pizzaID)
         .then(response => {
-          this.card = response.data;
+          this.pizza = response.data;
         })
         .catch(error => {
           if (error.response && error.response.status === 404) {
