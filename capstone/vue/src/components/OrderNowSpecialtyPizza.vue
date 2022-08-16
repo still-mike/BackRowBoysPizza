@@ -3,30 +3,13 @@
 
   <form v-on:submit.prevent>
 
-    <!-- PICKUP or DELIVERY 
+    <!-- PICKUP or DELIVERY -->
 
-    <div class='BTTNS'>
+    <!-- <div class='BTTNS'>
         <button tag="button" class="PickupDelivery">Pickup</button>
         <button tag="button" class="PickupDelivery">Delivery</button>
       </div>
 
-       <button
-        class="btn Pickup"
-        v-if="!isLoading && !addToPickUp"
-        v-on:click="addToPickUp"
-      >
-        Pickup
-      </button>
-    </div>
-    <div>
-      <button
-        
-        class="btn Delivery"
-        v-on:click.prevent=showForm
-
-        >
-      Delivery
-    </button> 
 
 
       <form v-on:submit.prevent="addDeliveryInfo" v-if="showAddDeliveryInfo === true">
@@ -38,6 +21,10 @@
         <label for="email">email:</label>
         <input id="email" type="text" v-model="newDeliveryInfo.email" />
       </div>
+       <div class="form-element">
+        <label for="email">phone number:</label>
+        <input id="email" type="text" v-model="newDeliveryInfo.phoneNumber" />
+      </div>
       <div class="form-element">
         <label for="address">address:</label>
         <input id="address" type="text" v-model="newDeliveryInfo.address" />
@@ -48,8 +35,8 @@
       </div>
       <input type="submit" value="Save" />
       <input type="button" value="Cancel" v-on:click.prevent="resetForm" />
-     </div>
-        -->
+     </div> -->
+    
 
 
 
@@ -132,6 +119,9 @@
 </template>
 
 <script>
+
+// import PizzaService from "@/services/PizzaService.js"
+
 export default {
   data () {
     return {

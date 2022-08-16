@@ -4,8 +4,9 @@
     <div>
     <h1>specialty pies</h1>
 
-<!-- Import OrderNowSpecialtyPizza component
-Provide router link to toggle between OrderNowCustomPizza_V vue -->
+    <order-now-specialty-pizza></order-now-specialty-pizza>
+
+<!-- Provide router link to toggle between OrderNowCustomPizza_V vue -->
 
     </div>
     <website-footer id ="footer"/>
@@ -13,7 +14,7 @@ Provide router link to toggle between OrderNowCustomPizza_V vue -->
 </template>
 
 <script>
-// Import OrderNowSpecialtyPizza component 
+import OrderNowSpecialtyPizza from "@/components/OrderNowSpecialtyPizza"
 import WebsiteHeader from "@/components/WebsiteHeader.vue" 
 import WebsiteFooter from "@/components/WebsiteFooter.vue"
 
@@ -27,7 +28,7 @@ export default {
 
     WebsiteHeader,
     WebsiteFooter,
-    // OrderNowSpecialtyPizza
+    OrderNowSpecialtyPizza
 
   },
 
