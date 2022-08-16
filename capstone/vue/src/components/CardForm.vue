@@ -21,34 +21,16 @@
     </div>
 
     <div>
-
-
-      <h2>choose standard toppings</h2>
-      select up to (4) | additional toppings ($0.25) each
-      
-
-
-        <select v-model="selected" multiple>
-            
-            
-            <option  v-for="standardTopping in filteredStandardToppings" 
-                    :value="standardTopping.choice" v-bind:key="standardTopping.choice">
-
-                {{ standardTopping.choice }}
-            </option> 
-               
-        </select>
-            
-            
-            
-            <!-- <ul>
-              <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
-                    v-bind:class="{ finished: standardTopping.done }">
-                <input type="checkbox" v-model="standardTopping.done" />
-                {{ standardTopping.choice }}
-                </li>
-            </ul> -->
-            
+        <h2>choose standard toppings</h2>
+        <p>select up to (4) | additional toppings ($0.25) each<p>
+        <div>
+            <select v-model="selected" multiple>            
+                <option v-for="standardTopping in standardToppings" 
+                        :value="standardTopping.choice" v-bind:key="standardTopping.choice">
+                    {{ standardTopping.choice }}
+                </option>               
+            </select>
+        </div>
     </div>
 
     <!-- <div class="sauce-list">
@@ -320,4 +302,24 @@ select.form-control {
 .status-message.error {
   background-color: #f08080;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 </style>

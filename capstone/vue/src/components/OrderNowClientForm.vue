@@ -89,20 +89,33 @@
 
     <div class="standard-topping-list">
 
-
-      <h2>choose standard toppings</h2>
+    
+        <h2>choose standard toppings</h2>
+        <p>select up to (4) | additional toppings ($0.25) each<p>
+        <div>
+            <select v-model="selected" multiple>            
+                <option v-for="standardTopping in standardToppings" 
+                        :value="standardTopping.choice" v-bind:key="standardTopping.choice">
+                    {{ standardTopping.choice }}
+                </option>               
+            </select>
+        </div>
+      
+      
+      
+      <!-- <h2>choose standard toppings</h2>
       select up to (4) | additional toppings ($0.25) each
       
-
-
       <ul>
         <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
             v-bind:class="{ finished: standardTopping.done }">
           <input type="checkbox" v-model="standardTopping.done" />
           {{ standardTopping.choice }}
         </li>
-      </ul>
+      </ul> -->
     </div>
+     
+     
      <div class="premium-topping-list">
 
        
@@ -133,6 +146,19 @@ export default {
      data() {
     return {
 
+      selected: [],
+      
+      // SELECTED AND INGREDIENT ARE NOT TALKING TO EACH OTHER YET
+      
+      ingredient: {
+        "id": 1,
+        "ingredientName": "Red onion",
+        "tier": "Standard",
+        "ingredientPrice": 0.25,
+        "available": true
+      },
+
+      
       pizza: {
         "pizzaSize": "Large",
         "dough": "Traditonal",
@@ -253,7 +279,7 @@ export default {
       filterStandardToppings: '',
       standardToppings: [
         {
-          choice: 'red onion',
+          choice: 'Red onion',
           done: false
         },
         {
@@ -336,6 +362,7 @@ export default {
 
     createOrder() {
       console.log("In createOrder")
+      this.pizza.ingredients.push(this.ingredient)
       this.order.pizzas.push(this.pizza)
       PizzaService.createOrder(this.order).then(() =>{
         //TO DO - check response - look for 201
