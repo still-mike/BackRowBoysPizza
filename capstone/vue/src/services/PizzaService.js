@@ -30,6 +30,10 @@ export default {
         return http.get('/ing');
     },
 
+    getAvailableIngredients() {
+        return http.get('ing/all');
+    },
+
     createPizza(pizza) {
         return http.post('/pizzas', pizza);
     },
