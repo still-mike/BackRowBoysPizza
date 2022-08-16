@@ -1,7 +1,15 @@
 <template>
+
+<div id= "loginContainer">
+        <div id="EmployeeLogoContainer">
+            <img id ="EmployeeBigLogo" src="../assets/UziVert.png">
+        </div>
+        <div id="BestPlace">
+            <img id="BestPlaceAward" src="../assets/BestPlaceToWork.png">
+            </div>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal SignIn">Employee Login</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -31,10 +39,12 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }">Need an account?    </router-link>
       <button type="submit">Sign in</button>
     </form>
   </div>
+  </div>
+  
 </template>
 
 <script>
@@ -93,3 +103,25 @@ export default {
   }
 };
 </script>
+<style scoped>
+#loginContainer {
+  
+  background-color: #B7D8BD;
+  padding-top: 4em;
+  text-align: -webkit-center;
+  object-fit: cover;
+  vertical-align: top;
+  overflow: hidden;
+  width: 100%;
+  height: 1000px; 
+}
+#EmployeeBigLogo {
+  width: 500px
+}
+#BestPlaceAward {
+width: 175px;
+}
+#login {
+  width: 20%;
+}
+</style>

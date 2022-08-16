@@ -94,9 +94,9 @@
         <p>select up to (4) | additional toppings ($0.25) each<p>
         <div>
             <select v-model="selected" multiple>            
-                <option v-for="standardTopping in standardToppings" 
-                        :value="standardTopping.choice" v-bind:key="standardTopping.choice">
-                    {{ standardTopping.choice }}
+                <option v-for="availableIngredient in this.$store.state.availableIngredients" 
+                        :value="availableIngredient" v-bind:key="availableIngredient.ingredientName">
+                    {{ availableIngredient.ingredientName }}
                 </option>               
             </select>
         </div>
@@ -362,7 +362,12 @@ export default {
 
     createOrder() {
       console.log("In createOrder")
-      this.pizza.ingredients.push(this.ingredient)
+      // this.pizza.ingredients.push(this.ingredient)
+      // this.selected.forEach(this.pizza.ingredients.push(?))
+      for (let i = 0; i < this.selected.length; i++) {
+        this.pizza.ingredients.push(this.selected[i]);
+        console.log("ingredient added")
+      }
       this.order.pizzas.push(this.pizza)
       PizzaService.createOrder(this.order).then(() =>{
         //TO DO - check response - look for 201
@@ -370,6 +375,12 @@ export default {
         this.order.pizzas=[]
       })
 
+    },
+
+    retrieveAvailableIngredients() {
+      PizzaService.getAvailableIngredients().then((response) => {
+        this.$store.commit("SET_AVAILABLE_INGREDIENTS", response.data)
+      })
     }
    
   },
@@ -406,6 +417,10 @@ export default {
         return premiumTopping.choice.includes(this.filterPremiumToppings);
       });
     }
+  },
+
+  created() {
+    this.retrieveAvailableIngredients();
   }
  }
 
