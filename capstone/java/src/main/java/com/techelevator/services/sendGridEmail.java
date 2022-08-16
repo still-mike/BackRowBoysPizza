@@ -3,7 +3,7 @@ import com.sendgrid.*;
 import java.io.IOException;
 
 
-public class sendGridEmail implements email{
+public class sendGridEmail {
 //todo - make this a regular method by changing the name and giving it the parameters we want to pass in: subject, toEmail = to, content
     public static void main(String[] args) throws IOException {
         Email from = new Email("backrowboyzpizza@gmail.com");

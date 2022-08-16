@@ -180,7 +180,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
 
-    @Transactional
+//    @Transactional //attempting to solve null pizzaId in pizza_ingredient table
     @Override
     public Order createOrder(Order order) {
         String sql = "INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, " +
@@ -194,10 +194,11 @@ public class JdbcPizzaDAO implements PizzaDAO {
                     " order_id) " +
                     "VALUES (?,?,?,?,?," +
                     "?,?,?,?,?," +
-                    "(SELECT MAX(id)FROM orders));";
-            jdbcTemplate.update(sql, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(), pizza.getDescription(),
+                    "(SELECT MAX(id)FROM orders)) returning id;";
+            long pizzaID = jdbcTemplate.queryForObject(sql, long.class, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(), pizza.getDescription(),
                     pizza.isAvailable(), pizza.getPizzaPrice(), pizza.getIsSpecialty(), pizza.getStatus(), pizza.getBoardId());
-            order.setPizzas(getPizzasForOrderId(order.getId()));
+                    order.setPizzas(getPizzasForOrderId(order.getId()));
+            pizza.setId(pizzaID);
 
             for (Ingredient ingredient : pizza.getIngredients()) {
                 setIngredientsForPizzaId(pizza.getId(), ingredient);
