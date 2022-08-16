@@ -105,7 +105,6 @@ export default {
 </script>
 <style scoped>
 #loginContainer {
-  
   background-color: #B7D8BD;
   padding-top: 4em;
   text-align: -webkit-center;

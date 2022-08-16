@@ -1,4 +1,8 @@
 <template>
+<div id="registerPage">
+  <div id="RegisterLogoContainer">
+            <img id ="RegisterLogo" src="../assets/UziVert.png">
+        </div>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
@@ -38,6 +42,7 @@
       </button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -90,4 +95,22 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#registerPage {
+  background-color: #B7D8BD;
+  padding-top: 4em;
+  text-align: -webkit-center;
+  object-fit: cover;
+  vertical-align: top;
+  overflow: hidden;
+  width: 100%;
+  height: 1000px; 
+}
+#RegisterLogo {
+  width: 500px;
+}
+#register {
+  width: 20%;
+}
+</style>>
+
