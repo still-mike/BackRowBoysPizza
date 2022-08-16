@@ -26,6 +26,10 @@ export default {
         return http.get('pizzas');
     },
 
+    getAllIngredients() {
+        return http.get('/ing');
+    },
+
     createPizza(pizza) {
         return http.post('/pizzas', pizza);
     },
