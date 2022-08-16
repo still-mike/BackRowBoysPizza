@@ -1,16 +1,16 @@
 <template>
 <div>
-   <div>
+
+     <form v-on:submit.prevent>
      
-  </div>
   <h1>create-your-own</h1>
   12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
   
     <div class="pizza-size-list">
       <h2>choose a size</h2>
       <!-- drop down -->
-      <div>{{ selected }}</div>
-    <select v-model="selected" >
+      <!-- <div>{{ size.selected }}</div> -->
+    <select v-model="pizza.pizzaSize" >
       <option disabled value="">please select one</option>
       <option>12" Small</option>
       <option>16" Medium</option>
@@ -19,8 +19,8 @@
       <!-- check boxes -->
       <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
-            v-bind:class="{ finished: size.selected }">
-          <input type="radio" v-model="size.selected" />
+            v-bind:class="{ finished: pizza.pizzaSize }">
+          <input type="radio" v-model="pizza.pizzaSize" />
           {{ size.choice }}
         </li>
       </ul>
@@ -29,8 +29,8 @@
     <div class="dough-list">
       <h2>choose a dough</h2>
       <!-- drop down -->
-      <div>{{ selected }}</div>
-    <select v-model="selected" >
+      <!-- <div>{{ selected }}</div> -->
+    <select v-model="pizza.dough" >
       <option disabled value="">Please select one</option>
       <option>Hand-tossed traditional</option>
       <option>Gluten-free (+$3.50)</option>
@@ -49,8 +49,8 @@
     <div class="style-list">
       <h2>choose a style</h2>
       <!-- drop down -->
-      <div>{{ selected }}</div>
-    <select v-model="selected" >
+      <!-- <div>{{ selected }}</div> -->
+    <select v-model="pizza.shape" >
       <option disabled value="">Please select one</option>
       <option>Classic pie</option>
       <option>Flatbread</option>
@@ -69,8 +69,8 @@
     <div class="sauce-list">
       <h2>choose a sauce</h2>
       <!-- drop down -->
-      <div>{{ selected }}</div>
-    <select v-model="selected" >
+      <!-- <div>{{ selected }}</div> -->
+    <select v-model="pizza.sauceType" >
       <option disabled value="">Please select one</option>
       <option>Traditional red</option>
       <option>White garlic</option>
@@ -116,15 +116,72 @@
         </li>
       </ul>
     </div>
+     <div>
+    <button v-on:click.prevent="createOrder">Submit</button>
+  </div>
+</form>
 </div>
 </template>
 
 <script>
 // vanilla JS from Josh to select from an array
 // Array.from(document.querySelectorAll("input[type=checkbox][name=type]:checked"), e => e.value); 
+
+import PizzaService from "@/services/PizzaService.js"
+
 export default {
      data() {
     return {
+
+      pizza: {
+        "pizzaSize": "Large",
+        "dough": "Traditonal",
+        "shape": "round",
+        "sauceType": "red",
+        "description": "This is a test",
+        "pizzaPrice": 15,
+        "isSpecialty": false,
+        "orderId": 0,
+        "ingredients": [],
+        "isAvailable": true,
+        "status": "Pending"
+        
+
+      },
+
+      order: {
+        orderStatus: "Pending",
+        isDelivery: false,
+        custEmail: "test@email.com",
+        pizzas: []
+      },
+    //       private Long id;
+    // private String pizzaSize;
+    // private String dough;
+    // private String shape;
+    // private String sauceType;
+    // private String description;
+    // private BigDecimal pizzaPrice;
+    // private boolean isSpecialty;
+    // private Long orderId;
+    // private List<Ingredient> ingredients = new ArrayList<>();
+    // private boolean isAvailable;
+    // private Long boardId;
+    // private String status;
+// =================
+// ORDER
+// =================
+  // private Long id;
+  //   private String orderStatus;
+  //   private boolean isDelivery;
+  //   private String employeeName;
+  //   private LocalDateTime orderTime;
+  //   private String custAddress;
+  //   private String custEmail;
+  //   private List<Pizza> pizzas = new ArrayList<>();
+
+    // =======================
+
       filterSizes: '',
       sizes: [
         {
@@ -276,6 +333,17 @@ export default {
     }
   },
   methods: {
+
+    createOrder() {
+      console.log("In createOrder")
+      this.order.pizzas.push(this.pizza)
+      PizzaService.createOrder(this.order).then(() =>{
+        //TO DO - check response - look for 201
+        console.log("Order created.")
+        this.order.pizzas=[]
+      })
+
+    }
    
   },
 

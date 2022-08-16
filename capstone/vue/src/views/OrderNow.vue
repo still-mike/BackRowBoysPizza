@@ -5,9 +5,9 @@
     <div>
     <h1>order now</h1>
     
-    <order-now-add-delivery></order-now-add-delivery>
+    <!-- <order-now-add-delivery></order-now-add-delivery> -->
     <order-now-client-form></order-now-client-form>
-    <order-now-specialty-pizza-form></order-now-specialty-pizza-form>
+    <!-- <order-now-specialty-pizza-form></order-now-specialty-pizza-form> -->
     
     </div>
     <website-footer id ="footer"/>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import OrderNowAddDelivery from '../components/OrderNowAddDelivery.vue';
+// import OrderNowAddDelivery from '../components/OrderNowAddDelivery.vue';
 import OrderNowClientForm from '../components/OrderNowClientForm.vue';
 import WebsiteHeader from "@/components/WebsiteHeader.vue" 
 import WebsiteFooter from "@/components/WebsiteFooter.vue"
-import OrderNowSpecialtyPizzaForm from '../components/OrderNowSpecialtyPizzaForm.vue';
+// import OrderNowSpecialtyPizzaForm from '../components/OrderNowSpecialtyPizzaForm.vue';
 
 export default {
   data() {
@@ -28,11 +28,11 @@ export default {
     }
   },
   components: {
-    OrderNowAddDelivery,
+    // OrderNowAddDelivery,
     OrderNowClientForm,
     WebsiteHeader,
     WebsiteFooter,
-    OrderNowSpecialtyPizzaForm
+    // OrderNowSpecialtyPizzaForm
     
     
     
