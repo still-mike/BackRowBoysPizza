@@ -194,6 +194,7 @@
 import PizzaService from "@/services/PizzaService.js"
 
 export default {
+   name: 'custom-pizza-form',
      data() {
     return {
 
