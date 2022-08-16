@@ -17,13 +17,13 @@
       <option>20" Large</option>
       </select>
       <!-- check boxes -->
-      <ul>
+      <!-- <ul>
         <li v-for="size in filteredSizes" v-bind:key="size.choice"
             v-bind:class="{ finished: pizza.pizzaSize }">
           <input type="radio" v-model="pizza.pizzaSize" />
           {{ size.choice }}
         </li>
-      </ul>
+      </ul> -->
     </div>
     
     <div class="dough-list">
@@ -37,13 +37,13 @@
       <option>Cauliflower, <em>vegan</em> (+$3.50)</option>
       </select>
       <!-- check boxes -->
-      <ul>
+      <!-- <ul>
         <li v-for="dough in filteredDoughs" v-bind:key="dough.choice"
             v-bind:class="{ finished: dough.done }">
           <input type="checkbox" v-model="dough.done" />
           {{ dough.choice }}
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <div class="style-list">
@@ -57,13 +57,13 @@
       <option>Deepdish (+$2.50)</option>
       </select>
       <!-- check boxes -->
-      <ul>
+      <!-- <ul>
         <li v-for="style in filteredStyles" v-bind:key="style.choice"
             v-bind:class="{ finished: style.done }">
           <input type="checkbox" v-model="style.done" />
           {{ style.choice }}
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <div class="sauce-list">
@@ -78,13 +78,13 @@
       <option>Spicy buffalo</option>
       </select>
       <!-- check boxes -->
-      <ul>
+      <!-- <ul>
         <li v-for="sauce in filteredSauces" v-bind:key="sauce.choice"
             v-bind:class="{ finished: sauce.done }">
           <input type="checkbox" v-model="sauce.done" />
           {{ sauce.choice }}
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <div class="standard-topping-list">
