@@ -88,47 +88,27 @@
     </div>
 
     <div class="standard-topping-list">
-
-    
         <h2>choose standard toppings</h2>
-        <p>select up to (4) | additional toppings ($0.25) each<p>
-        <div>
-            <select v-model="selected" multiple>            
-                <option v-for="availableIngredient in this.$store.state.availableIngredients" 
-                        :value="availableIngredient" v-bind:key="availableIngredient.ingredientName">
-                    {{ availableIngredient.ingredientName }}
-                </option>               
-            </select>
-        </div>
-      
-      
-      
-      <!-- <h2>choose standard toppings</h2>
-      select up to (4) | additional toppings ($0.25) each
-      
-      <ul>
-        <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
-            v-bind:class="{ finished: standardTopping.done }">
-          <input type="checkbox" v-model="standardTopping.done" />
-          {{ standardTopping.choice }}
-        </li>
-      </ul> -->
+        <p>select additional toppings ($0.25) each</p>
+        <ul>
+          <li v-for="standardIngredient in standardIngredients" v-bind:key="standardIngredient.ingredientName">            
+            <input type="checkbox" v-model="selectedStandardIngredients"  :value="standardIngredient"/>
+          {{ standardIngredient.ingredientName }}
+          </li>
+        </ul>      
     </div>
-     
-     
-     <div class="premium-topping-list">
 
-       
-      <h2>choose premium toppings</h2>
-      select up to (2) | additional toppings ($0.50) each
-      <ul>
-        <li v-for="premiumTopping in filteredPremiumToppings" v-bind:key="premiumTopping.choice"
-            v-bind:class="{ finished: premiumTopping.done }">
-          <input type="checkbox" v-model="premiumTopping.done" />
-          {{ premiumTopping.choice }}
-        </li>
-      </ul>
+    <div class="premium-topping-list">    
+        <h2>choose premium toppings</h2>
+        <p>select additional toppings ($0.50) each</p>
+        <ul>
+          <li v-for="premiumIngredient in premiumIngredients" v-bind:key="premiumIngredient.ingredientName">            
+            <input type="checkbox" v-model="selectedPremiumIngredients"  :value="premiumIngredient"/>
+          {{ premiumIngredient.ingredientName }}
+          </li>
+      </ul>      
     </div>
+    
      <div>
     <button v-on:click.prevent="createOrder">Submit</button>
   </div>
@@ -146,9 +126,11 @@ export default {
      data() {
     return {
 
-      selected: [],
+
+      selectedStandardIngredients: [],
+      selectedPremiumIngredients: [],
       
-      // SELECTED AND INGREDIENT ARE NOT TALKING TO EACH OTHER YET
+      
       
       ingredient: {
         "id": 1,
@@ -160,20 +142,37 @@ export default {
 
       
       pizza: {
-        "pizzaSize": "Large",
-        "dough": "Traditonal",
-        "shape": "round",
-        "sauceType": "red",
-        "description": "This is a test",
-        "pizzaPrice": 15,
-        "isSpecialty": false,
-        "orderId": 0,
-        "ingredients": [],
-        "isAvailable": true,
-        "status": "Pending"
+        pizzaSize: '16" medium',
+        dough: 'hand-tossed traditional',
+        shape: 'classic pie',
+        sauceType: 'traditional red',
+        description: "This is a test",
+        pizzaPrice: 14.99,
+        isSpecialty: false,
+        orderId: 0,
+        ingredients: [],
+        isAvailable: true,
+        status: "Pending"
         
 
       },
+     
+     
+     // pizza: {
+      //   "pizzaSize": "Large",
+      //   "dough": "Traditonal",
+      //   "shape": "round",
+      //   "sauceType": "red",
+      //   "description": "This is a test",
+      //   "pizzaPrice": 15,
+      //   "isSpecialty": false,
+      //   "orderId": 0,
+      //   "ingredients": [],
+      //   "isAvailable": true,
+      //   "status": "Pending"
+        
+
+      // },
 
       order: {
         orderStatus: "Pending",
@@ -275,87 +274,8 @@ export default {
           done: false
         },
       ],
-      // Up to (4) selections. Need additional $0.25 upcharge for any more than (4).
-      filterStandardToppings: '',
-      standardToppings: [
-        {
-          choice: 'Red onion',
-          done: false
-        },
-        {
-          choice: 'broccoli', 
-          done: false
-        },
-        {
-          choice: 'jalapeño',
-          done: false
-        },
-        {
-          choice: 'sweet pepper',
-          done: false
-        },
-        {
-          choice: 'mushroom', 
-          done: false
-        },
-        {
-          choice: 'black olive',
-          done: false
-        },
-        {
-          choice: 'spinach',
-          done: false
-        },
-        {
-          choice: 'ham', 
-          done: false
-        },
-        {
-          choice: 'pepperoni',
-          done: false
-        },
-      ],
-      
-      // Up to (2) selections. Need additional $0.50 upcharge for any more than (2).
-      filterPremiumToppings: '',
-      premiumToppings: [
-        {
-          choice: 'grilled chicken',
-          done: false
-        },
-        {
-          choice: 'fennel sausage', 
-          done: false
-        },
-        {
-          choice: 'crispy pancetta',
-          done: false
-        },
-        {
-          choice: 'spicy meatball',
-          done: false
-        },
-        {
-          choice: 'marinated tofu', 
-          done: false
-        },
-        {
-          choice: 'sautéed spinach',
-          done: false
-        },
-        {
-          choice: 'broccoli rabe',
-          done: false
-        },
-        {
-          choice: 'fried chickpea', 
-          done: false
-        },
-        {
-          choice: 'grilled pineapple',
-          done: false
-        },
-      ]
+
+
     }
   },
   methods: {
@@ -364,8 +284,12 @@ export default {
       console.log("In createOrder")
       // this.pizza.ingredients.push(this.ingredient)
       // this.selected.forEach(this.pizza.ingredients.push(?))
-      for (let i = 0; i < this.selected.length; i++) {
-        this.pizza.ingredients.push(this.selected[i]);
+      for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
+        this.pizza.ingredients.push(this.selectedStandardIngredients[i]);
+        console.log("ingredient added")
+      }
+      for (let j = 0; j < this.selectedPremiumIngredients.length; j++) {
+        this.pizza.ingredients.push(this.selectedPremiumIngredients[j]);
         console.log("ingredient added")
       }
       this.order.pizzas.push(this.pizza)
@@ -373,6 +297,8 @@ export default {
         //TO DO - check response - look for 201
         console.log("Order created.")
         this.order.pizzas=[]
+        this.selectedStandardIngredients = []
+        this.selectedPremiumIngredients = []
       })
 
     },
@@ -387,6 +313,34 @@ export default {
 
 
   computed: {
+
+    pizzaPriceTotal() {
+      let pizzaPrice = 11.99 
+      
+      if (this.pizza.pizzaSize == '16" medium') {
+        pizzaPrice += 3
+      }
+      else if (this.pizza.pizzaSize == '20" large') {
+        pizzaPrice += 3
+      }
+
+
+      return pizzaPrice
+    },
+    
+    standardIngredients() {
+      let standardIngredients = this.$store.state.availableIngredients.filter( ingredient => ingredient.tier == 'Standard' )
+      // return this.$store.state.filter(())
+      return standardIngredients
+    },
+
+    premiumIngredients() {
+      let premiumIngredients = this.$store.state.availableIngredients.filter( ingredient => ingredient.tier == 'Premium' )
+      // return this.$store.state.filter(())
+      return premiumIngredients
+    },
+
+
       filteredSizes() {
       return this.sizes.filter((size) => {
         return size.choice.includes(this.filterSizes);
@@ -407,16 +361,7 @@ export default {
         return sauce.choice.includes(this.filterSauces);
       });
     },
-    filteredStandardToppings() {
-      return this.standardToppings.filter((standardTopping) => {
-        return standardTopping.choice.includes(this.filterStandardToppings);
-      });
-    },
-    filteredPremiumToppings() {
-      return this.premiumToppings.filter((premiumTopping) => {
-        return premiumTopping.choice.includes(this.filterPremiumToppings);
-      });
-    }
+    
   },
 
   created() {
