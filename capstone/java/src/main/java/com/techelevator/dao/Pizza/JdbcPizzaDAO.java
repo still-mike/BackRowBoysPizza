@@ -291,6 +291,18 @@ public class JdbcPizzaDAO implements PizzaDAO {
     }
 
     @Override
+    public List<Ingredient> getAvailableIngredients() {
+        List<Ingredient> result = new ArrayList<>();
+        String sql = "SELECT id, ingredient_name, tier, available, ingredient_price FROM ingredients WHERE available IS TRUE;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            Ingredient ingredient = mapRowToIngredient(rowSet);
+            result.add(ingredient);
+        }
+        return result;
+    }
+
+    @Override
     public List<Ingredient> getIngredientsForPizzaId(long pizzaId) {
         List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT i.id, i.ingredient_name, i.tier, i.available, i.ingredient_price FROM ingredients i " +

@@ -51,4 +51,6 @@ public interface PizzaDAO {
     List<Ingredient> getIngredientsForPizzaId(long pizzaId);
 
     boolean updateIngredient(Ingredient ingredient);
+
+    List<Ingredient> getAvailableIngredients();
 }

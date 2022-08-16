@@ -74,6 +74,11 @@ public class PizzaController {
         return dao.getAllIngredients();
     }
 
+    @GetMapping("/ing/available")
+    public List<Ingredient> getAvailableIngredientsList() {
+        return dao.getAvailableIngredients();
+    }
+
     @PutMapping("/ing/{id}")
     public Ingredient updateIngredient(@PathVariable long id, @RequestBody Ingredient updatedIngredient) {
         updatedIngredient.setId(id);

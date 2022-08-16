@@ -23,7 +23,7 @@ export default {
     },
 
     getAllPizzas() {
-        return http.get('pizzas');
+        return http.get('/pizzas');
     },
 
     getAllIngredients() {
@@ -31,7 +31,7 @@ export default {
     },
 
     getAvailableIngredients() {
-        return http.get('ing/all');
+        return http.get('/ing/available');
     },
 
     createPizza(pizza) {
