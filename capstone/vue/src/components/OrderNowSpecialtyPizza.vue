@@ -1,8 +1,43 @@
 <template>
 <div>
+
+  <form v-on:submit.prevent>
+
+    <!-- PICKUP or DELIVERY 
+    <div class='BTTNS'>
+        <button tag="button" class="PickupDelivery">Pickup</button>
+        <button tag="button" class="PickupDelivery">Delivery</button>
+      </div>
+
+      <div class="form-element">
+        <label for="name">name:</label>
+        <input id="name" type="text" v-model="newDeliveryInfo.name" />
+      </div>
+      <div class="form-element">
+        <label for="email">email:</label>
+        <input id="email" type="text" v-model="newDeliveryInfo.email" />
+      </div>
+      <div class="form-element">
+        <label for="address">address:</label>
+        <input id="address" type="text" v-model="newDeliveryInfo.address" />
+      </div>
+      <div class="form-element">
+        <label for="cardNumber">credit card number:</label>
+        <input id="cardNumber" type="text" v-model="newDeliveryInfo.cardNumber" />
+      </div>
+      <input type="submit" value="Save" />
+      <input type="button" value="Cancel" v-on:click.prevent="resetForm" />
+     </div>
+        -->
+
+
+
+
     
     <h1>specialty pies</h1>
     12" small ($14.99) | 16" medium ($16.99) | 20" ($19.99)
+
+    
 
     <div class="pizza-size-list">
       <h2>choose a size</h2>
@@ -68,9 +103,11 @@
         </li> -->
       </ul>
     </div>
-   
-    </div>
-  
+     <div>
+    <button v-on:click.prevent="createOrder">Submit</button>
+  </div>
+</form>
+</div>
 </template>
 
 <script>

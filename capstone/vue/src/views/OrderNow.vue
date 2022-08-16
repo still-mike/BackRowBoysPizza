@@ -8,6 +8,8 @@
     <!-- <order-now-add-delivery></order-now-add-delivery> -->
     <order-now-client-form></order-now-client-form>
     <!-- <order-now-specialty-pizza-form></order-now-specialty-pizza-form> -->
+
+    <!-- Provide router link to imgages to toggle between OrderNowCustomPizza_V vue and OrderNowSpecialtyPizza_V vue -->
     
     </div>
     <website-footer id ="footer"/>
