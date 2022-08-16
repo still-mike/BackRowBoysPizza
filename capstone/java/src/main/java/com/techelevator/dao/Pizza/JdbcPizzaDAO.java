@@ -258,7 +258,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
         }
     }
 
-
     @Override
     public Board createBoard(Board board) {
         return null;
@@ -276,7 +275,6 @@ public class JdbcPizzaDAO implements PizzaDAO {
         result.setBackgroundColor(rowSet.getString("background_color"));
         return result;
     }
-
 
 //comment / ingredient mapping
 
