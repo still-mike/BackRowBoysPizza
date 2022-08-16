@@ -2,6 +2,7 @@ package com.techelevator.model.process;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Order {
@@ -15,6 +16,19 @@ public class Order {
     private String custEmail;
     private List<Pizza> pizzas = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", isDelivery=" + isDelivery +
+                ", employeeName='" + employeeName + '\'' +
+                ", orderTime=" + orderTime +
+                ", custAddress='" + custAddress + '\'' +
+                ", custEmail='" + custEmail + '\'' +
+                ", pizzas =" + Arrays.toString(new List[]{pizzas}) +
+                '}';
+    }
 
     public Long getId() {
         return id;
