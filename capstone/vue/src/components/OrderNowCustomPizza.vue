@@ -3,12 +3,33 @@
 
 <form v-on:submit.prevent>
 
-    <!-- PICKUP or DELIVERY 
+     <!-- PICKUP or DELIVERY 
+
     <div class='BTTNS'>
         <button tag="button" class="PickupDelivery">Pickup</button>
         <button tag="button" class="PickupDelivery">Delivery</button>
       </div>
 
+       <button
+        class="btn Pickup"
+        v-if="!isLoading && !addToPickUp"
+        v-on:click="addToPickUp"
+      >
+        Pickup
+      </button>
+    </div>
+    <div>
+      <button
+        
+        class="btn Delivery"
+        v-on:click.prevent=showForm
+
+        >
+      Delivery
+    </button> 
+
+
+    <form v-on:submit.prevent="addDeliveryInfo" v-if="showAddDeliveryInfo === true">
       <div class="form-element">
         <label for="name">name:</label>
         <input id="name" type="text" v-model="newDeliveryInfo.name" />
@@ -28,7 +49,7 @@
       <input type="submit" value="Save" />
       <input type="button" value="Cancel" v-on:click.prevent="resetForm" />
      </div>
--->
+        -->
 
 
 
@@ -411,7 +432,25 @@ export default {
       PizzaService.getAvailableIngredients().then((response) => {
         this.$store.commit("SET_AVAILABLE_INGREDIENTS", response.data)
       })
-    }
+    }, 
+
+    // POTENTIAL PICKUP DELIVERY METHODS
+    // =================================
+    // showForm() {
+    //   alert(this.showAddDeliveryInfo)
+    //   this.showAddDeliveryInfo = true
+    //    alert(this.showAddDeliveryInfo)
+    // },
+    // addDeliveryInfo() {
+    //   this.$store.commit('ADD_DELIVERY_INFO', this.newDeliveryInfo)
+    //   this.resetForm();
+    // },
+    // resetForm() {
+    //   this.showAddDeliveryInfo = false;
+    //   this.newDeliveryInfo = {};
+    // },
+
+
    
   },
 
@@ -469,5 +508,30 @@ export default {
 </script>
 
 <style>
+.BTTNS {
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+}
+.PickupDelivery {
+    font-size: 16px;
+    margin: 20px;
+    width: 120px;
+    height: 60px;
+    background-color: #F76C4B;
+    border-radius: 60px;
+    border: solid white 2px;
+    color: white;
+    cursor: pointer;
+}
+.form-element {
+  border-radius: 25px;
+}
 
 </style>

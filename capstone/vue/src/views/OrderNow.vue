@@ -5,11 +5,11 @@
     <div>
     <h1>order now</h1>
     
-    <!-- <order-now-add-delivery></order-now-add-delivery> -->
     <order-now-client-form></order-now-client-form>
-    <!-- <order-now-specialty-pizza-form></order-now-specialty-pizza-form> -->
+    <!-- <order-now-custom-pizza></order-now-custom-pizza> -->
+    <!-- <order-now-specialty-pizza></order-now-specialty-pizza> -->
 
-    <!-- Provide router link to imgages to toggle between OrderNowCustomPizza_V vue and OrderNowSpecialtyPizza_V vue -->
+    <!-- Provide router link to images to toggle between OrderNowCustomPizza_V vue and OrderNowSpecialtyPizza_V vue -->
     
     </div>
     <website-footer id ="footer"/>
@@ -17,11 +17,12 @@
 </template>
 
 <script>
-// import OrderNowAddDelivery from '../components/OrderNowAddDelivery.vue';
+
 import OrderNowClientForm from '../components/OrderNowClientForm.vue';
 import WebsiteHeader from "@/components/WebsiteHeader.vue" 
 import WebsiteFooter from "@/components/WebsiteFooter.vue"
-// import OrderNowSpecialtyPizzaForm from '../components/OrderNowSpecialtyPizzaForm.vue';
+// import OrderNowCustomPizza from '../components/OrderNowCustomPizza.vue';
+// import OrderNowSpecialtyPizza from '../components/OrderNowSpecialtyPizza.vue';
 
 export default {
   data() {
@@ -30,11 +31,11 @@ export default {
     }
   },
   components: {
-    // OrderNowAddDelivery,
     OrderNowClientForm,
     WebsiteHeader,
     WebsiteFooter,
-    // OrderNowSpecialtyPizzaForm
+    // OrderNowCustomPizza
+    // OrderNowSpecialtyPizza
     
     
     
