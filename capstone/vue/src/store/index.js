@@ -24,6 +24,7 @@ export default new Vuex.Store({
     boards: [],
     activeBoardId: null,
     boardPizzas: [],
+    availableIngredients: [],
     pizza: {
       id: 0,
       pizzaSize: '',
@@ -41,6 +42,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    
+    SET_AVAILABLE_INGREDIENTS(state, data) {
+      state.availableIngredients = data;
+    },
     SET_BOARDS(state, data) {
       state.boards = data;
     },
