@@ -40,6 +40,13 @@ export default new Vuex.Store({
       boardId: 0,
       status: '',
       available: true
+    },
+    ingredient: {
+      id: 0,
+      ingredientName: '',
+      tier: '',
+      ingredientPrice: 0,
+      available: true
     }
   },
   mutations: {

@@ -5,9 +5,15 @@
     <div>
     <h1>order now</h1>
     
-    <!-- <order-now-add-delivery></order-now-add-delivery> -->
-    <order-now-client-form></order-now-client-form>
-    <!-- <order-now-specialty-pizza-form></order-now-specialty-pizza-form> -->
+    
+    
+
+    <div  class='BTN'>
+            <router-link :to="{name: 'orderNowCustomPizzaV'}" tag="button" class="MidPageLinks">Create Your Own</router-link>
+            <router-link :to="{name: 'orderNowSpecialtyPizzaV'}" tag="button" class="MidPageLinks">Specialty Pies</router-link>
+        </div>
+
+    <!-- Provide router link to images to toggle between OrderNowCustomPizza_V vue and OrderNowSpecialtyPizza_V vue -->
     
     </div>
     <website-footer id ="footer"/>
@@ -15,11 +21,10 @@
 </template>
 
 <script>
-// import OrderNowAddDelivery from '../components/OrderNowAddDelivery.vue';
-import OrderNowClientForm from '../components/OrderNowClientForm.vue';
+
+
 import WebsiteHeader from "@/components/WebsiteHeader.vue" 
 import WebsiteFooter from "@/components/WebsiteFooter.vue"
-// import OrderNowSpecialtyPizzaForm from '../components/OrderNowSpecialtyPizzaForm.vue';
 
 export default {
   data() {
@@ -28,15 +33,10 @@ export default {
     }
   },
   components: {
-    // OrderNowAddDelivery,
-    OrderNowClientForm,
     WebsiteHeader,
     WebsiteFooter,
-    // OrderNowSpecialtyPizzaForm
     
-    
-    
-    
+
   },
 
  computed: {
@@ -53,6 +53,18 @@ div#capsule {
     min-height: 100vh;
     flex-direction: column;
     background-color: #B7D8BD;
+}
+
+.BTN {
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
 }
 
 </style> 

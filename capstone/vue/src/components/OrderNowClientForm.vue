@@ -12,9 +12,9 @@
       <!-- <div>{{ size.selected }}</div> -->
     <select v-model="pizza.pizzaSize" >
       <option disabled value="">please select one</option>
-      <option>12" Small</option>
-      <option>16" Medium</option>
-      <option>20" Large</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -33,8 +33,8 @@
     <select v-model="pizza.dough" >
       <option disabled value="">Please select one</option>
       <option>Hand-tossed traditional</option>
-      <option>Gluten-free (+$3.50)</option>
-      <option>Cauliflower, <em>vegan</em> (+$3.50)</option>
+      <option>Gluten-free +$3.50</option>
+      <option>Cauliflower, <em>vegan</em> +$3.50</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -54,7 +54,7 @@
       <option disabled value="">Please select one</option>
       <option>Classic pie</option>
       <option>Flatbread</option>
-      <option>Deepdish (+$2.50)</option>
+      <option>Deepdish +$2.50</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -75,7 +75,7 @@
       <option>Traditional red</option>
       <option>White garlic</option>
       <option>Basil pesto</option>
-      <option>Spicy buffalo</option>
+      <option>Spicy Buffalo</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -88,50 +88,35 @@
     </div>
 
     <div class="standard-topping-list">
-
-    
         <h2>choose standard toppings</h2>
-        <p>select up to (4) | additional toppings ($0.25) each<p>
-        <div>
-            <select v-model="selected" multiple>            
-                <option v-for="availableIngredient in this.$store.state.availableIngredients" 
-                        :value="availableIngredient" v-bind:key="availableIngredient.ingredientName">
-                    {{ availableIngredient.ingredientName }}
-                </option>               
-            </select>
-        </div>
-      
-      
-      
-      <!-- <h2>choose standard toppings</h2>
-      select up to (4) | additional toppings ($0.25) each
-      
-      <ul>
-        <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
-            v-bind:class="{ finished: standardTopping.done }">
-          <input type="checkbox" v-model="standardTopping.done" />
-          {{ standardTopping.choice }}
-        </li>
-      </ul> -->
+        <p>first 4 are free. additional toppings ($0.25) each</p>
+        <ul>
+          <li v-for="standardIngredient in standardIngredients" v-bind:key="standardIngredient.ingredientName">            
+            <input type="checkbox" v-model="selectedStandardIngredients"  :value="standardIngredient"/>
+          {{ standardIngredient.ingredientName }}
+          </li>
+        </ul>      
     </div>
-     
-     
-     <div class="premium-topping-list">
 
-       
-      <h2>choose premium toppings</h2>
-      select up to (2) | additional toppings ($0.50) each
-      <ul>
-        <li v-for="premiumTopping in filteredPremiumToppings" v-bind:key="premiumTopping.choice"
-            v-bind:class="{ finished: premiumTopping.done }">
-          <input type="checkbox" v-model="premiumTopping.done" />
-          {{ premiumTopping.choice }}
-        </li>
-      </ul>
+    <div class="premium-topping-list">    
+        <h2>choose premium toppings</h2>
+        <p>first 2 are free. additional toppings ($0.50) each</p>
+        <ul>
+          <li v-for="premiumIngredient in premiumIngredients" v-bind:key="premiumIngredient.ingredientName">            
+            <input type="checkbox" v-model="selectedPremiumIngredients"  :value="premiumIngredient"/>
+          {{ premiumIngredient.ingredientName }}
+          </li>
+      </ul>      
     </div>
+    
      <div>
     <button v-on:click.prevent="createOrder">Submit</button>
   </div>
+
+  <div class="running-total">
+  <p>Current total: {{ pizzaPriceTotal }}</p>
+  </div>
+
 </form>
 </div>
 </template>
@@ -146,9 +131,11 @@ export default {
      data() {
     return {
 
-      selected: [],
+
+      selectedStandardIngredients: [],
+      selectedPremiumIngredients: [],
       
-      // SELECTED AND INGREDIENT ARE NOT TALKING TO EACH OTHER YET
+      
       
       ingredient: {
         "id": 1,
@@ -160,17 +147,17 @@ export default {
 
       
       pizza: {
-        "pizzaSize": "Large",
-        "dough": "Traditonal",
-        "shape": "round",
-        "sauceType": "red",
-        "description": "This is a test",
-        "pizzaPrice": 15,
-        "isSpecialty": false,
-        "orderId": 0,
-        "ingredients": [],
-        "isAvailable": true,
-        "status": "Pending"
+        pizzaSize: 'Medium',
+        dough: 'Hand-tossed traditional',
+        shape: 'Classic pie',
+        sauceType: 'Traditional red',
+        description: "This is a test",
+        pizzaPrice: 14.99,
+        isSpecialty: false,
+        orderId: 0,
+        ingredients: [],
+        isAvailable: true,
+        status: "Pending"
         
 
       },
@@ -211,15 +198,15 @@ export default {
       filterSizes: '',
       sizes: [
         {
-          choice: '12" small',
+          choice: 'Small',
           done: false
         },
         {
-          choice: '16" medium',
+          choice: 'Medium',
           done: false
         },
         {
-          choice: '20" large',
+          choice: 'Large',
           done: false
         }
       ],
@@ -227,15 +214,15 @@ export default {
     filterDoughs: '',
     doughs: [
         {
-          choice: 'hand-tossed traditional',
+          choice: 'Hand-tossed traditional',
           done: false
         },
         {
-          choice: 'gluten-free (+$3.50)', // plus $3.50 upcharge
+          choice: 'Gluten-free (+$3.50)', // plus $3.50 upcharge
           done: false
         },
         {
-          choice: 'cauliflower, vegan (+$3.50)', // plus $3.50 upcharge
+          choice: 'Cauliflower, vegan (+$3.50)', // plus $3.50 upcharge
           done: false
         },
       ],
@@ -243,15 +230,15 @@ export default {
       filterStyles: '',
       styles: [
         {
-          choice: 'classic pie',
+          choice: 'Classic pie',
           done: false
         },
         {
-          choice: 'flatbread', 
+          choice: 'Flatbread', 
           done: false
         },
         {
-          choice: 'deepdish (+$2.50)', // plus $2.50 upcharge
+          choice: 'Deepdish (+$2.50)', // plus $2.50 upcharge
           done: false
         },
       ],
@@ -259,120 +246,47 @@ export default {
       filterSauces: '',
       sauces: [
         {
-          choice: 'traditional red',
+          choice: 'Traditional red',
           done: false
         },
         {
-          choice: 'white garlic', 
+          choice: 'White garlic', 
           done: false
         },
         {
-          choice: 'basil pesto', 
+          choice: 'Basil pesto', 
           done: false
         },
         {
-          choice: 'spicy buffalo', 
+          choice: 'Spicy Buffalo', 
           done: false
         },
       ],
-      // Up to (4) selections. Need additional $0.25 upcharge for any more than (4).
-      filterStandardToppings: '',
-      standardToppings: [
-        {
-          choice: 'Red onion',
-          done: false
-        },
-        {
-          choice: 'broccoli', 
-          done: false
-        },
-        {
-          choice: 'jalapeño',
-          done: false
-        },
-        {
-          choice: 'sweet pepper',
-          done: false
-        },
-        {
-          choice: 'mushroom', 
-          done: false
-        },
-        {
-          choice: 'black olive',
-          done: false
-        },
-        {
-          choice: 'spinach',
-          done: false
-        },
-        {
-          choice: 'ham', 
-          done: false
-        },
-        {
-          choice: 'pepperoni',
-          done: false
-        },
-      ],
-      
-      // Up to (2) selections. Need additional $0.50 upcharge for any more than (2).
-      filterPremiumToppings: '',
-      premiumToppings: [
-        {
-          choice: 'grilled chicken',
-          done: false
-        },
-        {
-          choice: 'fennel sausage', 
-          done: false
-        },
-        {
-          choice: 'crispy pancetta',
-          done: false
-        },
-        {
-          choice: 'spicy meatball',
-          done: false
-        },
-        {
-          choice: 'marinated tofu', 
-          done: false
-        },
-        {
-          choice: 'sautéed spinach',
-          done: false
-        },
-        {
-          choice: 'broccoli rabe',
-          done: false
-        },
-        {
-          choice: 'fried chickpea', 
-          done: false
-        },
-        {
-          choice: 'grilled pineapple',
-          done: false
-        },
-      ]
+
+
     }
   },
   methods: {
 
     createOrder() {
       console.log("In createOrder")
-      // this.pizza.ingredients.push(this.ingredient)
-      // this.selected.forEach(this.pizza.ingredients.push(?))
-      for (let i = 0; i < this.selected.length; i++) {
-        this.pizza.ingredients.push(this.selected[i]);
+      
+      for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
+        this.pizza.ingredients.push(this.selectedStandardIngredients[i]);
         console.log("ingredient added")
       }
+      for (let j = 0; j < this.selectedPremiumIngredients.length; j++) {
+        this.pizza.ingredients.push(this.selectedPremiumIngredients[j]);
+        console.log("ingredient added")
+      }
+      this.pizza.pizzaPrice = this.pizzaPriceTotal
       this.order.pizzas.push(this.pizza)
       PizzaService.createOrder(this.order).then(() =>{
         //TO DO - check response - look for 201
         console.log("Order created.")
         this.order.pizzas=[]
+        this.selectedStandardIngredients = []
+        this.selectedPremiumIngredients = []
       })
 
     },
@@ -387,6 +301,47 @@ export default {
 
 
   computed: {
+
+    pizzaPriceTotal() {
+      let pizzaPrice = 11.99 
+      
+      if (this.pizza.pizzaSize == 'Medium') {
+        pizzaPrice += 3
+      }
+      else if (this.pizza.pizzaSize == 'Large') {
+        pizzaPrice += 6
+      }
+      if (this.pizza.dough == 'Cauliflower, vegan +$3.50' || this.pizza.dough == 'Gluten-free +$3.50'){
+        pizzaPrice += 3.50
+      }
+      if (this.pizza.shape == 'Deepdish +$2.50') {
+        pizzaPrice += 2.50
+      }
+
+      for (let i = 4; i < this.selectedStandardIngredients.length; i++) {
+        pizzaPrice += 0.25
+      }
+      for (let j = 2; j < this.selectedPremiumIngredients.length; j++) {
+        pizzaPrice += 0.50
+      }
+
+
+      return pizzaPrice
+    },
+    
+    standardIngredients() {
+      let standardIngredients = this.$store.state.availableIngredients.filter( ingredient => ingredient.tier == 'Standard' )
+      // return this.$store.state.filter(())
+      return standardIngredients
+    },
+
+    premiumIngredients() {
+      let premiumIngredients = this.$store.state.availableIngredients.filter( ingredient => ingredient.tier == 'Premium' )
+      // return this.$store.state.filter(())
+      return premiumIngredients
+    },
+
+
       filteredSizes() {
       return this.sizes.filter((size) => {
         return size.choice.includes(this.filterSizes);
@@ -407,16 +362,7 @@ export default {
         return sauce.choice.includes(this.filterSauces);
       });
     },
-    filteredStandardToppings() {
-      return this.standardToppings.filter((standardTopping) => {
-        return standardTopping.choice.includes(this.filterStandardToppings);
-      });
-    },
-    filteredPremiumToppings() {
-      return this.premiumToppings.filter((premiumTopping) => {
-        return premiumTopping.choice.includes(this.filterPremiumToppings);
-      });
-    }
+    
   },
 
   created() {

@@ -13,6 +13,9 @@ import Location from '../views/Location.vue'
 import Pizza from '../views/Pizza.vue'
 import Board from '../views/Board.vue'
 import AddCard from '../views/AddCard.vue'
+import OrderNowCustomPizzaV from '../views/OrderNowCustomPizzaV.vue'
+import OrderNowSpecialtyPizzaV from '../views/OrderNowSpecialtyPizzaV.vue'
+
 
 
 Vue.use(Router)
@@ -102,6 +105,22 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+        path: "/order-now-custom-pizzaV",
+        name: "orderNowCustomPizzaV",
+        component: OrderNowCustomPizzaV,
+        meta: {
+          requiresAuth: false
+      }
+    },
+    {
+      path: "/order-now-specialty-pizzaV",
+      name: "orderNowSpecialtyPizzaV",
+      component: OrderNowSpecialtyPizzaV,
+      meta: {
+        requiresAuth: false
+    }
+  },
     {
       path: '/board/:id',
       name: 'Board',
