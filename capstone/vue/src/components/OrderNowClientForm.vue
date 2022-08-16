@@ -12,9 +12,9 @@
       <!-- <div>{{ size.selected }}</div> -->
     <select v-model="pizza.pizzaSize" >
       <option disabled value="">please select one</option>
-      <option>12" Small</option>
-      <option>16" Medium</option>
-      <option>20" Large</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -33,8 +33,8 @@
     <select v-model="pizza.dough" >
       <option disabled value="">Please select one</option>
       <option>Hand-tossed traditional</option>
-      <option>Gluten-free (+$3.50)</option>
-      <option>Cauliflower, <em>vegan</em> (+$3.50)</option>
+      <option>Gluten-free +$3.50</option>
+      <option>Cauliflower, <em>vegan</em> +$3.50</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -54,7 +54,7 @@
       <option disabled value="">Please select one</option>
       <option>Classic pie</option>
       <option>Flatbread</option>
-      <option>Deepdish (+$2.50)</option>
+      <option>Deepdish +$2.50</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -75,7 +75,7 @@
       <option>Traditional red</option>
       <option>White garlic</option>
       <option>Basil pesto</option>
-      <option>Spicy buffalo</option>
+      <option>Spicy Buffalo</option>
       </select>
       <!-- check boxes -->
       <!-- <ul>
@@ -89,7 +89,7 @@
 
     <div class="standard-topping-list">
         <h2>choose standard toppings</h2>
-        <p>select additional toppings ($0.25) each</p>
+        <p>first 4 are free. additional toppings ($0.25) each</p>
         <ul>
           <li v-for="standardIngredient in standardIngredients" v-bind:key="standardIngredient.ingredientName">            
             <input type="checkbox" v-model="selectedStandardIngredients"  :value="standardIngredient"/>
@@ -100,7 +100,7 @@
 
     <div class="premium-topping-list">    
         <h2>choose premium toppings</h2>
-        <p>select additional toppings ($0.50) each</p>
+        <p>first 2 are free. additional toppings ($0.50) each</p>
         <ul>
           <li v-for="premiumIngredient in premiumIngredients" v-bind:key="premiumIngredient.ingredientName">            
             <input type="checkbox" v-model="selectedPremiumIngredients"  :value="premiumIngredient"/>
@@ -112,6 +112,11 @@
      <div>
     <button v-on:click.prevent="createOrder">Submit</button>
   </div>
+
+  <div class="running-total">
+  <p>Current total: {{ pizzaPriceTotal }}</p>
+  </div>
+
 </form>
 </div>
 </template>
@@ -142,10 +147,10 @@ export default {
 
       
       pizza: {
-        pizzaSize: '16" medium',
-        dough: 'hand-tossed traditional',
-        shape: 'classic pie',
-        sauceType: 'traditional red',
+        pizzaSize: 'Medium',
+        dough: 'Hand-tossed traditional',
+        shape: 'Classic pie',
+        sauceType: 'Traditional red',
         description: "This is a test",
         pizzaPrice: 14.99,
         isSpecialty: false,
@@ -156,23 +161,6 @@ export default {
         
 
       },
-     
-     
-     // pizza: {
-      //   "pizzaSize": "Large",
-      //   "dough": "Traditonal",
-      //   "shape": "round",
-      //   "sauceType": "red",
-      //   "description": "This is a test",
-      //   "pizzaPrice": 15,
-      //   "isSpecialty": false,
-      //   "orderId": 0,
-      //   "ingredients": [],
-      //   "isAvailable": true,
-      //   "status": "Pending"
-        
-
-      // },
 
       order: {
         orderStatus: "Pending",
@@ -210,15 +198,15 @@ export default {
       filterSizes: '',
       sizes: [
         {
-          choice: '12" small',
+          choice: 'Small',
           done: false
         },
         {
-          choice: '16" medium',
+          choice: 'Medium',
           done: false
         },
         {
-          choice: '20" large',
+          choice: 'Large',
           done: false
         }
       ],
@@ -226,15 +214,15 @@ export default {
     filterDoughs: '',
     doughs: [
         {
-          choice: 'hand-tossed traditional',
+          choice: 'Hand-tossed traditional',
           done: false
         },
         {
-          choice: 'gluten-free (+$3.50)', // plus $3.50 upcharge
+          choice: 'Gluten-free (+$3.50)', // plus $3.50 upcharge
           done: false
         },
         {
-          choice: 'cauliflower, vegan (+$3.50)', // plus $3.50 upcharge
+          choice: 'Cauliflower, vegan (+$3.50)', // plus $3.50 upcharge
           done: false
         },
       ],
@@ -242,15 +230,15 @@ export default {
       filterStyles: '',
       styles: [
         {
-          choice: 'classic pie',
+          choice: 'Classic pie',
           done: false
         },
         {
-          choice: 'flatbread', 
+          choice: 'Flatbread', 
           done: false
         },
         {
-          choice: 'deepdish (+$2.50)', // plus $2.50 upcharge
+          choice: 'Deepdish (+$2.50)', // plus $2.50 upcharge
           done: false
         },
       ],
@@ -258,19 +246,19 @@ export default {
       filterSauces: '',
       sauces: [
         {
-          choice: 'traditional red',
+          choice: 'Traditional red',
           done: false
         },
         {
-          choice: 'white garlic', 
+          choice: 'White garlic', 
           done: false
         },
         {
-          choice: 'basil pesto', 
+          choice: 'Basil pesto', 
           done: false
         },
         {
-          choice: 'spicy buffalo', 
+          choice: 'Spicy Buffalo', 
           done: false
         },
       ],
@@ -282,8 +270,7 @@ export default {
 
     createOrder() {
       console.log("In createOrder")
-      // this.pizza.ingredients.push(this.ingredient)
-      // this.selected.forEach(this.pizza.ingredients.push(?))
+      
       for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
         this.pizza.ingredients.push(this.selectedStandardIngredients[i]);
         console.log("ingredient added")
@@ -292,6 +279,7 @@ export default {
         this.pizza.ingredients.push(this.selectedPremiumIngredients[j]);
         console.log("ingredient added")
       }
+      this.pizza.pizzaPrice = this.pizzaPriceTotal
       this.order.pizzas.push(this.pizza)
       PizzaService.createOrder(this.order).then(() =>{
         //TO DO - check response - look for 201
@@ -317,11 +305,24 @@ export default {
     pizzaPriceTotal() {
       let pizzaPrice = 11.99 
       
-      if (this.pizza.pizzaSize == '16" medium') {
+      if (this.pizza.pizzaSize == 'Medium') {
         pizzaPrice += 3
       }
-      else if (this.pizza.pizzaSize == '20" large') {
-        pizzaPrice += 3
+      else if (this.pizza.pizzaSize == 'Large') {
+        pizzaPrice += 6
+      }
+      if (this.pizza.dough == 'Cauliflower, vegan +$3.50' || this.pizza.dough == 'Gluten-free +$3.50'){
+        pizzaPrice += 3.50
+      }
+      if (this.pizza.shape == 'Deepdish +$2.50') {
+        pizzaPrice += 2.50
+      }
+
+      for (let i = 4; i < this.selectedStandardIngredients.length; i++) {
+        pizzaPrice += 0.25
+      }
+      for (let j = 2; j < this.selectedPremiumIngredients.length; j++) {
+        pizzaPrice += 0.50
       }
 
 
