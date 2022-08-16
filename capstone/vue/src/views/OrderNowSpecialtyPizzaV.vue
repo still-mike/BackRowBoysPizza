@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import OrderNowSpecialtyPizza from "@/components/OrderNowSpecialtyPizza"
 import WebsiteHeader from "@/components/WebsiteHeader.vue" 
 import WebsiteFooter from "@/components/WebsiteFooter.vue"
+import OrderNowSpecialtyPizza from "@/components/OrderNowSpecialtyPizza.vue"
 
 export default {
   data() {
