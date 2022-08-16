@@ -19,6 +19,61 @@
         <option value="Completed">Completed</option>
       </select>
     </div>
+
+    <div>
+
+
+      <h2>choose standard toppings</h2>
+      select up to (4) | additional toppings ($0.25) each
+      
+
+
+        <select v-model="selected" multiple>
+            
+            
+            <option  v-for="standardTopping in filteredStandardToppings" 
+                    :value="standardTopping.choice" v-bind:key="standardTopping.choice">
+
+                {{ standardTopping.choice }}
+            </option> 
+               
+        </select>
+            
+            
+            
+            <!-- <ul>
+              <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
+                    v-bind:class="{ finished: standardTopping.done }">
+                <input type="checkbox" v-model="standardTopping.done" />
+                {{ standardTopping.choice }}
+                </li>
+            </ul> -->
+            
+    </div>
+
+    <!-- <div class="sauce-list">
+      <h2>choose a sauce</h2>
+      
+    <select v-model="pizza.sauceType" >
+      <option disabled value="">Please select one</option>
+      <option>Traditional red</option>
+      <option>White garlic</option>
+      <option>Basil pesto</option>
+      <option>Spicy buffalo</option>
+      </select>
+      
+      <ul>
+        <li v-for="sauce in filteredSauces" v-bind:key="sauce.choice"
+            v-bind:class="{ finished: sauce.done }">
+          <input type="checkbox" v-model="sauce.done" />
+          {{ sauce.choice }}
+        </li>
+      </ul>
+    </div> -->
+
+
+<!--  -->
+    
     <div class="form-group">
       <label for="description">Description:</label>
       <textarea id="description" class="form-control" v-model="card.description"></textarea>
@@ -46,6 +101,48 @@ export default {
   },
   data() {
     return {
+    
+    selected: [],
+    
+      filterStandardToppings: '',
+      standardToppings: [
+        {
+          choice: 'red onion',
+          done: false
+        },
+        {
+          choice: 'broccoli', 
+          done: false
+        },
+        {
+          choice: 'jalapeño',
+          done: false
+        },
+        {
+          choice: 'sweet pepper',
+          done: false
+        },
+        {
+          choice: 'mushroom', 
+          done: false
+        },
+        {
+          choice: 'black olive',
+          done: false
+        },
+        {
+          choice: 'spinach',
+          done: false
+        },
+        {
+          choice: 'ham', 
+          done: false
+        },
+        {
+          choice: 'pepperoni',
+          done: false
+        },
+      ],
       card: {
         title: "",
         description: "",
@@ -150,6 +247,13 @@ export default {
             );
             this.$router.push({ name: 'Home' });
           }
+        });
+    }
+  },
+  computed: {
+    filteredStandardToppings() {
+        return this.standardToppings.filter((standardTopping) => {
+            return standardTopping.choice.includes(this.filterStandardToppings);
         });
     }
   }
