@@ -10,6 +10,22 @@ public class Ingredient {
     private BigDecimal ingredientPrice;
     private boolean available;
 
+    @Override
+    public String toString() {
+        return ingredientName;     }
+
+
+//    @Override
+//    public String toString() {
+//        return "Ingredient{" +
+//                "id=" + id +
+//                ", ingredientName='" + ingredientName + '\'' +
+//                ", tier='" + tier + '\'' +
+//                ", ingredientPrice=" + ingredientPrice +
+//                ", available=" + available +
+//                '}';
+//    }
+
     public Long getId() {
         return id;
     }

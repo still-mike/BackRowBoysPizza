@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -186,7 +187,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         String sql = "INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, " +
                 "cust_email) VALUES (?, ?, ?, ?, ?, ?) RETURNING id;";
         Long newId = jdbcTemplate.queryForObject(sql, long.class, order.getOrderStatus(), order.isDelivery(),
-                order.getEmployeeName(), order.getOrderTime(), order.getCustAddress(), order.getCustEmail());
+                order.getEmployeeName(), LocalDateTime.now(),order.getCustAddress(), order.getCustEmail());
         order.setId(newId);
         for (Pizza pizza : order.getPizzas()) {
             sql = " INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description," +
@@ -205,7 +206,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
                 setIngredientsForPizzaId(pizza.getId(), ingredient);
             }
         }
-        return order;
+        return getOrder(newId);
     }
 
 

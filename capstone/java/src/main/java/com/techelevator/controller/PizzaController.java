@@ -109,15 +109,13 @@ public class PizzaController {
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     public Order createOrder(@RequestBody Order order) {
-        //TODO - call sendGrid method here.  subject, toEmail = to, content
-       Order iAmReallyTringHere = dao.createOrder(order);
+       Order order1 = dao.createOrder(order);
         try {
-            Order maybeThisWillWork;
-            emailService.sendEmailConfirmation(order.getCustEmail(), order);
+            emailService.sendEmailConfirmation(order1.getCustEmail(), order1);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return iAmReallyTringHere;
+        return order1;
     }
 
     //board endpoints

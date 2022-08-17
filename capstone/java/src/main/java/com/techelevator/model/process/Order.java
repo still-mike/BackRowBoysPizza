@@ -22,21 +22,19 @@ public class Order {
             return "Thanks for your Order! \n\n" +
                     "Your Order ID is: " + id + ".\n" +
                     "Your order was received at " + orderTime + ".  <== We are big fans of precision here at BRBP! \n" +
-                    "Your order will be in the oven shortly.\n\n" +
+                    "Your order will be in the oven shortly.\n\n" + "Your delivery driver, " +
                     employeeName + " will be to you at " +
                     custAddress + " in 45 minutes. Don't worry, it is worth the wait. \n\n" +
-                    "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + ".\n\n" +
-                    "Don't worry if you can't read the ingredients, our delicious and secret flavor ingredients are hidden " +
-                    "in those hexadecimal java object identifiers.";
+                    "You ordered: " + pizzas + "\n We hope you love it!";
+
+//                    "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + "\n We hope you love it!";
 
         } else {
             return "Thanks for your Order! \n\n" +
                     "Your Order ID is: " + id + ".\n" +
                     "Your order was received at " + orderTime + ".  <== We are big fans of precision here at BRBP! \n" +
                     "Your order will be in the oven shortly.\n\n" +
-                    "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + ".\n\n" +
-                    "Don't worry if you can't read the ingredients, our delicious and secret flavor ingredients are hidden " +
-                    "in those hexadecimal java object identifiers.";
+                    "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + "\n We hope you love it!";
         }
     }
 
