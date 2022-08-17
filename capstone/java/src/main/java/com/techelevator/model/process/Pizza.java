@@ -22,21 +22,9 @@ public class Pizza {
 
     @Override
     public String toString() {
-        return "Pizza{" +
-                "id=" + id +
-                ", pizzaSize='" + pizzaSize + '\'' +
-                ", dough='" + dough + '\'' +
-                ", shape='" + shape + '\'' +
-                ", sauceType='" + sauceType + '\'' +
-                ", description='" + description + '\'' +
-                ", pizzaPrice=" + pizzaPrice +
-                ", isSpecialty=" + isSpecialty +
-                ", orderId=" + orderId +
-                ", ingredients=" + ingredients +
-                ", isAvailable=" + isAvailable +
-                ", boardId=" + boardId +
-                ", status='" + status + '\'' +
-                '}';
+        return "   A " + pizzaSize + ", "
+                + dough + " with "
+                + sauceType + " sauce and " + ingredients;
     }
 
     public Long getId() {

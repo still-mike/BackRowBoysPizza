@@ -51,76 +51,44 @@
      </div>
         -->
 
+  <div class="MenuSelections">
+  <h1 id="CreateYourOwn">create-your-own</h1>
 
-
-     
-  <h1>create-your-own</h1>
+  
   12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
   
     <div class="pizza-size-list">
       <h2>choose a size</h2>
-      <!-- drop down -->
-      <!-- <div>{{ size.selected }}</div> -->
     <select v-model="pizza.pizzaSize" >
       <option disabled value="">please select one</option>
       <option>12" Small</option>
       <option>16" Medium</option>
       <option>20" Large</option>
       </select>
-      <!-- check boxes -->
-      <!-- <ul>
-        <li v-for="size in filteredSizes" v-bind:key="size.choice"
-            v-bind:class="{ finished: pizza.pizzaSize }">
-          <input type="radio" v-model="pizza.pizzaSize" />
-          {{ size.choice }}
-        </li>
-      </ul> -->
     </div>
     
     <div class="dough-list">
       <h2>choose a dough</h2>
-      <!-- drop down -->
-      <!-- <div>{{ selected }}</div> -->
     <select v-model="pizza.dough" >
       <option disabled value="">Please select one</option>
       <option>Hand-tossed traditional</option>
       <option>Gluten-free (+$3.50)</option>
       <option>Cauliflower, <em>vegan</em> (+$3.50)</option>
       </select>
-      <!-- check boxes -->
-      <!-- <ul>
-        <li v-for="dough in filteredDoughs" v-bind:key="dough.choice"
-            v-bind:class="{ finished: dough.done }">
-          <input type="checkbox" v-model="dough.done" />
-          {{ dough.choice }}
-        </li>
-      </ul> -->
     </div>
 
     <div class="style-list">
       <h2>choose a style</h2>
-      <!-- drop down -->
-      <!-- <div>{{ selected }}</div> -->
     <select v-model="pizza.shape" >
       <option disabled value="">Please select one</option>
       <option>Classic pie</option>
       <option>Flatbread</option>
       <option>Deepdish (+$2.50)</option>
       </select>
-      <!-- check boxes -->
-      <!-- <ul>
-        <li v-for="style in filteredStyles" v-bind:key="style.choice"
-            v-bind:class="{ finished: style.done }">
-          <input type="checkbox" v-model="style.done" />
-          {{ style.choice }}
-        </li>
-      </ul> -->
     </div>
 
     <div class="sauce-list">
       <h2>choose a sauce</h2>
-      <!-- drop down -->
-      <!-- <div>{{ selected }}</div> -->
     <select v-model="pizza.sauceType" >
       <option disabled value="">Please select one</option>
       <option>Traditional red</option>
@@ -128,14 +96,6 @@
       <option>Basil pesto</option>
       <option>Spicy buffalo</option>
       </select>
-      <!-- check boxes -->
-      <!-- <ul>
-        <li v-for="sauce in filteredSauces" v-bind:key="sauce.choice"
-            v-bind:class="{ finished: sauce.done }">
-          <input type="checkbox" v-model="sauce.done" />
-          {{ sauce.choice }}
-        </li>
-      </ul> -->
     </div>
 
     <div class="standard-topping-list">
@@ -151,19 +111,6 @@
                 </option>               
             </select>
         </div>
-      
-      
-      
-      <!-- <h2>choose standard toppings</h2>
-      select up to (4) | additional toppings ($0.25) each
-      
-      <ul>
-        <li v-for="standardTopping in filteredStandardToppings" v-bind:key="standardTopping.choice"
-            v-bind:class="{ finished: standardTopping.done }">
-          <input type="checkbox" v-model="standardTopping.done" />
-          {{ standardTopping.choice }}
-        </li>
-      </ul> -->
     </div>
      
      
@@ -233,32 +180,6 @@ export default {
         custEmail: "test@email.com",
         pizzas: []
       },
-    //       private Long id;
-    // private String pizzaSize;
-    // private String dough;
-    // private String shape;
-    // private String sauceType;
-    // private String description;
-    // private BigDecimal pizzaPrice;
-    // private boolean isSpecialty;
-    // private Long orderId;
-    // private List<Ingredient> ingredients = new ArrayList<>();
-    // private boolean isAvailable;
-    // private Long boardId;
-    // private String status;
-// =================
-// ORDER
-// =================
-  // private Long id;
-  //   private String orderStatus;
-  //   private boolean isDelivery;
-  //   private String employeeName;
-  //   private LocalDateTime orderTime;
-  //   private String custAddress;
-  //   private String custEmail;
-  //   private List<Pizza> pizzas = new ArrayList<>();
-
-    // =======================
 
       filterSizes: '',
       sizes: [
@@ -509,6 +430,17 @@ export default {
 </script>
 
 <style>
+#CreateYourOwn {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .BTTNS {
     position: absolute;
     top: 15%;

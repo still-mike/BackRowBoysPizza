@@ -2,11 +2,27 @@
 <div>
 
      <form v-on:submit.prevent>
-     
-  <h1>create-your-own</h1>
-  12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
-  
-    <div class="pizza-size-list">
+
+      
+  <div class="custom-menu-selections">
+    <h1 id="CreateYourOwn">create-your-own</h1>
+
+      <!--- PICKUP or DELIVERY
+       =============================== -->
+
+       <div class='BTTNS'>
+        <button tag="button" class="PickupDelivery">Pickup</button>
+        <button tag="button" class="PickupDelivery">Delivery</button>
+      </div>
+
+      <!-- =========================== -->
+
+
+
+       <div class="prices"> 
+        <p id ="SizesAndPrices"></p> 12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
+      </div>
+    <div class="size-list">
       <h2>choose a size</h2>
       <!-- drop down -->
       <!-- <div>{{ size.selected }}</div> -->
@@ -107,8 +123,8 @@
           {{ premiumIngredient.ingredientName }}
           </li>
       </ul>
-            
-    </div>
+    </div>   
+    
     
      <div>
     
@@ -117,7 +133,7 @@
   <div class="running-total">
   <p>Current total: ${{ pizzaPriceTotal }}</p>
   </div>
-
+</div>
 </form>
 </div>
 </template>
@@ -372,20 +388,137 @@ export default {
   }
  }
 
-  
-
-
-
-
-    
- 
-  
-      
-  
-
 
 </script>
 
-<style>
+<style scope>
+#CreateYourOwn {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.BTTNS {
+    position: relative;
+    top: 85px;
+    left: 1648px;
+    font-size: 16px;
+    padding: 50px 50px 50px 50px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+}
+.PickupDelivery {
+    font-size: 16px;
+    margin: 20px;
+    width: 150px;
+    height: 75px;
+    background-color: #F76C4B;
+    border-radius: 60px;
+    border: solid white 2px;
+    color: white;
+    cursor: pointer;
+}
+
+.prices {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.size-list {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.dough-list {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.sauce-list {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.style-list {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.standard-topping-list {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.premium-topping-list {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+}
+
+.BTN {
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+}
+
+.MidPageLinks {
+    font-size: 16px;
+    margin: 20px;
+    width: 400px;
+    height: 200px;
+    background-color: #F76C4B;
+    border-radius: 60px;
+    border: solid rgb(5, 0, 0) 2px;
+    color: white;
+    cursor: pointer;
+}
+
 
 </style>

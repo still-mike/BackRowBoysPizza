@@ -15,6 +15,7 @@ public class sendGridEmailService implements EmailService{
         String subject = "Thanks for Ordering from Back Row Boyz Pizza!";
         Email to = new Email(custEmail);
         Content content = new Content("text/plain", order.toString());
+//        Content content = new Content("text/html", "<html> <body> test </body> </html>");
         Mail mail = new Mail(from, subject, to, content);
 
         //This is the template I created online at https://mc.sendgrid.com/dynamic-templates :
