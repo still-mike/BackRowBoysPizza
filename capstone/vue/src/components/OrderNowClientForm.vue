@@ -2,8 +2,23 @@
 <div>
 
      <form v-on:submit.prevent>
+
+      
   <div class="custom-menu-selections">
     <h1 id="CreateYourOwn">create-your-own</h1>
+
+      <!--- PICKUP or DELIVERY
+       =============================== -->
+
+       <div class='BTTNS'>
+        <button tag="button" class="PickupDelivery">Pickup</button>
+        <button tag="button" class="PickupDelivery">Delivery</button>
+      </div>
+
+      <!-- =========================== -->
+
+
+
        <div class="prices"> 
         <p id ="SizesAndPrices"></p> 12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
       </div>
@@ -386,6 +401,29 @@ export default {
     margin-inline-end: 0px;
     font-weight: bold;
     text-align: center;
+}
+
+.BTTNS {
+    position: relative;
+    top: 85px;
+    left: 1648px;
+    font-size: 16px;
+    padding: 50px 50px 50px 50px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+}
+.PickupDelivery {
+    font-size: 16px;
+    margin: 20px;
+    width: 150px;
+    height: 75px;
+    background-color: #F76C4B;
+    border-radius: 60px;
+    border: solid white 2px;
+    color: white;
+    cursor: pointer;
 }
 
 .prices {
