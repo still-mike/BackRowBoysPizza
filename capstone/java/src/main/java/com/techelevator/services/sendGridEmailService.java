@@ -1,16 +1,20 @@
 package com.techelevator.services;
 import com.sendgrid.*;
+import com.techelevator.model.process.Order;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 
-
-public class sendGridEmail {
+@Component
+public class sendGridEmailService implements EmailService{
 //todo - make this a regular method by changing the name and giving it the parameters we want to pass in: subject, toEmail = to, content
-    public static void main(String[] args) throws IOException {
+    @Override
+    public void sendEmailConfirmation(String custEmail, Order order) throws IOException {
         Email from = new Email("backrowboyzpizza@gmail.com");
 
-        String subject = "This email is from our java server - test for sendGrid";
-        Email to = new Email("matthewnowell97@gmail.com");
-        Content content = new Content("text/plain", "Hi Matt, how does it feel to get an email from your backend server? Our external API call is working now. - Jonathan ");
+        String subject = "Thanks for Ordering from Back Row Boyz Pizza!";
+        Email to = new Email(custEmail);
+        Content content = new Content("text/plain", order.toString());
         Mail mail = new Mail(from, subject, to, content);
 
         //This is the template I created online at https://mc.sendgrid.com/dynamic-templates :

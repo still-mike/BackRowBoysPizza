@@ -5,10 +5,12 @@ import com.techelevator.model.process.Board;
 import com.techelevator.model.process.Ingredient;
 import com.techelevator.model.process.Order;
 import com.techelevator.model.process.Pizza;
+import com.techelevator.services.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -16,9 +18,11 @@ import java.util.List;
 public class PizzaController {
 
     private PizzaDAO dao;
+    private EmailService emailService;
 
-    public PizzaController(PizzaDAO pizzaDAO) {
-        this.dao = pizzaDAO;
+    public PizzaController(PizzaDAO dao, EmailService emailService) {
+        this.dao = dao;
+        this.emailService = emailService;
     }
 
     //pizza endpoints
@@ -105,6 +109,12 @@ public class PizzaController {
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     public Order createOrder(@RequestBody Order order) {
+        //TODO - call sendGrid method here.  subject, toEmail = to, content
+        try {
+            emailService.sendEmailConfirmation(order.getCustEmail(), order);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return dao.createOrder(order);
     }
 

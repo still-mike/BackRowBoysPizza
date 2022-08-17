@@ -20,7 +20,24 @@ public class Pizza {
     private Long boardId;
     private String status;
 
-
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "id=" + id +
+                ", pizzaSize='" + pizzaSize + '\'' +
+                ", dough='" + dough + '\'' +
+                ", shape='" + shape + '\'' +
+                ", sauceType='" + sauceType + '\'' +
+                ", description='" + description + '\'' +
+                ", pizzaPrice=" + pizzaPrice +
+                ", isSpecialty=" + isSpecialty +
+                ", orderId=" + orderId +
+                ", ingredients=" + ingredients +
+                ", isAvailable=" + isAvailable +
+                ", boardId=" + boardId +
+                ", status='" + status + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;

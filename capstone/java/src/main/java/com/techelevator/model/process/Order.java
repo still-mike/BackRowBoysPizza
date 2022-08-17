@@ -2,6 +2,7 @@ package com.techelevator.model.process;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Order {
@@ -15,6 +16,29 @@ public class Order {
     private String custEmail;
     private List<Pizza> pizzas = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        if (isDelivery) {
+            return "Thanks for your Order! \n\n" +
+                    "Your Order ID is: " + id + ".\n" +
+                    "Your order was received at " + orderTime + ".  <== We are big fans of precision here at BRBP! \n" +
+                    "Your order will be in the oven shortly.\n\n" +
+                    employeeName + " will be to you at " +
+                    custAddress + " in 45 minutes. Don't worry, it is worth the wait. \n\n" +
+                    "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + ".\n\n" +
+                    "Don't worry if you can't read the ingredients, our delicious and secret flavor ingredients are hidden " +
+                    "in those hexadecimal java object identifiers.";
+
+        } else {
+            return "Thanks for your Order! \n\n" +
+                    "Your Order ID is: " + id + ".\n" +
+                    "Your order was received at " + orderTime + ".  <== We are big fans of precision here at BRBP! \n" +
+                    "Your order will be in the oven shortly.\n\n" +
+                    "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + ".\n\n" +
+                    "Don't worry if you can't read the ingredients, our delicious and secret flavor ingredients are hidden " +
+                    "in those hexadecimal java object identifiers.";
+        }
+    }
 
     public Long getId() {
         return id;

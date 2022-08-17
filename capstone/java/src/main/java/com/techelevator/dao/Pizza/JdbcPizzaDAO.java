@@ -195,16 +195,16 @@ public class JdbcPizzaDAO implements PizzaDAO {
                     "VALUES (?,?,?,?,?," +
                     "?,?,?,?,?," +
                     "(SELECT MAX(id)FROM orders)) returning id;";
-            long pizzaID = jdbcTemplate.queryForObject(sql, long.class, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(), pizza.getDescription(),
+            Long pizzaID = jdbcTemplate.queryForObject(sql, Long.class, pizza.getPizzaSize(), pizza.getDough(), pizza.getShape(), pizza.getSauceType(), pizza.getDescription(),
                     pizza.isAvailable(), pizza.getPizzaPrice(), pizza.getIsSpecialty(), pizza.getStatus(), pizza.getBoardId());
                     order.setPizzas(getPizzasForOrderId(order.getId()));
-            pizza.setId(pizzaID);
+            //TODO - check for pizzaID = null
+                    pizza.setId(pizzaID);
 
             for (Ingredient ingredient : pizza.getIngredients()) {
                 setIngredientsForPizzaId(pizza.getId(), ingredient);
             }
         }
-        //TODO - call sendGrid method here.  subject, toEmail = to, content
         return order;
     }
 
