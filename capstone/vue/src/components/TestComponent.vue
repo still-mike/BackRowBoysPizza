@@ -6,10 +6,15 @@
     <button v-on:click.prevent="createOrder">place order</button>
     <div class="running-total">
         <p>Current order total: ${{ orderTotal }}</p>
+        <input v-model="email" placeholder="please enter your email" />
+        <input v-model="address" placeholder="please enter your address" />
     </div>
+    
+    
+    <form v-on:submit.prevent>
     <div class="pizza-box" v-if="!isLoading">
-        <form v-on:submit.prevent>
-
+        <!-- <form v-on:submit.prevent> -->
+            
             <div class="pizza-button" v-for="specialtyPizza in this.$store.state.specialtyPizzas"
                 v-bind:key="specialtyPizza.description" 
             >
@@ -20,45 +25,11 @@
             
                 
 
-        </form>
+        <!-- </form> -->
         
-        
-        
-        
-        
-        
-    <!-- <div class="standard-topping-list">
-        <h2>choose standard toppings</h2>
-        <p>first 4 are free. additional toppings ($0.25) each</p>
-        <ul>
-          <li v-for="standardIngredient in standardIngredients" v-bind:key="standardIngredient.ingredientName">            
-            <input type="checkbox" v-model="selectedStandardIngredients"  :value="standardIngredient"/>
-          {{ standardIngredient.ingredientName }}
-          </li>
-        </ul>      
-    </div> -->
-        
-        
-        <!-- <div
-        class="pizza-button"
-        v-for="specialtyPizza in this.$store.state.specialtyPizzas"
-        v-bind:key="specialtyPizza.id"
-        
-        >
-        <h2>{{ specialtyPizza.description }}</h2>
-        <h3>{{ specialtyPizza.pizzaPrice }}</h3>
-        <h3>Wow! only available in {{ specialtyPizza.pizzaSize }}!</h3>
-        
-        <form v-on:submit.prevent>
-        <input type="checkbox" v-bind="this.selectedPizzas" :value="specialtyPizza"/>
-        <button v-on:click.prevent="addPizzaToOrder">add one of these</button>
-        
-        </form>
-        
-        </div>     -->
     
     </div>
-
+    </form>
 
   </div>
 </template>
@@ -71,6 +42,8 @@ export default {
     data() {
         return {
             
+            address: "",
+            email: "",
             orderTotal: 0,
             selectedPizzas: [],
             submittedPizzas:[],
@@ -78,8 +51,10 @@ export default {
             
             order: {
                 orderStatus: "Pending",
-                isDelivery: false,
-                custEmail: "test@email.com",
+                employeeName: "",
+                orderTime: null,
+                custAddress: "",
+                custEmail: "",
                 pizzas: []
             },
 
@@ -103,21 +78,23 @@ export default {
         },            
             
         createOrder() {
-        console.log("In createOrder")
-      
-        
-        PizzaService.createOrder(this.order).then(() =>{
-        //TO DO - check response - look for 201
-        console.log("Order created.")
-        this.order.pizzas=[];
-        this.orderTotal = 0;
-        this.selectedPizzas = [];
-        this.submittedPizzas = [];
-        
-      })
-
-    }
-    },
+            console.log("In createOrder")
+            this.order.custEmail = this.email;
+            this.order.custAddress = this.address;
+            if (this.order.custEmail != "") {
+                console.log("has email")
+                PizzaService.createOrder(this.order).then(() =>{
+                //TO DO - check response - look for 201
+                console.log("Order created.")
+                this.order.pizzas=[];
+                this.orderTotal = 0;
+                this.selectedPizzas = [];
+                this.submittedPizzas = [];
+                console.log("Order created")
+                })
+            }
+        }
+        },
 
     created() {
     this.retrieveSpecialtyPizzas();
