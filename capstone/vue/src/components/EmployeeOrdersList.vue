@@ -26,27 +26,24 @@
         {{ errorMsg }}
       </div>
       <div class="boards">
-        <board-column v-if="this.boardId == 1"
+        
+
+        <board-column v-if="isBoardColumnsDisplayed"
           title="Pending"
           :pizzas="pending"
           :boardID="this.boardId"
         />
-        <board-column v-if="this.boardId != 1"
-          title="Pending"
-          :pizzas="pending"
-          :boardID="this.boardId"
-        />
-        <board-column v-if="this.boardId != 1"
+        <board-column v-if="isBoardColumnsDisplayed"
           title="Ready"
           :pizzas="ready"
           :boardID="this.boardId"
         />
-        <board-column v-if="this.boardId != 1"
+        <board-column v-if="isBoardColumnsDisplayed"
           title="Completed"
           :pizzas="completed"
           :boardID="this.boardId"
         />
-        <board-column v-if="this.boardId != 1"
+        <board-column v-if="isBoardColumnsDisplayed"
           title="Cancelled"
           :pizzas="cancelled"
           :boardID="this.boardId"
@@ -85,7 +82,7 @@ export default {
   methods: {
     retrievePizzas() {
       
-      if (this.boardId == 2) {
+      if (this.boardId == 1) {
       
         pizzaService.getAllPizzas()
         .then( ( response ) => {
@@ -95,7 +92,7 @@ export default {
           this.isLoading = false;
         })
 
-      } else if (this.boardId == 1) {
+      } else if (this.boardId == 2) {
       
         pizzaService.getSpecialtyPizzas()
         .then( ( response ) => {
@@ -152,9 +149,15 @@ export default {
     },
   },
   created() {
+    this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_ON");
     this.retrievePizzas();
   },
   computed: {
+    
+    isBoardColumnsDisplayed() {
+            return this.$store.state.showBoardColumns
+    },
+    
     pending() {
       return this.$store.state.boardPizzas.filter(
         (pizza) => pizza.status === "Pending"

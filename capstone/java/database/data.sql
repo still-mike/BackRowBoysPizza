@@ -5,9 +5,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 -- boards
-INSERT INTO boards (id, title, background_color) VALUES (1, 'Specialty Pizzas', '#a83232');
-INSERT INTO boards (id, title, background_color) VALUES (2, 'All Pizzas', '#32a85f');
-INSERT INTO boards (id, title, background_color) VALUES (3, 'Orders', '#FFFFFF');
+INSERT INTO boards (id, title, background_color) VALUES (1, 'All Pizzas', '#20b2aa');
+INSERT INTO boards (id, title, background_color) VALUES (2, 'Orders', '#20b2aa');
+--INSERT INTO boards (id, title, background_color) VALUES (3, 'Orders', '#20b2aa');
 
 -- Insert large specialty pies
 INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)

@@ -9,6 +9,7 @@
         <img src="../assets/pizza_loader.gif" />
       </div>
       <router-link
+
         :to="{ name: 'Board', params: { id: board.id } }"
         class="board"
         :class="{ 'board-active': board.id == activeBoardId }"
@@ -20,13 +21,21 @@
       >
         {{ board.title }}
       </router-link>
-      <!-- <button
+      
+    <router-link 
+      v-bind:to="{name: 'employee-home'}"
+      class="btn addBoard"
+      >
+      Create New Special
+      </router-link>  
+      
+    <button
         class="btn addBoard"
-        v-if="!isLoading && !showAddBoard"
-        v-on:click="showAddBoard = !showAddBoard"
+       
+        v-on:click="showAddBoard = !showAddBoard, toggleBoardDisplayOff"
       >
         Add Board
-      </button> -->
+      </button>
       <form v-if="showAddBoard">
         Board Title:
         <input type="text" class="form-control" v-model="newBoard.title" />
@@ -41,7 +50,7 @@
         </button>
         <button
           class="btn btn-cancel"
-          v-on:click="showAddBoard = !showAddBoard"
+          v-on:click="showAddBoard = !showAddBoard, toggleBoardDisplayOn"
         >
           Cancel
         </button>
@@ -66,12 +75,14 @@ export default {
     };
   },
   created() {
+    this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_ON");
     this.retrieveBoards();
   },
   computed: {
     activeBoardId() {
       return this.$store.state.activeBoardId;
     },
+    
   },
   methods: {
     retrieveBoards() {
@@ -131,6 +142,14 @@ export default {
       if (bg.length !== 6) bg = this.generateHexCode();
       return bg;
     },
+    toggleBoardDisplayOff() {
+            console.log(this.$store.state.showBoardColumns)
+            this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_OFF");
+        },
+    toggleBoardDisplayOn() {
+            console.log(this.$store.state.showBoardColumns)
+            this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_ON");
+        }
   },
 };
 </script>

@@ -4,8 +4,8 @@
       <img src="../assets/pizza_loader.gif" />
     </div>
     <div v-else>
-      <h1>Pizza ID: {{ pizza.id }}</h1>
-      <p>{{ pizza.description }}</p>
+      <h1>Pizza Status: {{ pizza.status }}</h1>
+      <p>Pizza ID: {{ pizza.id }}</p>
       <!-- <router-link
         tag="button"
         :to="{ name: 'ModifyPizza', params: {pizzaID: $route.params.pizzaID} }"
@@ -17,6 +17,14 @@
       <button class="btn cancelPizza" v-on:click="updatePizza('Cancelled')">CANCELLED</button>
       <button class="btn deletePizza" v-on:click="deletePizza">Delete Pizza</button>
       <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
+      <ul>
+        <li>{{ pizza.pizzaSize }}</li>
+        <li>{{ pizza.dough }}</li>
+        <li>{{ pizza.shape }}</li>
+        <li>{{ pizza.sauceType }}</li>
+        <li>{{ pizza.pizzaPrice }}</li>
+
+      </ul>
       <ingredients-list :ingredients="pizza.ingredients" />
     </div>
 

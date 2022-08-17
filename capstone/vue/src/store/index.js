@@ -27,6 +27,7 @@ export default new Vuex.Store({
     allIngredients: [],
     availableIngredients: [],
     specialtyPizzas: [],
+    showBoardColumns: true,
     pizza: {
       id: 0,
       pizzaSize: '',
@@ -93,6 +94,12 @@ export default new Vuex.Store({
       if (state.isBannerDisplayed === true) {
         state.isBannerDisplayed = false
       }
+    },
+    SET_BOARD_COLUMNS_DISPLAY_OFF(state) {
+      state.showBoardColumns = false
+    },
+    SET_BOARD_COLUMNS_DISPLAY_ON(state) {
+      state.showBoardColumns = true
     }
   }
 })
