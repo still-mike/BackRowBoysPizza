@@ -38,7 +38,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     @Override
     public List<Pizza> getSpecialtyPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
-        String sql = "SELECT id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
+        String sql = "SELECT DISTINCT ON (description) id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
                 "FROM pizzas " +
                 "WHERE is_specialty IS TRUE;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
