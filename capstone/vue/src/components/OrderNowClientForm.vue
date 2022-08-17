@@ -313,6 +313,9 @@ export default {
       PizzaService.getAvailableIngredients().then((response) => {
         this.$store.commit("SET_AVAILABLE_INGREDIENTS", response.data)
       })
+    },
+
+    setDelivery() {
     }
    
   },
