@@ -20,6 +20,7 @@ import WebsiteFooter from "@/components/WebsiteFooter.vue"
 import OrderNowClientForm from "@/components/OrderNowClientForm"
 
 export default {
+  name: 'order-custom-pizza-view',
   data() {
     return {
      

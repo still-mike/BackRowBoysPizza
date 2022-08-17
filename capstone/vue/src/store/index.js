@@ -26,6 +26,7 @@ export default new Vuex.Store({
     boardPizzas: [],
     allIngredients: [],
     availableIngredients: [],
+    specialtyPizzas: [],
     pizza: {
       id: 0,
       pizzaSize: '',
@@ -65,6 +66,9 @@ export default new Vuex.Store({
     },
     SET_BOARD_PIZZAS(state, data) {
       state.boardPizzas = data;
+    },
+    SET_SPECIALTY_PIZZAS(state, data) {
+      state.specialtyPizzas = data;
     },
     SET_CURRENT_PIZZA(state, data) {
       state.pizza = data;

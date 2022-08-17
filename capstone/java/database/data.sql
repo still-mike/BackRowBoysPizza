@@ -19,8 +19,6 @@ VALUES ('large','classic','round','traditional red','THE FINKELDEY - smoked bbq 
 INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
 VALUES ('large','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,19.99,TRUE, 'Pending',1);
 
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('large','classic','round','traditional red','THE STILL - white pie, sriracha honey, cheese blend, brussels, bacon, , shaved red onion',TRUE,19.99,TRUE, 'Pending',1);
 
 -- Insert medium specialty pies
 INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
