@@ -106,15 +106,16 @@
             <input type="checkbox" v-model="selectedPremiumIngredients"  :value="premiumIngredient"/>
           {{ premiumIngredient.ingredientName }}
           </li>
-      </ul>      
+      </ul>
+            
     </div>
     
      <div>
-    <button v-on:click.prevent="createOrder">Submit</button>
+    
   </div>
-
+  <button v-on:click.prevent="createOrder">Submit</button>
   <div class="running-total">
-  <p>Current total: {{ pizzaPriceTotal }}</p>
+  <p>Current total: ${{ pizzaPriceTotal }}</p>
   </div>
 
 </form>
@@ -128,6 +129,7 @@
 import PizzaService from "@/services/PizzaService.js"
 
 export default {
+     name: 'order-now-client-form',
      data() {
     return {
 

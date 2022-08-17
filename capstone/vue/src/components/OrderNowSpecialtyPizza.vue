@@ -92,6 +92,7 @@
 // import PizzaService from "@/services/PizzaService.js"
 
 export default {
+  name: 'order-now-specialty-pizza',
   data () {
     return {
     }

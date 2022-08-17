@@ -2,9 +2,14 @@
   <div id="capsule">
     <website-header id="Header"/>
     <div>
-    <h1>specialty pies</h1>
 
-    <order-now-specialty-pizza></order-now-specialty-pizza>
+    <test-component/>
+    
+   
+    
+    <!-- <order-now-client-form></order-now-client-form> -->
+
+
 
 <!-- Provide router link to toggle between OrderNowCustomPizza_V vue -->
 
@@ -16,9 +21,11 @@
 <script>
 import WebsiteHeader from "@/components/WebsiteHeader.vue" 
 import WebsiteFooter from "@/components/WebsiteFooter.vue"
-import OrderNowSpecialtyPizza from "@/components/OrderNowSpecialtyPizza.vue"
+import TestComponent from '@/components/TestComponent.vue'
+// import OrderNowClientForm from "@/components/OrderNowClientForm"
 
 export default {
+  name: 'order-specialty-pizza-view',
   data() {
     return {
      
@@ -28,7 +35,9 @@ export default {
 
     WebsiteHeader,
     WebsiteFooter,
-    OrderNowSpecialtyPizza
+    
+    TestComponent
+    // OrderNowClientForm
 
   },
 
