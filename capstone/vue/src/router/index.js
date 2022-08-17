@@ -142,6 +142,7 @@ const router = new Router({
       name: 'AddCard',
       component: AddCard
     },
+    
 
 
     // need path for ModifyPizza
