@@ -1,5 +1,7 @@
 <template>
 <div>
+  <successful-order-popup v-if ="displayPopup"/>
+    
 
      <form v-on:submit.prevent>
 
@@ -11,9 +13,9 @@
        =============================== -->
 
        <div class='BTTNS'>
-         <input type="radio" id="PickupRadio" name="PickupOrDeliveryRadio" value="pickup">
+         <input v-model="order.isDelivery" type="radio" id="PickupRadio" name="PickupOrDeliveryRadio" value="false">
           <label for="PickupRadio">pickup</label>
-          <input type="radio" id="DeliveryRadio" name="PickupOrDeliveryRadio" value="delivery">
+          <input v-model="order.isDelivery" type="radio" id="DeliveryRadio" name="PickupOrDeliveryRadio" value="true">
           <label for="DeliveryRadio">delivery</label>
 
         <!--<button tag="button" class="PickupDelivery">Pickup</button>
@@ -21,12 +23,10 @@
       </div>
 
       <!-- =========================== -->
-
-
-
        <div class="prices"> 
         <p id ="SizesAndPrices"></p> 12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
       </div>
+  <div id="SizeDough">
     <div class="size-list">
       <h2>choose a size</h2>
       <!-- drop down -->
@@ -46,7 +46,6 @@
         </li>
       </ul> -->
     </div>
-    
     <div class="dough-list">
       <h2>choose a dough</h2>
       <!-- drop down -->
@@ -66,7 +65,8 @@
         </li>
       </ul> -->
     </div>
-
+    </div>
+    <div id="StyleSauce">
     <div class="style-list">
       <h2>choose a style</h2>
       <!-- drop down -->
@@ -86,7 +86,6 @@
         </li>
       </ul> -->
     </div>
-
     <div class="sauce-list">
       <h2>choose a sauce</h2>
       <!-- drop down -->
@@ -107,7 +106,7 @@
         </li>
       </ul> -->
     </div>
-
+  </div>
     <div class="standard-topping-list">
         <h2>choose standard toppings</h2>
         <p>first 4 are free. additional toppings ($0.25) each</p>
@@ -134,6 +133,32 @@
      <div>
     
   </div>
+  <div v-if="order.isDelivery ==='true'" id="DeliveryPopUp">
+     <h2>enter your delivery information</h2>
+    <div id="inputs">
+     <input
+        type="email"
+        id="email"
+        placeholder="email"
+        v-model="order.custEmail"
+        required
+      />
+      <input
+        type="text"
+        id="address"
+        placeholder="address"
+        v-model="order.custAddress"
+        required
+      />
+      <input
+        type="text"
+        id="creditCard"
+        placeholder="enter payment info"
+        v-model="order.custCreditCard"
+        required
+      />
+      </div>
+    </div>
   <button v-on:click.prevent="createOrder">Submit</button>
   <div class="running-total">
   <p>Current total: ${{ pizzaPriceTotal }}</p>
@@ -148,27 +173,22 @@
 // Array.from(document.querySelectorAll("input[type=checkbox][name=type]:checked"), e => e.value); 
 
 import PizzaService from "@/services/PizzaService.js"
+import SuccessfulOrderPopup from "./SuccessfulOrderPopup.vue"
 
 export default {
      name: 'order-now-client-form',
      data() {
     return {
-
-
-      selectedStandardIngredients: [],
+       selectedStandardIngredients: [],
       selectedPremiumIngredients: [],
-      
-      
-      
+      displayPopup: false,   
       ingredient: {
         "id": 1,
         "ingredientName": "Red onion",
         "tier": "Standard",
         "ingredientPrice": 0.25,
         "available": true
-      },
-
-      
+      },   
       pizza: {
         pizzaSize: 'Medium',
         dough: 'Hand-tossed traditional',
@@ -181,14 +201,13 @@ export default {
         ingredients: [],
         isAvailable: true,
         status: "Pending"
-        
-
       },
-
       order: {
         orderStatus: "Pending",
         isDelivery: false,
-        custEmail: "test@email.com",
+        custEmail: "",
+        custAddress: "",
+        custCreditCard: "",
         pizzas: []
       },
     //       private Long id;
@@ -285,9 +304,10 @@ export default {
           done: false
         },
       ],
-
-
     }
+  },
+  components: {
+    SuccessfulOrderPopup
   },
   methods: {
 
@@ -305,20 +325,6 @@ export default {
       this.pizza.pizzaPrice = this.pizzaPriceTotal
       this.order.pizzas.push(this.pizza)
 
-
-      let options = document.getElementsByName("PickupOrDeliveryRadio")
-      let selectedOption;
-      for(let i = 0; i < options.length; i++) {
-        if (options[i].checked && i===0) {
-          selectedOption = false
-          break;
-        }
-        else {
-          selectedOption =  true;
-        }
-      }
-
-      this.order.isDelivery = selectedOption;
       console.log(this.order)
 
 
@@ -329,6 +335,7 @@ export default {
         this.selectedStandardIngredients = []
         this.selectedPremiumIngredients = []
       })
+      this.displayPopup = true;
 
     },
 
@@ -431,11 +438,11 @@ export default {
 
 .BTTNS {
     position: relative;
-    top: 85px;
+    top: 35px;
     left: 50%;
     text-align: -webkit-center;
     font-size: 16px;
-    padding: 50px 50px 50px 50px;
+    padding: 10px 50px 10px 50px;
     border-radius: 5px;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -461,46 +468,31 @@ export default {
   background-color: #F7F3E8;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 15px;
+  margin-bottom: 1rem;
 }
 
 .size-list {
   text-align: center;
   width: 60%;
   margin: auto;
-  padding: 1em;
-  background-color: #F7F3E8;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  border-radius: 15px;
 }
 
 .dough-list {
   text-align: center;
   width: 60%;
   margin: auto;
-  padding: 1em;
-  background-color: #F7F3E8;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  border-radius: 15px;
 }
 
 .sauce-list {
   text-align: center;
   width: 60%;
   margin: auto;
-  padding: 1em;
-  background-color: #F7F3E8;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  border-radius: 15px;
 }
 
 .style-list {
   text-align: center;
   width: 60%;
   margin: auto;
-  padding: 1em;
-  background-color: #F7F3E8;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  border-radius: 15px;
 }
 
 .standard-topping-list {
@@ -511,6 +503,7 @@ export default {
   background-color: #F7F3E8;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 15px;
+  margin-bottom: 1rem;
 }
 
 .premium-topping-list {
@@ -521,6 +514,13 @@ export default {
   background-color: #F7F3E8;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 15px;
+  margin-bottom: 1rem;
+}
+.standard-topping-list ul{
+  list-style: none;
+}
+.premium-topping-list ul{
+  list-style: none;
 }
 
 .BTN {
@@ -546,6 +546,42 @@ export default {
     color: white;
     cursor: pointer;
 }
-
-
+#SizeDough {
+  display: flex;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+#StyleSauce {
+  display: flex;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+#DeliveryPopUp {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  text-align: -webkit-center;
+  
+}
+#inputs { 
+  display:flex;
+  justify-content: space-between;
+}
 </style>
