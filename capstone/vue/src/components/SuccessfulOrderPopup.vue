@@ -6,7 +6,7 @@
             <div id="PopUpLogo">
             <img id ="BigLogo" src="../assets/UziVert.png">
             </div>
-          <h3>thank you for ordering! <br>we appreciate your business</h3>
+          <h3>thank you for your order! <br>we appreciate your business. <br>please check your email for confirmation.</h3>
           <div id="HomeLink">
           <router-link :to="'/'">return home</router-link>
           </div>
