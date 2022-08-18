@@ -1,12 +1,26 @@
 <template>
   <div id="test">
     <successful-order-popup v-if ="displayPopup"/>
-    <h1>Our Specialties</h1>
-    <h2>no substitutions</h2>
+    <h1 id="OurSpecialties">our specialties</h1>
+    <h2 id="NoSubstitutions">no substitutions</h2>
+
+  <div class='BTTNS'>
+         <input v-model="order.isDelivery" type="radio" id="PickupRadio" name="PickupOrDeliveryRadio" value="false">
+          <label for="PickupRadio">pickup</label>
+          <input v-model="order.isDelivery" type="radio" id="DeliveryRadio" name="PickupOrDeliveryRadio" value="true">
+          <label for="DeliveryRadio">delivery</label>
+      </div>
+
+<!-- tomato background div
+==========================
+    <div id="CustomBG">  
+==========================
+-->      
+
     <button v-on:click.prevent="addPizzaToOrder">add selection to order</button>
     <button v-on:click.prevent="createOrder">place order</button>
     <div class="running-total">
-        <p>Current order total: ${{ orderTotal }}</p>
+        <p>current order total: ${{ orderTotal }}</p>
         <input v-model="email" placeholder="please enter your email" />
         <input v-model="address" placeholder="please enter your address" />
     </div>
@@ -31,16 +45,24 @@
                 <input type="checkbox" v-model="selectedPizzas"  :value="visiblePizza"/>
                     
             </div>
-            
-                
-
         <!-- </form> -->
-        
+
     
     </div>
+    
+    
+    
     </form>
+</div>
+    
 
-  </div>
+  <!-- tomato background div   
+    ========================== 
+    </div> 
+    ==========================
+    -->
+
+  
 </template>
 
 <script>
@@ -126,21 +148,7 @@ export default {
                 // })
             }
         },
-// ===========================================================================
-// ======================== ALERT example from kanban ========================
-// ===========================================================================
-//
-// deleteBoard() {
-//       if (confirm("Are you sure that you really want to delete this board?")) {
-//         boardsService
-//           .deleteBoard(this.boardId)
-//           .then((response) => {
-//             if (response.status === 200) {
-//               alert("Board was successfully deleted");
-//               this.$store.commit("DELETE_BOARD", this.boardId);
-//               this.$router.push({ name: "Home" });
-//             }
-//           })
+
 
         },
 
@@ -165,6 +173,13 @@ export default {
 
 <style scoped>
 
+#CustomBG {
+  background-image: URL("https://images.unsplash.com/photo-1624821588855-a3ffb0b050ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+  height: 100%;
+  padding: 10px;
+
+}
+
 #test {
   font-family: 'Major Mono Display', monospace;
   -webkit-font-smoothing: antialiased;
@@ -178,6 +193,29 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr
 } */
+
+#OurSpecialties {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#NoSubstitutions {
+    display: block;
+    font-size: 1em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .pizza-box {
   height: 100vh;
   display: grid;
