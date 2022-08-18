@@ -90,16 +90,7 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SET_BANNER_DISPLAY(state) {
-      if (state.isBannerDisplayed === true) {
-        state.isBannerDisplayed = false
-      }
-    },
-    SET_BOARD_COLUMNS_DISPLAY_OFF(state) {
-      state.showBoardColumns = false
-    },
-    SET_BOARD_COLUMNS_DISPLAY_ON(state) {
-      state.showBoardColumns = true
-    }
+    
+    
   }
 })

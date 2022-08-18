@@ -8,7 +8,7 @@
 
 <script>
 
-import CreateNewSpecialty from '/components/CreateNewSpecialty.vue';
+import CreateNewSpecialty from '@/components/CreateNewSpecialty.vue';
 
 export default {
     

@@ -23,19 +23,13 @@
       </router-link>
       
     <router-link 
-      v-bind:to="{name: 'employee-home'}"
+      v-bind:to="{name: 'NewSpecialtyView'}"
       class="btn addBoard"
       >
       Create New Special
       </router-link>  
       
-    <button
-        class="btn addBoard"
-       
-        v-on:click="showAddBoard = !showAddBoard, toggleBoardDisplayOff"
-      >
-        Add Board
-      </button>
+    
       <form v-if="showAddBoard">
         Board Title:
         <input type="text" class="form-control" v-model="newBoard.title" />

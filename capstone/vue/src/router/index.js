@@ -15,7 +15,7 @@ import Board from '../views/Board.vue'
 import AddCard from '../views/AddCard.vue'
 import OrderNowCustomPizzaV from '../views/OrderNowCustomPizzaV.vue'
 import OrderNowSpecialtyPizzaV from '../views/OrderNowSpecialtyPizzaV.vue'
-
+import NewSpecialtyView from '../views/NewSpecialtyView.vue'
 
 
 Vue.use(Router)
@@ -142,6 +142,11 @@ const router = new Router({
       name: 'AddCard',
       component: AddCard
     },
+    {
+      path: "/new-specialty-view",
+      name: "NewSpecialtyView",
+      component: NewSpecialtyView,
+    }
     
 
 
