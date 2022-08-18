@@ -41,7 +41,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
         List<Pizza> pizzas = new ArrayList<>();
         String sql = "SELECT DISTINCT ON (description) id, pizza_size, dough, shape, sauce_type, description, is_available, order_id, pizza_price, is_specialty, status, board_id " +
                 "FROM pizzas " +
-                "WHERE order_id = 1;";
+                "WHERE order_id = 1 AND board_id > 1;";
 //                "WHERE is_specialty IS TRUE;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {

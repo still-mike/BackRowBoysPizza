@@ -5,8 +5,8 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 -- boards
-INSERT INTO boards (id, title, background_color) VALUES (1, 'All Pizzas', '#20b2aa');
-INSERT INTO boards (id, title, background_color) VALUES (2, 'Orders', '#20b2aa');
+INSERT INTO boards (id, title, background_color) VALUES (1, 'Pizza Orders', '#20b2aa');
+INSERT INTO boards (id, title, background_color) VALUES (2, 'Current Specialties', '#20b2aa');
 INSERT INTO boards (id, title, background_color) VALUES (3, 'Fun Board 1', '#20b2aa');
 INSERT INTO boards (id, title, background_color) VALUES (4, 'Fun Board 2', '#20b2aa');
 INSERT INTO boards (id, title, background_color) VALUES (5, 'Fun Board 3', '#20b2aa');
