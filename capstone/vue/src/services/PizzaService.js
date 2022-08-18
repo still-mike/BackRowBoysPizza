@@ -51,7 +51,10 @@ export default {
         return http.delete(`/boards/${boardID}`, { headers: { Authorization: authStr } })
     },
 
-      createOrder(order) {
+    createOrder(order) {
         return http.post('/orders', order);
     },
+    createSpecialtyPizza(pizza) {
+        return http.post('/pizzas', pizza)
+    }
 }

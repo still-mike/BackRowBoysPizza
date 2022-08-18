@@ -132,7 +132,7 @@ export default {
         description: "",
         pizzaPrice: 16.99,
         isSpecialty: true,
-        orderId: 0,
+        orderId: 2,
         ingredients: [],
         isAvailable: true,
         status: "Pending",
@@ -239,13 +239,19 @@ export default {
       console.log(this.order)
 
 
-      PizzaService.createOrder(this.order).then(() =>{
-        //TO DO - check response - look for 201
-        console.log("Order created.")
+      PizzaService.createSpecialtyPizza(this.pizza)
+      .then(response => {
+            if (response.status === 201) {
+              alert("Pizza Added to Inventory");
+            }
+          })       
+       //TO DO - check response - look for 201
+        console.log("Pizza created.")
         this.order.pizzas=[]
         this.selectedStandardIngredients = []
         this.selectedPremiumIngredients = []
-      })
+        this.pizza.pizzaPrice = 16.99
+        this.pizza.description = ""
 
     },
 

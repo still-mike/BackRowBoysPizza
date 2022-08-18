@@ -15,11 +15,12 @@
     <div class="pizza-box" v-if="!isLoading">
         <!-- <form v-on:submit.prevent> -->
             
-            <div class="pizza-button" v-for="specialtyPizza in this.$store.state.specialtyPizzas"
-                v-bind:key="specialtyPizza.description" 
+            <div class="pizza-button" v-for="visiblePizza in visiblePizzas"
+                v-bind:key="visiblePizza.description" 
             >
-                <h2>{{ specialtyPizza.description }}</h2>
-                <input type="checkbox" v-model="selectedPizzas"  :value="specialtyPizza"/>
+                <h3>{{ visiblePizza.description }}</h3>
+                <p>{{ visiblePizza.pizzaPrice }}</p>
+                <input type="checkbox" v-model="selectedPizzas"  :value="visiblePizza"/>
                     
             </div>
             
@@ -41,7 +42,7 @@ export default {
     name: 'test-component',
     data() {
         return {
-            
+                        
             address: "",
             email: "",
             orderTotal: 0,
@@ -64,8 +65,9 @@ export default {
     methods: {
         retrieveSpecialtyPizzas() {
             PizzaService.getSpecialtyPizzas().then((response) => {
-            this.$store.commit("SET_SPECIALTY_PIZZAS", response.data);
-            this.isLoading = false;
+
+              this.$store.commit("SET_SPECIALTY_PIZZAS", response.data);
+              this.isLoading = false;              
       })
         },
 
@@ -112,9 +114,18 @@ export default {
 
         },
 
+    computed: {
+      visiblePizzas() {
+      let visiblePizzas = this.$store.state.specialtyPizzas.filter( pizza => pizza.boardId == 5 )
+      // return this.$store.state.filter(())
+      return visiblePizzas
+    },
+
+    },
+    
     created() {
-    this.retrieveSpecialtyPizzas();
-  }
+      this.retrieveSpecialtyPizzas();
+    }
 }
 </script>
 
