@@ -91,7 +91,7 @@
   </div>
   
   
-  <button v-on:click.prevent="createOrder">Submit</button>
+  <button v-on:click.prevent="createPizza">Submit</button>
 
 </div>
 </form>
@@ -222,7 +222,7 @@ export default {
   },
   methods: {
 
-    createOrder() {
+    createPizza() {
       console.log("In createOrder")
       
       for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
@@ -232,13 +232,8 @@ export default {
       for (let j = 0; j < this.selectedPremiumIngredients.length; j++) {
         this.pizza.ingredients.push(this.selectedPremiumIngredients[j]);
         console.log("ingredient added")
-      }
-     
-      this.order.pizzas.push(this.pizza)
-
-      console.log(this.order)
-
-
+      }  
+  
       PizzaService.createSpecialtyPizza(this.pizza)
       .then(response => {
             if (response.status === 201) {

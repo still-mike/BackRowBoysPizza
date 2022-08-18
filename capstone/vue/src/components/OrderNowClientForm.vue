@@ -135,33 +135,88 @@
   </div>
   <div v-if="order.isDelivery ==='true'" id="DeliveryPopUp">
      <h2>enter your delivery information</h2>
-    <div id="inputs">
-     <input
-        type="email"
-        id="email"
-        placeholder="email"
-        v-model="order.custEmail"
-        required
-      />
-      <input
-        type="text"
-        id="address"
-        placeholder="address"
-        v-model="order.custAddress"
-        required
-      />
-      <input
+    <div id="customer-information">      
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          placeholder="email"
+          :value="order.custEmail"
+          required
+        >
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          id="address"
+          placeholder="address"
+          :value="order.custAddress"
+          required
+        >
+      </div>    
+    </div>    
+  </div>
+  <div id="PaymentInformation">
+    <div class="form-group">       
+      <input 
+        class="form-control"
         type="text"
         id="creditCard"
+        maxlength="16"
+        pattern="[0-9]*"
+        inputmode="numeric"
         placeholder="enter payment info"
         v-model="order.custCreditCard"
         required
-      />
-      </div>
+      >
     </div>
-    <div id="submitButton">
-  <button v-on:click.prevent="createOrder">Submit Order</button>
+    <div class="form-group">        
+      <input 
+        class="form-control"    
+        type="text"
+        id="creditCardCVC"
+        maxlength="3"
+        pattern="[0-9]*"
+        inputmode="numeric"
+        placeholder="enter CVC" 
+        required
+        >
     </div>
+    <div class="form-group">        
+      <input 
+        class="form-control"                
+        type="text"
+        id="creditCardExpiry"
+        maxlength="4"
+        pattern="[0-9]*"
+        inputmode="numeric"
+        placeholder="enter date of expiration" 
+        required
+        >
+    </div>
+    <div class="form-group">  
+    <button 
+      v-on:click.prevent="createOrder"
+      class="form-control"
+    >
+      Submit Order
+    </button>
+  </div>
+  
+  
+  </div>
+    
+  <!-- <div class="form-group">  
+    <button 
+      v-on:click.prevent="createOrder"
+      class="form-control"
+    >
+      Submit Order
+    </button>
+  </div> -->
+
   <div class="running-total">
   <p>Current total: ${{ pizzaPriceTotal }}</p>
   </div>
@@ -208,8 +263,8 @@ export default {
       order: {
         orderStatus: "Pending",
         isDelivery: false,
-        custEmail: "",
-        custAddress: "",
+        custEmail: "backrowboyzpizza@gmail.com",
+        custAddress: "742 Evergreen Terrace",
         custCreditCard: "",
         pizzas: []
       },
@@ -315,31 +370,32 @@ export default {
   methods: {
 
     createOrder() {
-      console.log("In createOrder")
-      
-      for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
-        this.pizza.ingredients.push(this.selectedStandardIngredients[i]);
-        console.log("ingredient added")
+      if (confirm("Ready to order?")) {
+        console.log("In createOrder")
+        
+        for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
+          this.pizza.ingredients.push(this.selectedStandardIngredients[i]);
+          console.log("ingredient added")
+        }
+        for (let j = 0; j < this.selectedPremiumIngredients.length; j++) {
+          this.pizza.ingredients.push(this.selectedPremiumIngredients[j]);
+          console.log("ingredient added")
+        }
+        this.pizza.pizzaPrice = this.pizzaPriceTotal
+        this.order.pizzas.push(this.pizza)
+
+        console.log(this.order)
+
+
+        PizzaService.createOrder(this.order).then(() =>{
+          //TO DO - check response - look for 201
+          console.log("Order created.")
+          this.order.pizzas=[]
+          this.selectedStandardIngredients = []
+          this.selectedPremiumIngredients = []
+        })
+        this.displayPopup = true;
       }
-      for (let j = 0; j < this.selectedPremiumIngredients.length; j++) {
-        this.pizza.ingredients.push(this.selectedPremiumIngredients[j]);
-        console.log("ingredient added")
-      }
-      this.pizza.pizzaPrice = this.pizzaPriceTotal
-      this.order.pizzas.push(this.pizza)
-
-      console.log(this.order)
-
-
-      PizzaService.createOrder(this.order).then(() =>{
-        //TO DO - check response - look for 201
-        console.log("Order created.")
-        this.order.pizzas=[]
-        this.selectedStandardIngredients = []
-        this.selectedPremiumIngredients = []
-      })
-      this.displayPopup = true;
-
     },
 
     retrieveAvailableIngredients() {
@@ -599,5 +655,16 @@ export default {
 #inputs { 
   display:flex;
   justify-content: space-between;
+}
+#PaymentInformation{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  background-color: #F7F3E8;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  text-align: -webkit-center;
 }
 </style>
