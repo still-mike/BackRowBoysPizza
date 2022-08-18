@@ -179,7 +179,7 @@ export default {
      name: 'order-now-client-form',
      data() {
     return {
-       selectedStandardIngredients: [],
+      selectedStandardIngredients: [],
       selectedPremiumIngredients: [],
       displayPopup: false,   
       ingredient: {
@@ -198,6 +198,7 @@ export default {
         pizzaPrice: 14.99,
         isSpecialty: false,
         orderId: 0,
+        boardId: 1,
         ingredients: [],
         isAvailable: true,
         status: "Pending"

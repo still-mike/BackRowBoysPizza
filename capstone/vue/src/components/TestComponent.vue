@@ -1,5 +1,6 @@
 <template>
   <div id="test">
+    <ingredient-popup />
     <h1>Our Specialties</h1>
     <h2>no substitutions</h2>
     <button v-on:click.prevent="addPizzaToOrder">add selection to order</button>
@@ -20,6 +21,13 @@
             >
                 <h3>{{ visiblePizza.description }}</h3>
                 <p>{{ visiblePizza.pizzaPrice }}</p>
+                  <!-- <ul>
+                    <li v-for="ingredient in this.visiblePizza.ingredients" v-bind:key="ingredient.ingredientName" :value="standardIngredient">            
+                      
+                      {{ ingredient.ingredientName }}
+                    </li>
+                  </ul>   -->
+                <!-- <ingredients-list :ingredients="pizza.ingredients" /> -->
                 <input type="checkbox" v-model="selectedPizzas"  :value="visiblePizza"/>
                     
             </div>
@@ -37,12 +45,16 @@
 
 <script>
 import PizzaService from "@/services/PizzaService.js"
+import IngredientPopup from "./IngredientPopup.vue"
 
 export default {
     name: 'test-component',
     data() {
         return {
-                        
+            components: {
+              IngredientPopup
+            },
+
             address: "",
             email: "",
             orderTotal: 0,
@@ -120,6 +132,9 @@ export default {
       // return this.$store.state.filter(())
       return visiblePizzas
     },
+    pizza() {
+      return this.$store.state.pizza;
+    }
 
     },
     

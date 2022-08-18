@@ -77,7 +77,7 @@ export default {
     };
   },
   created() {
-    this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_ON");
+    
     this.retrieveBoards();
   },
   computed: {
