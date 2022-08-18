@@ -2,8 +2,15 @@
   <div id="Overlay">
 
       <div id="PopupBox">
-          <h3>Thank You For Ordering!</h3>
-          <router-link :to="'/'">Return Home</router-link>
+          <div id="InsideTheBox">
+            <div id="PopUpLogo">
+            <img id ="BigLogo" src="../assets/UziVert.png">
+            </div>
+          <h3>thank you for ordering! <br>we appreciate your business</h3>
+          <div id="HomeLink">
+          <router-link :to="'/'">return home</router-link>
+          </div>
+          </div>
     </div> 
   </div>  
 
@@ -17,17 +24,29 @@ export default {
 </script>
 
 <style>
+#PopUpLogo {
+    width: 500px;
+    margin-top: 10%;
+}
+#InsideTheBox {
+    text-align: -webkit-center;
+    font-weight: 600;
+}
+#HomeLink {
+   text-align: -webkit-center; 
+}
 #PopupBox {
-    background-color:red;
+    background-color:#F76C4B;
     width: 50%;
     height: 50%;
-    background: #1abcb9;
+    background: #F76C4B;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     margin: auto;
+    border-radius: 20px;
 }
 #Overlay {
   position: fixed;

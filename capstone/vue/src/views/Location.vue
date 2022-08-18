@@ -89,7 +89,7 @@ export default {
   width: 300px;
 }
 #LogoContainer {
-  background-color: #F76C4B;
+  background-color: #ad958f;
   border-top-left-radius: 20px 20px;
   border-top-right-radius: 20px 20px;
 }
