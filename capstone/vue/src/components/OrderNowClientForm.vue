@@ -159,7 +159,9 @@
       />
       </div>
     </div>
-  <button v-on:click.prevent="createOrder">Submit</button>
+    <div id="submitButton">
+  <button v-on:click.prevent="createOrder">Submit Order</button>
+    </div>
   <div class="running-total">
   <p>Current total: ${{ pizzaPriceTotal }}</p>
   </div>
@@ -426,6 +428,10 @@ export default {
 </script>
  
 <style scope>
+#submitButton {
+  margin-left: 47%;
+}
+
 .custom-menu-selections {
   font-weight: 600;
 }
