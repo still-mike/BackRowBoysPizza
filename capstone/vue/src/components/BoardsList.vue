@@ -27,7 +27,15 @@
       class="btn addBoard"
       >
       Create New Special
-      </router-link>  
+      </router-link>
+
+    <button
+      
+    >
+      clear all orders
+    </button>  
+      
+        
       
     
       <form v-if="showAddBoard">
@@ -136,14 +144,9 @@ export default {
       if (bg.length !== 6) bg = this.generateHexCode();
       return bg;
     },
-    toggleBoardDisplayOff() {
-            console.log(this.$store.state.showBoardColumns)
-            this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_OFF");
-        },
-    toggleBoardDisplayOn() {
-            console.log(this.$store.state.showBoardColumns)
-            this.$store.commit("SET_BOARD_COLUMNS_DISPLAY_ON");
-        }
+    // clearAllPizzas() {
+      
+    // }
   },
 };
 </script>

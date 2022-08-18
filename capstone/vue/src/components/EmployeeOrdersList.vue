@@ -2,20 +2,20 @@
   <div>
     <div class="header">
       <h1>{{ title }}</h1>
-      <router-link
+      <!-- <router-link
         tag="button"
         class="btn addNewOrder"
         :to="{ name: 'AddCard', params: { boardID: this.boardId } }"
         v-if="!isLoading"
         >Define New Pizza</router-link
-      >
-      <button
+      > -->
+      <!-- <button
         class="btn btn-cancel clearAllOrders"
         v-if="!isLoading"
         v-on:click="clearAllOrders"
       >
         Clear All Orders
-      </button>
+      </button> -->
     </div>
         
     <div class="loading" v-if="isLoading">
