@@ -142,7 +142,7 @@
           type="email"
           id="email"
           placeholder="email"
-          :value="order.custEmail"
+          v-model="order.custEmail"
           required
         >
       </div>
@@ -152,7 +152,7 @@
           type="text"
           id="address"
           placeholder="address"
-          :value="order.custAddress"
+          v-model="order.custAddress"
           required
         >
       </div>    
@@ -262,7 +262,7 @@ export default {
       },
       order: {
         orderStatus: "Pending",
-        isDelivery: false,
+        isDelivery: true,
         custEmail: "backrowboyzpizza@gmail.com",
         custAddress: "742 Evergreen Terrace",
         custCreditCard: "",

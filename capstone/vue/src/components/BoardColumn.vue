@@ -9,14 +9,15 @@
         v-on:click="viewPizzaDetails(pizza.id)"
       >
         <div class="header">
-          <h3>{{ pizza.orderId }}</h3>
-          <div>{{ pizza.dough }}</div>
+          <div>order:</div>
+          <p>{{ pizza.orderId }}</p>
+          <p>{{ pizza.dough }}</p>
         </div>
         <div class="footer">
           <span class="date">{{ pizza.sauceType }}</span>
-          <span class="pill" :class="getTagClass(pizza.pizzaPrice)">{{
-            pizza.tag
-          }}</span>
+        
+          <!-- <span class="pill" :class="getOrderType(pizza.orderId)"></span> -->
+
         </div>
       </div>
     </div>
@@ -48,8 +49,12 @@ export default {
           break;
       }
       return clazz;
-    }
+    },
+    // getOrderType(orderId) {
+
+    // }
   }
+
 };
 </script>
 

@@ -28,17 +28,8 @@
       >
       Create New Special
       </router-link>
-
-    <button
-      
-    >
-      clear all orders
-    </button>  
-      
-        
-      
-    
-      <form v-if="showAddBoard">
+  
+      <!-- <form v-if="showAddBoard">
         Board Title:
         <input type="text" class="form-control" v-model="newBoard.title" />
         Background Color:
@@ -56,7 +47,7 @@
         >
           Cancel
         </button>
-      </form>
+      </form> -->
     </div>
   </div>
 </template>
@@ -107,35 +98,35 @@ export default {
         }
       });
     },
-    saveNewBoard() {
-      this.isLoading = true;
-      pizzaService
-        .addBoard(this.newBoard)
-        .then((response) => {
-          if (response.status === 201) {
-            this.retrieveBoards();
-            this.showAddBoard = false;
-            this.newBoard = {
-              title: "",
-              backgroundColor: this.randomBackgroundColor(),
-            };
-          }
-        })
-        .catch((error) => {
-          if (error.response) {
-            this.errorMsg =
-              "Error submitting new board. Response received was '" +
-              error.response.statusText +
-              "'.";
-          } else if (error.request) {
-            this.errorMsg =
-              "Error submitting new board. Server could not be reached.";
-          } else {
-            this.errorMsg =
-              "Error submitting new board. Request could not be created.";
-          }
-        });
-    },
+    // saveNewBoard() {
+    //   this.isLoading = true;
+    //   pizzaService
+    //     .addBoard(this.newBoard)
+    //     .then((response) => {
+    //       if (response.status === 201) {
+    //         this.retrieveBoards();
+    //         this.showAddBoard = false;
+    //         this.newBoard = {
+    //           title: "",
+    //           backgroundColor: this.randomBackgroundColor(),
+    //         };
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       if (error.response) {
+    //         this.errorMsg =
+    //           "Error submitting new board. Response received was '" +
+    //           error.response.statusText +
+    //           "'.";
+    //       } else if (error.request) {
+    //         this.errorMsg =
+    //           "Error submitting new board. Server could not be reached.";
+    //       } else {
+    //         this.errorMsg =
+    //           "Error submitting new board. Request could not be created.";
+    //       }
+    //     });
+    // },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();
     },

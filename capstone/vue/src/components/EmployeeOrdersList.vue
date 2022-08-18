@@ -2,20 +2,7 @@
   <div>
     <div class="header">
       <h1>{{ title }}</h1>
-      <!-- <router-link
-        tag="button"
-        class="btn addNewOrder"
-        :to="{ name: 'AddCard', params: { boardID: this.boardId } }"
-        v-if="!isLoading"
-        >Define New Pizza</router-link
-      > -->
-      <!-- <button
-        class="btn btn-cancel clearAllOrders"
-        v-if="!isLoading"
-        v-on:click="clearAllOrders"
-      >
-        Clear All Orders
-      </button> -->
+
     </div>
         
     <div class="loading" v-if="isLoading">
@@ -102,21 +89,7 @@ export default {
           this.$store.commit("SET_BOARD_PIZZAS", specialtyPizzas);
           this.isLoading = false;
         })
-      // pizzaService
-      //   .getPizzas(this.boardId)
-      //   .then((response) => {
-      //     this.title = response.data.title;
-      //     this.$store.commit("SET_BOARD_PIZZAS", response.data.pizzas);
-      //     this.isLoading = false;
-      //   })
-      //   .catch((error) => {
-      //     if (error.response && error.response.status === 404) {
-      //       alert(
-      //         "Board pizzas not available. This board may have been deleted or you have entered an invalid board ID."
-      //       );
-      //       this.$router.push({ name: "employee-home" });
-      //     }
-      //   });
+      
     }},
     clearAllOrders() {
       if (confirm("Do you seriously want to clear all order items?")) {

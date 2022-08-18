@@ -3,7 +3,7 @@
 </template>
 
 <script>
-// NEED TO EXPORT EmployeeOrdersList BEFORE IT CAN BE IMPORTED
+
 import EmployeeOrdersList from "@/components/EmployeeOrdersList";
 
 export default {
