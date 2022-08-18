@@ -11,8 +11,13 @@
        =============================== -->
 
        <div class='BTTNS'>
-        <button tag="button" class="PickupDelivery">Pickup</button>
-        <button tag="button" class="PickupDelivery">Delivery</button>
+         <input type="radio" id="PickupRadio" name="PickupOrDeliveryRadio" value="pickup">
+          <label for="PickupRadio">pickup</label>
+          <input type="radio" id="DeliveryRadio" name="PickupOrDeliveryRadio" value="delivery">
+          <label for="DeliveryRadio">delivery</label>
+
+        <!--<button tag="button" class="PickupDelivery">Pickup</button>
+        <button tag="button" class="PickupDelivery">Delivery</button>-->
       </div>
 
       <!-- =========================== -->
@@ -299,6 +304,24 @@ export default {
       }
       this.pizza.pizzaPrice = this.pizzaPriceTotal
       this.order.pizzas.push(this.pizza)
+
+
+      let options = document.getElementsByName("PickupOrDeliveryRadio")
+      let selectedOption;
+      for(let i = 0; i < options.length; i++) {
+        if (options[i].checked && i===0) {
+          selectedOption = false
+          break;
+        }
+        else {
+          selectedOption =  true;
+        }
+      }
+
+      this.order.isDelivery = selectedOption;
+      console.log(this.order)
+
+
       PizzaService.createOrder(this.order).then(() =>{
         //TO DO - check response - look for 201
         console.log("Order created.")
@@ -409,7 +432,8 @@ export default {
 .BTTNS {
     position: relative;
     top: 85px;
-    left: 1648px;
+    left: 50%;
+    text-align: -webkit-center;
     font-size: 16px;
     padding: 50px 50px 50px 50px;
     border-radius: 5px;

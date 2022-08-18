@@ -1,9 +1,13 @@
 <template>
 
 <div id= "loginContainer">
+      
         <div id="EmployeeLogoContainer">
-            <img id ="EmployeeBigLogo" src="../assets/UziVert.png">
+          <router-link :to="'/'">
+            <img id ="EmployeeBigLogo" src="../assets/UziVert.png">      
+            </router-link>
         </div>
+
         <div id="BestPlace">
             <img id="BestPlaceAward" src="../assets/BestPlaceToWork.png">
             </div>
