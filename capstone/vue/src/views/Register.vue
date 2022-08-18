@@ -1,7 +1,9 @@
 <template>
 <div id="registerPage">
   <div id="RegisterLogoContainer">
+      <router-link :to="'/'">
             <img id ="RegisterLogo" src="../assets/UziVert.png">
+      </router-link>
         </div>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">

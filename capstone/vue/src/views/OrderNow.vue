@@ -82,7 +82,7 @@ div#capsule {
     background-color: #F76C4B;
     border-radius: 60px;
     border: solid rgb(5, 0, 0) 0px;
-    color: white;
+    color: #F7F3E8;
     cursor: pointer;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   

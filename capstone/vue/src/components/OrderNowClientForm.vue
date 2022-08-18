@@ -8,7 +8,6 @@
       
   <div class="custom-menu-selections">
     <h1 id="CreateYourOwn">create-your-own</h1>
-
       <!--- PICKUP or DELIVERY
        =============================== -->
 
@@ -21,7 +20,7 @@
         <!--<button tag="button" class="PickupDelivery">Pickup</button>
         <button tag="button" class="PickupDelivery">Delivery</button>-->
       </div>
-
+  <div id="CustomBG">
       <!-- =========================== -->
        <div class="prices"> 
         <p id ="SizesAndPrices"></p> 12" small ($11.99) | 16" medium ($14.99) | 20" ($17.99)
@@ -127,6 +126,7 @@
           {{ premiumIngredient.ingredientName }}
           </li>
       </ul>
+ </div> 
     </div>   
     
     
@@ -424,8 +424,17 @@ export default {
 
 
 </script>
-
+ 
 <style scope>
+.custom-menu-selections {
+  font-weight: 600;
+}
+#CustomBG {
+  background-image: URL("https://images.unsplash.com/photo-1624821588855-a3ffb0b050ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+  height: 100%;
+  padding: 10px;
+
+}
 #CreateYourOwn {
     display: block;
     font-size: 2em;
