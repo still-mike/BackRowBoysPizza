@@ -237,7 +237,7 @@ public class JdbcPizzaDAO implements PizzaDAO {
     @Override
     public List<Board> getAllBoards() {
         List<Board> result = new ArrayList<>();
-        String sql = "SELECT id, title, background_color FROM boards;";
+        String sql = "SELECT id, title, background_color FROM boards LIMIT 2;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while (rowSet.next()) {
             Board board = mapRowToBoard(rowSet);

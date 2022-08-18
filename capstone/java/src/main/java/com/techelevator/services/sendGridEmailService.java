@@ -7,7 +7,6 @@ import java.io.IOException;
 
 @Component
 public class sendGridEmailService implements EmailService{
-//todo - make this a regular method by changing the name and giving it the parameters we want to pass in: subject, toEmail = to, content
     @Override
     public void sendEmailConfirmation(String custEmail, Order order) throws IOException {
         Email from = new Email("backrowboyzpizza@gmail.com");
