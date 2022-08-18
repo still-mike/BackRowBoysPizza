@@ -6,9 +6,11 @@
     <h1 id="orderNow">order now</h1>
     <div id="tomatoBG">
     </div>
-    <div class = 'RouterPhoto'>
-      <router-link :to="{name: 'orderNowCustomPizzaV'}"><img src="../assets/cyo_no_border.png" class="MidPageLinks"> </router-link>
-      <router-link :to="{name: 'orderNowSpecialtyPizzaV'}"><img src="../assets/sp_no_border.png" class="MidPageLinks"></router-link>
+    <div class = 'CYORouterPhoto'>
+      <router-link :to="{name: 'orderNowCustomPizzaV'}"><img src="../assets/cyo_improved2.png" class="MidPageLinks"> </router-link>
+    </div>
+    <div class = 'SPRouterPhoto'>
+      <router-link :to="{name: 'orderNowSpecialtyPizzaV'}"><img src="../assets/sp_improved3.png" class="MidPageLinks"></router-link>
     </div>
     
     
@@ -88,16 +90,28 @@ div#capsule {
   
 }
 
-.RouterPhoto {
+.CYORouterPhoto {
    position: absolute;
     top: 51%;
-    left: 50%;
+    left: 37%;
+    font-size: 20px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.SPRouterPhoto {
+   position: absolute;
+    top: 51%;
+    left: 63%;
     font-size: 16px;
     padding: 12px 24px;
     border-radius: 5px;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
+  
 #tomatoBG {
   background-image: URL("https://images.unsplash.com/photo-1624821588855-a3ffb0b050ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
   height: 520px;
