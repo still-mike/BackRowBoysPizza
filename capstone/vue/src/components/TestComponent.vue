@@ -93,7 +93,23 @@ export default {
                 console.log("Order created")
                 })
             }
-        }
+        },
+// ===========================================================================
+// ======================== ALERT example from kanban ========================
+// ===========================================================================
+//
+// deleteBoard() {
+//       if (confirm("Are you sure that you really want to delete this board?")) {
+//         boardsService
+//           .deleteBoard(this.boardId)
+//           .then((response) => {
+//             if (response.status === 200) {
+//               alert("Board was successfully deleted");
+//               this.$store.commit("DELETE_BOARD", this.boardId);
+//               this.$router.push({ name: "Home" });
+//             }
+//           })
+
         },
 
     created() {
