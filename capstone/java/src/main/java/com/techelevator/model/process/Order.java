@@ -1,6 +1,7 @@
 package com.techelevator.model.process;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,10 +19,12 @@ public class Order {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm MM/dd/yyyy");
+
         if (isDelivery) {
             return "Thanks for your Order! \n\n" +
                     "Your Order ID is: " + id + ".\n" +
-                    "Your order was received at " + orderTime + ".  <== We are big fans of precision here at BRBP! \n" +
+                    "Your order was received at " + formatter.format(orderTime) + ". \n" +
                     "Your order will be in the oven shortly.\n\n" + "Your delivery driver, " +
                     employeeName + " will be to you at " +
                     custAddress + " in 45 minutes. Don't worry, it is worth the wait. \n\n" +
@@ -32,7 +35,7 @@ public class Order {
         } else {
             return "Thanks for your Order! \n\n" +
                     "Your Order ID is: " + id + ".\n" +
-                    "Your order was received at " + orderTime + ".  <== We are big fans of precision here at BRBP! \n" +
+                    "Your order was received at " + formatter.format(orderTime) + ".  <== We are big fans of precision here at BRBP! \n" +
                     "Your order will be in the oven shortly.\n\n" +
                     "You ordered: " + Arrays.deepToString(new List[]{pizzas}) + "\n We hope you love it!";
         }
