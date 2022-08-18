@@ -87,8 +87,9 @@ export default {
         pizzaService.getAllPizzas()
         .then( ( response ) => {
           this.title = response.data.title;
-          let allPizzas = response.data;
+          let allPizzas = response.data;          
           this.$store.commit("SET_BOARD_PIZZAS", allPizzas);
+          // this.$store.commit("SET_BOARD_PIZZAS", allPizzas);
           this.isLoading = false;
         })
 
@@ -153,6 +154,11 @@ export default {
     this.retrievePizzas();
   },
   computed: {
+    
+    orderedPizzas() {
+      let orderedPizzas = this.$store.state.orderedPizzas
+      return orderedPizzas.sort((a, b) => a.orderId.localeCompare(b.orderId));
+    },
     
     isBoardColumnsDisplayed() {
             return this.$store.state.showBoardColumns

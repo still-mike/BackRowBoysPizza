@@ -27,7 +27,9 @@ export default new Vuex.Store({
     allIngredients: [],
     availableIngredients: [],
     specialtyPizzas: [],
+    currentSpecialtyIngredients: [],
     showBoardColumns: true,
+    orderedPizzas: [],
     pizza: {
       id: 0,
       pizzaSize: '',
@@ -90,7 +92,9 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    
+    SET_CURRENT_SPECIALTY_INGREDIENTS(state, data) {
+      state.currentSpecialtyIngredients = data;
+    }
     
   }
 })

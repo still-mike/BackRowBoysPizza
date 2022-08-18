@@ -1,6 +1,6 @@
 <template>
   <div id="test">
-    <ingredient-popup />
+    <successful-order-popup v-if ="displayPopup"/>
     <h1>Our Specialties</h1>
     <h2>no substitutions</h2>
     <button v-on:click.prevent="addPizzaToOrder">add selection to order</button>
@@ -45,16 +45,15 @@
 
 <script>
 import PizzaService from "@/services/PizzaService.js"
-import IngredientPopup from "./IngredientPopup.vue"
+
+import SuccessfulOrderPopup from "./SuccessfulOrderPopup.vue"
 
 export default {
     name: 'test-component',
     data() {
         return {
-            components: {
-              IngredientPopup
-            },
-
+            
+            displayPopup: false,
             address: "",
             email: "",
             orderTotal: 0,
@@ -73,7 +72,10 @@ export default {
 
         }
     },
-    
+    components: {
+              
+              SuccessfulOrderPopup
+    },
     methods: {
         retrieveSpecialtyPizzas() {
             PizzaService.getSpecialtyPizzas().then((response) => {
@@ -97,15 +99,31 @@ export default {
             this.order.custAddress = this.address;
             if (this.order.custEmail != "") {
                 console.log("has email")
-                PizzaService.createOrder(this.order).then(() =>{
-                //TO DO - check response - look for 201
-                console.log("Order created.")
-                this.order.pizzas=[];
-                this.orderTotal = 0;
-                this.selectedPizzas = [];
-                this.submittedPizzas = [];
-                console.log("Order created")
+                PizzaService.createOrder(this.order).then((response) =>{
+                  if (response.status === 201) {
+                    alert("Pizza coming right up!");
+                      console.log("Order created.")
+                      this.order.pizzas=[];
+                      this.orderTotal = 0;
+                      this.selectedPizzas = [];
+                      this.submittedPizzas = [];
+                      this.email = "";
+                      this.address = "";
+                      console.log("Order created");
+                      this.displayPopup = true;
+                  }
                 })
+                // TO DO - check response - look for 201
+                // console.log("Order created.")
+                // this.order.pizzas=[];
+                // this.orderTotal = 0;
+                // this.selectedPizzas = [];
+                // this.submittedPizzas = [];
+                // this.email = "";
+                // this.address = "";
+                // console.log("Order created");
+                // this.displayPopup = true;
+                // })
             }
         },
 // ===========================================================================

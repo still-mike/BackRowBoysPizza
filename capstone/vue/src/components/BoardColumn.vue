@@ -9,7 +9,7 @@
         v-on:click="viewPizzaDetails(pizza.id)"
       >
         <div class="header">
-          <h3>{{ pizza.id }}</h3>
+          <h3>{{ pizza.orderId }}</h3>
           <div>{{ pizza.dough }}</div>
         </div>
         <div class="footer">
@@ -27,6 +27,12 @@
 export default {
   name: 'board-column',
   props: ['title', 'pizzas', 'boardID'],
+  computed: {
+    // orderedPizzas() {
+    //   let orderedPizzas = this.pizzas
+    //   return orderedPizzas.sort((a, b) => a.orderId.localeCompare(b.orderId));
+    // }
+  },
   methods: {
     viewPizzaDetails(pizzaID) {
       this.$router.push(`/board/${this.boardID}/pizza/${pizzaID}`);
