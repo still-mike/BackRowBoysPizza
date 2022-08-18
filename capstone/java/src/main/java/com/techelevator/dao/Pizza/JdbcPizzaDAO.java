@@ -129,7 +129,9 @@ public class JdbcPizzaDAO implements PizzaDAO {
 
     @Override
     public boolean deletePizza(long pizzaId) {
-        String sql = "DELETE FROM pizzas WHERE id = ?;";
+        String sql = "DELETE FROM pizza_ingredients WHERE pizza_id = ?;";
+        jdbcTemplate.update(sql, pizzaId);
+        sql = "DELETE FROM pizzas WHERE id = ?;";
         int count = jdbcTemplate.update(sql, pizzaId);
         return count == 1;
     }
