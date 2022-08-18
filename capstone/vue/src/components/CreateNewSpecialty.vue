@@ -132,7 +132,7 @@ export default {
         description: "",
         pizzaPrice: 16.99,
         isSpecialty: true,
-        orderId: 2,
+        orderId: 1,
         ingredients: [],
         isAvailable: true,
         status: "Pending",
