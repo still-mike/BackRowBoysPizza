@@ -54,8 +54,8 @@ export default {
         return {
             
             displayPopup: false,
-            address: "",
-            email: "",
+            address: "742 Evergreen Terrace",
+            email: "Backrowboyzpizza@gmail.com",
             orderTotal: 0,
             selectedPizzas: [],
             submittedPizzas:[],
