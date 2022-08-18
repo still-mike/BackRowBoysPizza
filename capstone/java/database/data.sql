@@ -14,41 +14,41 @@ INSERT INTO boards (id, title, background_color) VALUES (6, 'Fun Board 4', '#20b
 
 
 -- Insert large specialty pies
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('large','classic','round','traditional red','THE FETTIG - balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil',TRUE,19.99,TRUE, 'Pending',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('large','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('large','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,19.99,TRUE, 'Pending',1);
-
-
--- Insert medium specialty pies
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('medium','classic','round','traditional red','THE FETTIG - balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil',TRUE,16.99,TRUE, 'Pending',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('medium','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,16.99,TRUE, 'Pending',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('medium','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,16.99,TRUE, 'Ready',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('medium','classic','round','traditional red','THE STILL - white pie, sriracha honey, cheese blend, brussels, bacon, , shaved red onion',TRUE,16.99,TRUE, 'Ready',1);
-
--- Insert small specialty pies
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('small','classic','round','traditional red','THE FETTIG - balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil',TRUE,14.99,TRUE, 'Ready',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('small','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,14.99,TRUE, 'Completed', 1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('small','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,14.99,TRUE, 'Completed',1);
-
-INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
-VALUES ('small','classic','round','traditional red','THE STILL - white pie, sriracha honey, cheese blend, brussels, bacon, , shaved red onion',TRUE,14.99,TRUE, 'Cancelled',1);
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('large','classic','round','traditional red','THE FETTIG - balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil',TRUE,19.99,TRUE, 'Pending',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('large','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,19.99,TRUE, 'Pending',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('large','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,19.99,TRUE, 'Pending',1);
+--
+--
+---- Insert medium specialty pies
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('medium','classic','round','traditional red','THE FETTIG - balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil',TRUE,16.99,TRUE, 'Pending',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('medium','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,16.99,TRUE, 'Pending',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('medium','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,16.99,TRUE, 'Ready',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('medium','classic','round','traditional red','THE STILL - white pie, sriracha honey, cheese blend, brussels, bacon, , shaved red onion',TRUE,16.99,TRUE, 'Ready',1);
+--
+---- Insert small specialty pies
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('small','classic','round','traditional red','THE FETTIG - balsamic drizzle, housemade mozzarella, sundried tomato, walnuts, basil',TRUE,14.99,TRUE, 'Ready',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('small','classic','round','traditional red','THE FINKELDEY - smoked bbq sauce, housemade mozzarella, fontina, roasted chicken, red onion, banana pepper',TRUE,14.99,TRUE, 'Completed', 1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('small','classic','round','traditional red','THE NOWELL - parmigiano, ricotta fonduta, baby spinach, onion, roasted garlic, chili flake',TRUE,14.99,TRUE, 'Completed',1);
+--
+--INSERT INTO pizzas (pizza_size,dough,shape,sauce_type,description,is_available,pizza_price,is_specialty, status, board_id)
+--VALUES ('small','classic','round','traditional red','THE STILL - white pie, sriracha honey, cheese blend, brussels, bacon, , shaved red onion',TRUE,14.99,TRUE, 'Cancelled',1);
 
 
 --add standard toppings to the ingredient table
@@ -138,18 +138,18 @@ VALUES ('Banana pepper','Premium',TRUE,.50);
 
 --test ingredient-pizza associations
 
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 19);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 20);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 21);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 22);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 23);
-
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 24);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 20);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 25);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 26);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 1);
-INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 27);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 19);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 20);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 21);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 22);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (1, 23);
+--
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 24);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 20);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 25);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 26);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 1);
+--INSERT INTO pizza_ingredients (pizza_id, ingredient_id) VALUES (2, 27);
 
 --test order
 INSERT INTO orders (order_status, is_delivery, employee_name, order_time, cust_address, cust_email) VALUES ('test7',TRUE,'test employee',current_timestamp,'123 Maple Street','test@gmail.com');

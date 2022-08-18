@@ -14,7 +14,7 @@
         </div>
         <div class="footer">
           <span class="date">{{ pizza.sauceType }}</span>
-          <span class="pill" :class="getTagClass(pizza.tag)">{{
+          <span class="pill" :class="getTagClass(pizza.pizzaPrice)">{{
             pizza.tag
           }}</span>
         </div>
@@ -28,10 +28,7 @@ export default {
   name: 'board-column',
   props: ['title', 'pizzas', 'boardID'],
   computed: {
-    // orderedPizzas() {
-    //   let orderedPizzas = this.pizzas
-    //   return orderedPizzas.sort((a, b) => a.orderId.localeCompare(b.orderId));
-    // }
+    
   },
   methods: {
     viewPizzaDetails(pizzaID) {
