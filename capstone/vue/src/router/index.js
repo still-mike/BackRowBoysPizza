@@ -146,6 +146,9 @@ const router = new Router({
       path: "/new-specialty-view",
       name: "NewSpecialtyView",
       component: NewSpecialtyView,
+      meta: {
+        requiresAuth: true
+      }
     }
     
 
