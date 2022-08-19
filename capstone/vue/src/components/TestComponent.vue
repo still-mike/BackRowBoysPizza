@@ -1,48 +1,58 @@
 <template>
   <div id="test">
+    
     <successful-order-popup v-if ="displayPopup"/>
-    <h1 id="OurSpecialties">our specialties</h1>
-    <h2 id="NoSubstitutions">no substitutions</h2>
+    
+    <div id="subHeader">
+      <h1 id="OurSpecialties">our specialties</h1>
+      <h2 id="NoSubstitutions">no substitutions</h2>
+    </div>
 
-  <div class='BTTNS'>
-         <input v-model="order.isDelivery" type="radio" id="PickupRadio" name="PickupOrDeliveryRadio" value="false">
-          <label for="PickupRadio">pickup</label>
-          <input v-model="order.isDelivery" type="radio" id="DeliveryRadio" name="PickupOrDeliveryRadio" value="true">
-          <label for="DeliveryRadio">delivery</label>
+<form v-on:submit.prevent>
+  
+  
+    <div id="form-interaction">
+    <div class='form-group'>
+          <input  v-model="order.isDelivery" type="radio" id="PickupRadio" name="PickupOrDeliveryRadio" value="false">
+            <label for="PickupRadio">pickup</label>
+          <input  v-model="order.isDelivery" type="radio" id="DeliveryRadio" name="PickupOrDeliveryRadio" value="true">
+            <label for="DeliveryRadio">delivery</label>
+    </div>
+  
+  <!-- tomato background div
+  ==========================
+      <div id="CustomBG">  
+  ==========================
+  -->      
+    <div class="form-group">
+      <button class="form-control" v-on:click.prevent="addPizzaToOrder">add selection to order</button>
+      <button class="form-control" v-on:click.prevent="createOrder">place order</button>
+      <button v-if="this.order.pizzas.length > 0" class="form-control" v-on:click.prevent="clearOrder">clear order</button>
+    </div>  
+    <p>current order total: ${{ orderTotal }}</p>
+    
+    <div v-if="this.order.pizzas.length > 0">
+      <div class="form-group">          
+            <input class="form-control" v-model="email" placeholder="please enter your email" />
+            <input class="form-control" v-model="address" placeholder="please enter your address" />
       </div>
-
-<!-- tomato background div
-==========================
-    <div id="CustomBG">  
-==========================
--->      
-
-    <button v-on:click.prevent="addPizzaToOrder">add selection to order</button>
-    <button v-on:click.prevent="createOrder">place order</button>
-    <div class="running-total">
-        <p>current order total: ${{ orderTotal }}</p>
-        <input v-model="email" placeholder="please enter your email" />
-        <input v-model="address" placeholder="please enter your address" />
+    </div>
     </div>
     
+    <!-- <form v-on:submit.prevent> -->
     
-    <form v-on:submit.prevent>
     <div class="pizza-box" v-if="!isLoading">
         <!-- <form v-on:submit.prevent> -->
             
             <div class="pizza-button" v-for="visiblePizza in visiblePizzas"
                 v-bind:key="visiblePizza.description" 
             >
-                <h3>{{ visiblePizza.description }}</h3>
+                <input class="specialCheckBox" type="checkbox" v-model="selectedPizzas"  :value="visiblePizza"/>
                 <p>{{ visiblePizza.pizzaPrice }}</p>
-                  <!-- <ul>
-                    <li v-for="ingredient in this.visiblePizza.ingredients" v-bind:key="ingredient.ingredientName" :value="standardIngredient">            
-                      
-                      {{ ingredient.ingredientName }}
-                    </li>
-                  </ul>   -->
-                <!-- <ingredients-list :ingredients="pizza.ingredients" /> -->
-                <input type="checkbox" v-model="selectedPizzas"  :value="visiblePizza"/>
+                <h3>{{ visiblePizza.description }}</h3>
+                
+                
+                <!-- <input class="specialCheckBox" type="checkbox" v-model="selectedPizzas"  :value="visiblePizza"/> -->
                     
             </div>
         <!-- </form> -->
@@ -100,6 +110,16 @@ export default {
               SuccessfulOrderPopup
     },
     methods: {
+        
+      
+      
+        pullIngredients() {
+          for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
+          this.pizza.ingredients.push(this.selectedStandardIngredients[i]);
+          console.log("ingredient added")
+        }
+        },
+        
         retrieveSpecialtyPizzas() {
             PizzaService.getSpecialtyPizzas().then((response) => {
 
@@ -117,14 +137,15 @@ export default {
         },            
             
         createOrder() {
-            console.log("In createOrder")
+          if (confirm("Ready to order?")) { 
+            
             this.order.custEmail = this.email;
             this.order.custAddress = this.address;
             if (this.order.custEmail != "") {
                 console.log("has email")
                 PizzaService.createOrder(this.order).then((response) =>{
                   if (response.status === 201) {
-                    alert("Pizza coming right up!");
+                      
                       console.log("Order created.")
                       this.order.pizzas=[];
                       this.orderTotal = 0;
@@ -136,19 +157,19 @@ export default {
                       this.displayPopup = true;
                   }
                 })
-                // TO DO - check response - look for 201
-                // console.log("Order created.")
-                // this.order.pizzas=[];
-                // this.orderTotal = 0;
-                // this.selectedPizzas = [];
-                // this.submittedPizzas = [];
-                // this.email = "";
-                // this.address = "";
-                // console.log("Order created");
-                // this.displayPopup = true;
-                // })
+                
+                
             }
-        },
+        }
+    },
+    clearOrder() {
+      this.order.pizzas=[];
+      this.orderTotal = 0;
+      this.selectedPizzas = [];
+      this.submittedPizzas = [];
+      this.email = "";
+      this.address = "";
+    }
 
 
         },
@@ -161,7 +182,8 @@ export default {
     },
     pizza() {
       return this.$store.state.pizza;
-    }
+    },
+    
 
     },
     
@@ -221,21 +243,39 @@ export default {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 20px;
   align-items: stretch; /* this is the default */
+  margin: 25px
 }
 
 .pizza-button{
-   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    background: #fff;
-    border-radius: 0.25rem;
-    padding: 10px;
-    border: 1px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Major Mono Display', monospace;
+    display: block;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    background-color: #F7F3E8;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+    border-radius: 15px;
+    margin-bottom: 1rem;
    
+}
+
+.specialCheckBox{
+  display: flex
+}
+#form-interaction{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    background-color: #F7F3E8;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    text-align: -webkit-center;
 }
 </style>
