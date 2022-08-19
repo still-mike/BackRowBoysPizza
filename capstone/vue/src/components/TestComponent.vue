@@ -25,9 +25,9 @@
   ==========================
   -->      
     <div class="form-group">
-      <button class="form-control" v-on:click.prevent="addPizzaToOrder">add selection to order</button>
-      <button class="form-control" v-on:click.prevent="createOrder">place order</button>
-      <button v-if="this.order.pizzas.length > 0" class="form-control" v-on:click.prevent="clearOrder">clear order</button>
+      <button class="form-control" v-on:click.prevent="addPizzaToOrder">Add Selection to Order</button>
+      <button class="form-control" v-on:click.prevent="createOrder">Place Order</button>
+      <button v-if="this.order.pizzas.length > 0" class="form-control" v-on:click.prevent="clearOrder">Clear Order</button>
     </div>  
     <p>current order total: ${{ orderTotal }}</p>
     

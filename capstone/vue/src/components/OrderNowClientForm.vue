@@ -160,6 +160,9 @@
   </div>
   <div id="PaymentInformation">
     <div class="form-group">       
+      <div class="running-total">
+        <p>Current total: ${{ pizzaPriceTotal }}</p>
+      </div>
       <input 
         class="form-control"
         type="text"
@@ -196,13 +199,10 @@
         required
         >
     </div>
-    <div class="form-group">  
+  <div class="form-group">  
     <button 
-      v-on:click.prevent="createOrder"
-      class="form-control"
-    >
-      Submit Order
-    </button>
+      v-on:click.prevent="createOrder" class="form-control">Submit Order</button>
+      <button class="form-control" v-on:click.prevent="clearOrder">Clear Order</button>
   </div>
   
   
@@ -217,9 +217,7 @@
     </button>
   </div> -->
 
-  <div class="running-total">
-  <p>Current total: ${{ pizzaPriceTotal }}</p>
-  </div>
+
 </div>
 </form>
 </div>
@@ -369,8 +367,11 @@ export default {
   },
   methods: {
 
+    clearOrder() {
+      location.reload();
+    },
     createOrder() {
-      if (confirm("Ready to order?")) {
+      if (confirm("Ready to order? Your card will be charged: " + this.pizzaPriceTotal )) {
         console.log("In createOrder")
         
         for (let i = 0; i < this.selectedStandardIngredients.length; i++) {
@@ -435,6 +436,7 @@ export default {
         pizzaPrice += 0.50
       }
 
+      pizzaPrice = Math.round(pizzaPrice * 100) / 100;
 
       return pizzaPrice
     },
