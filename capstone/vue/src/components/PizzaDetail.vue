@@ -98,6 +98,8 @@ export default {
         boardId: this.pizza.boardId,
         status: this.pizza.status,
         available: this.pizza.available
+
+        
       };
       
       
@@ -107,8 +109,10 @@ export default {
         .refreshPizza(newPizza)
         .then(response => {
           if (response.status === 200) {
-            
-            this.$router.push(`/board/${this.pizza.boardId}`);
+            if (newPizza.orderId == 1) {
+              this.$router.push(`/board/2`);
+            } else {
+            this.$router.push(`/board/1`);}
           }
         })
         .catch(error => {
@@ -135,12 +139,23 @@ export default {
           "Are you sure you want to fuggedabout this pizza?"
         )
       ) {
-        pizzaService
+        
+          
+          let gonePizza = this.pizza
+          pizzaService
           .deletePizza(this.pizza.id)
           .then(response => {
             if (response.status === 200) {
               alert("Fuggedaboutit");
-              this.$router.push(`/board/${this.pizza.boardId}`);
+                if (gonePizza.orderId == 1) {
+              this.$router.push(`/board/2`);
+            } else {
+            this.$router.push(`/board/1`);}
+              
+              
+              
+              
+              // this.$router.push(`/board/${this.pizza.boardId}`);
             }
           })
           .catch(error => {
