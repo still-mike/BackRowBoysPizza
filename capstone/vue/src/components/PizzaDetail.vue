@@ -12,9 +12,9 @@
         class="btn modifyPizza"
       >Modify Pizza</router-link> -->
       <button class="btn pendPizza" v-on:click="updatePizza('Pending')">PENDING</button>
-      <button class="btn readyPizza" v-on:click="updatePizza('Ready')" v-if="pizza.isSpecialty == false">READY</button>
-      <button class="btn completePizza" v-on:click="updatePizza('Completed')" v-if="pizza.isSpecialty == false">COMPLETED</button>
-      <button class="btn cancelPizza" v-on:click="updatePizza('Cancelled')">CANCELLED</button>
+      <button class="btn readyPizza" v-on:click="updatePizza('Ready')" >READY</button>
+      <button class="btn completePizza" v-on:click="updatePizza('Completed')" >COMPLETED</button>
+      <button class="btn cancelPizza" v-on:click="updatePizza('Cancelled')" >CANCELLED</button>
       <button class="btn deletePizza" v-on:click="deletePizza">Delete Pizza</button>
       <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
       <p v-if="pizza.isSpecialty">{{ pizza.description }}</p>

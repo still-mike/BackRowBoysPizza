@@ -20,12 +20,12 @@
           :pizzas="pending"
           :boardID="this.boardId"
         />
-        <board-column v-if="this.boardId == 1"
+        <board-column 
           title="Ready"
           :pizzas="ready"
           :boardID="this.boardId"
         />
-        <board-column v-if="this.boardId == 1"
+        <board-column 
           title="Completed"
           :pizzas="completed"
           :boardID="this.boardId"
