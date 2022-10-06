@@ -1,5 +1,3 @@
 # Final Capstone
-​
-This directory contains all of the starter projects for the final capstone.
-​
-Each project contains instructions that provides information about the starting code and explains how to get started with the final capstone project.
+
+My final capstone project at Tech Elevator, built in a four-person team over the course of 10 working days. We utilized Agile methodologies, starting from scratch to build out an online ordering site for a fictional local pizza shop. The site functions as both as a place for users to place orders, as well as for employees to manage those orders.
